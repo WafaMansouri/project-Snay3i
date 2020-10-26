@@ -15,4 +15,5 @@ const artisanSchema = mongoose.Schema({
   age: Number,
   description: String,
 });
+
 module.exports = mongoose.model("Artisan", artisanSchema);

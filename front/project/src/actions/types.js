@@ -17,3 +17,6 @@ export const ALL_CATEGORIES_FAIL = "ALL_CATEGORIES_FAIL";
 
 export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
 export const ADD_POST_FAIL = "ADD_POST_FAIL";
+
+export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
+export const SEARCH_FAIL = "SEARCH_FAIL";
