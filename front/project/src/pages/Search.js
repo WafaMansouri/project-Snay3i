@@ -3,13 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { visitByIdAction } from "../actions/clientActions";
 import { RETURN_SEARCH } from "../actions/types";
 
-const Search = ({ history }) => {
+const Search = () => {
   const search = useSelector((state) => state.search);
   const dispatch = useDispatch();
 
   const handleReturn = () => {
     dispatch({ type: RETURN_SEARCH });
-    console.log(search.test);
   };
   return (
     <>
@@ -29,8 +28,11 @@ const Search = ({ history }) => {
 
 const SearchCard = ({ artisan }) => {
   const dispatch = useDispatch();
+  const visit = useSelector((state) => state.visit);
+
   const handleVist = () => {
     dispatch(visitByIdAction(artisan._id));
+    visit.testVisit = true;
   };
   return (
     <div style={{ border: "1px solid green" }}>

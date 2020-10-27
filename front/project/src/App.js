@@ -15,14 +15,11 @@ import NavBar from "./pages/NavBar";
 import Admin from "./pages/Admin";
 import Search from "./pages/Search";
 import { useSelector } from "react-redux";
+import VisitProfile from "./pages/VisitProfile";
 
 function App() {
   const search = useSelector((state) => state.search);
-  // const [test, settest] = useState(false);
-  // useEffect(() => {
-  //   settest(search.test);
-  //   console.log(test);
-  // }, [search.test]);
+  const visit = useSelector((state) => state.visit);
   return (
     <div className="App">
       <Router>
@@ -44,10 +41,18 @@ function App() {
             exact
             path="/search"
             render={() =>
-              search.test ? <Search /> : <Redirect to="/profile" />
+              search.test ? (
+                !visit.testVisit ? (
+                  <Search />
+                ) : (
+                  <Redirect to="/visit" />
+                )
+              ) : (
+                <Redirect to="/profile" />
+              )
             }
           />
-          {/* <Route exact path="/search" component={Search} /> */}
+          <Route exact path="/visit" component={VisitProfile} />
         </Switch>
       </Router>
     </div>

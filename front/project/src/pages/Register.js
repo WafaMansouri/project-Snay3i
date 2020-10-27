@@ -10,7 +10,7 @@ const Register = ({ history }) => {
     l_name: "",
     email: "",
     password: "",
-    state: "Client",
+    state: "",
   });
   const [errors, seterrors] = useState(null);
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Register = ({ history }) => {
   };
   // Redirect to the feed page after register
   useEffect(() => {
-    if (auth.isAuth === true) {
+    if (auth.isAuth) {
       history.push("/profile");
     }
     if (auth.errors) {

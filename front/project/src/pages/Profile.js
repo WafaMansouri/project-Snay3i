@@ -10,7 +10,9 @@ const Profile = () => {
   const dispatch = useDispatch();
   //to retrieve client's data when the page feed have been loaded
   useEffect(() => {
-    dispatch(loadClient());
+    if (auth.isAuth) {
+      dispatch(loadClient());
+    }
   }, []);
   const addPost = useSelector((state) => state.addPost);
   //after adding the post set addPostTest to false to come back to the profile page
@@ -24,7 +26,7 @@ const Profile = () => {
     <AddPostModel />
   ) : (
     <div>
-      <button onClick={updateInfo}>APDATE YOUR PROFILE</button>
+      <button onClick={updateInfo}>UPDATE YOUR PROFILE</button>
       {auth.user && (
         <ul>
           <li>First Name: {auth.user.f_name}</li>

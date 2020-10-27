@@ -18,8 +18,10 @@ router.get("/", authMiddleware, (req, res) => {
       .exec()
       .then((client) => {
         if (!client) {
-          res.status(404).send({ errors: [{ msg: "Client not found!" }] });
-        } else res.status(200).send(client);
+          return res
+            .status(404)
+            .send({ errors: [{ msg: "Client not found!" }] });
+        } else return res.status(200).send(client);
       })
       .catch((err) => {
         console.log(err);
@@ -32,8 +34,10 @@ router.get("/", authMiddleware, (req, res) => {
       .exec()
       .then((artisan) => {
         if (!artisan) {
-          res.status(404).send({ errors: [{ msg: "Artisan not found!" }] });
-        } else res.status(200).send(artisan);
+          return res
+            .status(404)
+            .send({ errors: [{ msg: "Artisan not found!" }] });
+        } else return res.status(200).send(artisan);
       })
       .catch((err) => {
         console.log(err);
@@ -46,8 +50,10 @@ router.get("/", authMiddleware, (req, res) => {
       .exec()
       .then((admin) => {
         if (!admin) {
-          res.status(404).send({ errors: [{ msg: "Admin not found!" }] });
-        } else res.status(200).send(admin);
+          return res
+            .status(404)
+            .send({ errors: [{ msg: "Admin not found!" }] });
+        } else return res.status(200).send(admin);
       })
       .catch((err) => {
         console.log(err);
