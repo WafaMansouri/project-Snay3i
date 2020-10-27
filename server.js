@@ -27,6 +27,7 @@ app.use("/profile", require("./routes/profile"));
 app.use("/admin", require("./routes/admin"));
 app.use("/category", require("./routes/category"));
 app.use("/search", require("./routes/search"));
+app.use("/visit", require("./routes/visit"));
 //
 app.get("/", (req, res) => {
   res.send("hello");

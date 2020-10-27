@@ -3,22 +3,20 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../actions/authActions";
 import { searchByNameAction } from "../actions/clientActions";
-import Search from "./Search";
 const NavBar = () => {
   const auth = useSelector((state) => state.auth);
-  const [searchTest, setsearchTest] = useState(false);
-
   const [name, setname] = useState("");
   const dispatch = useDispatch();
   const searchByName = (e) => {
     e.preventDefault();
     dispatch(searchByNameAction(name));
-    setsearchTest(true);
+    setname("");
   };
   return (
     <>
-      <form action="" onSubmit={searchByName}>
+      <form onSubmit={searchByName}>
         <input
+          value={name}
           type="text"
           placeholder="Search by name &#xF002;"
           className="search"

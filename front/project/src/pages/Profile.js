@@ -19,6 +19,7 @@ const Profile = () => {
   }, [addPost._id]);
   //update info
   const updateInfo = () => {};
+
   return addPostTest ? (
     <AddPostModel />
   ) : (
