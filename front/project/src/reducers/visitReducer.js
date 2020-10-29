@@ -2,7 +2,7 @@ import { VISIT_PROFILE_SUCCESS, VISIT_PROFILE_FAIL } from "../actions/types";
 const initState = {
   errors: null,
   artisan: {},
-  testVisit: false,
+  // testVisit: false,
 };
 
 const VisitReducer = (state = initState, action) => {

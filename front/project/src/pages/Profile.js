@@ -13,7 +13,7 @@ const Profile = () => {
     if (auth.isAuth) {
       dispatch(loadClient());
     }
-  }, []);
+  }, [auth.isAuth, dispatch]);
   const addPost = useSelector((state) => state.addPost);
   //after adding the post set addPostTest to false to come back to the profile page
   useEffect(() => {
@@ -40,10 +40,6 @@ const Profile = () => {
           {auth.user.address && <li>Address: {auth.user.address}</li>}
         </ul>
       )}
-      {/* upload photo */}
-      {/* <form action="/profile" method="post" encType="multipart/form-data">
-        <input type="file" name="profile_image" />
-      </form> */}
       <AddPhoto />
       {auth.user && auth.user.state === "Artisan" && (
         <button onClick={(e) => setaddPostTest(true)}>ADD NEW POST</button>

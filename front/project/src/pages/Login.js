@@ -3,7 +3,6 @@ import { login } from "../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ history, match }) => {
-  // console.log(match.url);
   const [userState, setuserState] = useState("Client");
   const [info, setInfo] = useState({
     email: "",
@@ -25,7 +24,7 @@ const Login = ({ history, match }) => {
     if (auth.errors) {
       seterrors(auth.errors);
     }
-  }, [auth.isAuth, auth.errors, info.state]);
+  }, [auth.isAuth, auth.errors, info.state, history, info, match.path]);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });

@@ -34,11 +34,11 @@ const Register = ({ history }) => {
     if (auth.errors) {
       seterrors(auth.errors);
     }
-  }, [auth.isAuth, auth.errors]);
+  }, [auth.isAuth, auth.errors, history]);
   //to retrieve categories from database and update state category
   useEffect(() => {
     dispatch(retrieveCategories());
-  }, []);
+  }, [dispatch]);
   // Change the state of the user
   const handleUserState = () => {
     if (userState === "Client") {

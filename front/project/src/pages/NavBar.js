@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../actions/authActions";
 import { searchByNameAction } from "../actions/clientActions";
+import { useHistory } from "react-router-dom";
 const NavBar = () => {
   const auth = useSelector((state) => state.auth);
   const [name, setname] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
   const searchByName = (e) => {
     e.preventDefault();
     dispatch(searchByNameAction(name));
+    history.push("/search");
     setname("");
   };
   return (
@@ -24,13 +27,17 @@ const NavBar = () => {
           onChange={(e) => setname(e.target.value)}
         />
       </form>
-      <Link to="/home">Home</Link>
+      <Link to="/">Home</Link>
 
       {auth.isAuth ? (
         <>
           <Link to="/profile">Profile</Link>
           <Link to="" onClick={() => dispatch(logOut())}>
             Log Out
+          </Link>
+          {/* icon notification */}
+          <Link to="/notification">
+            <i class="far fa-bell"></i>
           </Link>
         </>
       ) : (

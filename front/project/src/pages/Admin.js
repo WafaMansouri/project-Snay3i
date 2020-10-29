@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addCategory } from "../actions/adminActions";
-const Admin = ({ state }) => {
+const Admin = () => {
   const [newCategory, setnewCategory] = useState({ name: "" });
   const category = useSelector((state) => state.category);
   const dispatch = useDispatch();
