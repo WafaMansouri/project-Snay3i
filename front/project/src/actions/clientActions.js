@@ -5,8 +5,10 @@ import {
   VISIT_PROFILE_FAIL,
   SEND_REQUEST_SUCCESS,
   SEND_REQUEST_FAIL,
-  CHECK_REQUEST_SUCCESS,
-  CHECK_REQUEST_FAIL,
+  CHECK_REQUESTS_ARTISAN_SUCCESS,
+  CHECK_REQUESTS_ARTISAN_FAIL,
+  CHECK_REQUEST_CLIENT_SUCCESS,
+  CHECK_REQUEST_CLIENT_FAIL,
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
@@ -61,20 +63,39 @@ export const sendRequestAction = (requestInfo) => (dispatch) => {
       })
     );
 };
-export const checkRequest = (id_artisan) => (dispatch) => {
+// To get the information of a request if exists and if he visit the artisan
+export const checkRequest_client = (id_artisan) => (dispatch) => {
   setToken();
   axios
     .get(`/visit/request/${id_artisan}`) //bind front and back
     .then((res) =>
       dispatch({
-        type: CHECK_REQUEST_SUCCESS,
+        type: CHECK_REQUEST_CLIENT_SUCCESS,
         payload: res.data,
       })
     )
     .catch((err) =>
       dispatch({
-        type: CHECK_REQUEST_FAIL,
+        type: CHECK_REQUEST_CLIENT_FAIL,
         payload: err.response.data.errors[0].msg,
       })
     );
 };
+// To get the information of requests if exist at the load App.js
+// export const checkRequest_client = () => (dispatch) => {
+//   setToken();
+//   axios
+//     .get("client/requests/") //bind front and back
+//     .then((res) =>
+//       dispatch({
+//         type: CHECK_REQUESTS_CLIENT_SUCCESS,
+//         payload: res.data,
+//       })
+//     )
+//     .catch((err) =>
+//       dispatch({
+//         type: CHECK_REQUESTS_CLIENT_FAIL,
+//         payload: err.response.data.errors[0].msg,
+//       })
+//     );
+// };

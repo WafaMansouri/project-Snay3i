@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -11,9 +11,28 @@ import Admin from "./pages/Admin";
 import Search from "./pages/Search";
 import VisitProfile from "./pages/VisitProfile";
 import ContactModal from "./pages/ContactModal";
-import Notification from "./pages/Notification";
+import ArtisanResponse from "./pages/ArtisanResponse";
+import Requests from "./pages/Requests";
+import { useDispatch, useSelector } from "react-redux";
+import { checkRequest_artisan } from "./actions/artisanActions";
+import { checkRequest_client } from "./actions/clientActions";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const auth = useSelector((state) => state.auth);
+  //To Check if there is requests for the connected artisan
+  useEffect(() => {
+    if (auth.isAuth && auth.user && auth.user.state === "Artisan") {
+      dispatch(checkRequest_artisan());
+    }
+  }, [auth]);
+  // To Check the requests of the connected client
+  useEffect(() => {
+    if (auth.isAuth && auth.user && auth.user.state === "Client") {
+      dispatch(checkRequest_client());
+    }
+  }, [auth]);
   return (
     <div className="App">
       <Router>
@@ -28,7 +47,12 @@ function App() {
           <Route exact path="/search" render={() => <Search />} />
           <Route exact path="/visit" component={VisitProfile} />
           <Route exact path="/contact" component={ContactModal} />
-          <Route exact path="/notification" component={Notification} />
+          <Route exact path="/requests" component={Requests} />
+          <Route
+            exact
+            path="/artisanResponse/:id_client"
+            component={ArtisanResponse}
+          />
         </Switch>
       </Router>
     </div>

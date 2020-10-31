@@ -24,7 +24,7 @@ const Login = ({ history, match }) => {
     if (auth.errors) {
       seterrors(auth.errors);
     }
-  }, [auth.isAuth, auth.errors, info.state, history, info, match.path]);
+  }, [auth.isAuth, auth.errors, match.path]);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });

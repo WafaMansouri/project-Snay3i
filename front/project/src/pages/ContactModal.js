@@ -21,7 +21,7 @@ function ContactModal() {
     dispatch(sendRequestAction(requestInfo));
     history.goBack();
   };
-  const request = useSelector((state) => state.request);
+  const request_client = useSelector((state) => state.request_client);
   return (
     display && (
       <div className={"modal-wrapper"}>
@@ -32,7 +32,7 @@ function ContactModal() {
             history.goBack();
           }}
         />
-        {request.requests.state === "Send Request" ? (
+        {request_client.requests.state === "Send Request" ? (
           <div className={"modal-box"}>
             <form
               action=""
@@ -42,11 +42,13 @@ function ContactModal() {
               }}
             >
               <h3>Request sent at:</h3>
-              <h4>{new Date(request.requests.created_at).toUTCString()}</h4>
+              <h4>
+                {new Date(request_client.requests.created_at).toUTCString()}
+              </h4>
               <h3>Your message:</h3>
-              <h4>{request.requests.msg_client}</h4>
+              <h4>{request_client.requests.msg_client}</h4>
               <h3>Time Required:</h3>
-              <h4>{request.requests.msg_client}</h4>
+              <h4>{request_client.requests.msg_client}</h4>
               <button type="submit">OK</button>
             </form>
           </div>
@@ -57,7 +59,7 @@ function ContactModal() {
                 name="msg_client"
                 cols="20"
                 rows="10"
-                placeholder="describe needs"
+                placeholder="describe your request"
                 onChange={handleChange}
               ></textarea>
               <button type="submit">SEND</button>

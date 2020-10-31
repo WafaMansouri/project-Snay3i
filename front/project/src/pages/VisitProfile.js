@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { checkRequest } from "../actions/clientActions";
+import { checkRequest_client } from "../actions/clientActions";
 const VisitProfile = () => {
   const auth = useSelector((state) => state.auth);
   const visit = useSelector((state) => state.visit);
-  // const [testRequest, settestRequest] = useState(null);
-  const request = useSelector((state) => state.request);
+  const request_client = useSelector((state) => state.request_client);
 
-  //To Check if there is a request with the viseited artisan or not
+  //To Check if there is a request with the visited artisan or not
   useEffect(() => {
     if (auth.isAuth && visit.artisan._id) {
-      // console.log(visit.artisan._id);
-      dispatch(checkRequest(visit.artisan._id));
+      dispatch(checkRequest_client(visit.artisan._id));
     }
   }, [visit.artisan]);
-  // useEffect(() => {
-  //   if (request.requests) {
-  //     settestRequest(request.requests.state);
-  //     console.log(testRequest);
-  //   }
-  // }, [request.requests]);
   const dispatch = useDispatch();
   const history = useHistory();
   const handleReturn = () => {
@@ -32,11 +24,11 @@ const VisitProfile = () => {
   };
 
   return (
-    // request.requests && (
     <div>
       <button onClick={handleReturn}>Return</button>
       Welcome to {visit.artisan.f_name + " " + visit.artisan.l_name} 's Profile
-      {request.requests && request.requests.state == "Send Request" ? (
+      {request_client.requests &&
+      request_client.requests.state == "Send Request" ? (
         <button onClick={handleContact}>View Demande</button>
       ) : (
         <button onClick={handleContact}>
@@ -44,7 +36,6 @@ const VisitProfile = () => {
         </button>
       )}
     </div>
-    // )
   );
 };
 

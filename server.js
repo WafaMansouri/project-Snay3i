@@ -28,6 +28,8 @@ app.use("/admin", require("./routes/admin"));
 app.use("/category", require("./routes/category"));
 app.use("/search", require("./routes/search"));
 app.use("/visit", require("./routes/visit"));
+app.use("/artisan", require("./routes/artisan"));
+// app.use("/client", require("./routes/client"));
 //
 app.get("/", (req, res) => {
   res.send("hello");

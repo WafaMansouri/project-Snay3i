@@ -1,14 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { visitByIdAction } from "../actions/clientActions";
-import { RETURN_SEARCH } from "../actions/types";
 import { useHistory } from "react-router-dom";
 const Search = () => {
   const search = useSelector((state) => state.search);
-  const dispatch = useDispatch();
   const history = useHistory();
   const handleReturn = () => {
-    dispatch({ type: RETURN_SEARCH });
     history.goBack();
   };
   return (

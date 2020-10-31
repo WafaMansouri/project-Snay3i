@@ -4,13 +4,12 @@ import { register } from "../actions/authActions";
 import { retrieveCategories } from "../actions/categoriesActions";
 
 const Register = ({ history }) => {
-  const [userState, setuserState] = useState("Client");
   const [info, setInfo] = useState({
     f_name: "",
     l_name: "",
     email: "",
     password: "",
-    state: "",
+    state: "Client",
   });
   const [errors, seterrors] = useState(null);
   const dispatch = useDispatch();
@@ -41,18 +40,16 @@ const Register = ({ history }) => {
   }, [dispatch]);
   // Change the state of the user
   const handleUserState = () => {
-    if (userState === "Client") {
-      setuserState("Artisan");
+    if (info.state === "Client") {
       setInfo({ ...info, state: "Artisan" });
     } else {
-      setuserState("Client");
       setInfo({ ...info, state: "Client" });
     }
   };
   return (
     <form onSubmit={registerNow}>
       <button type="button" onClick={handleUserState}>
-        {userState}
+        {info.state}
       </button>
       <div>
         <label>First Name</label>
@@ -70,7 +67,7 @@ const Register = ({ history }) => {
         <label>Password</label>
         <input type="password" name="password" onChange={handleChange} />
       </div>
-      {userState === "Artisan" && (
+      {info.state === "Artisan" && (
         <div>
           <label className="browser-default">Job Category</label>
           <select
@@ -92,7 +89,7 @@ const Register = ({ history }) => {
           </select>
         </div>
       )}
-      <button type="submit">Register {userState}</button>
+      <button type="submit">Register {info.state}</button>
       {errors && <h3>{errors}</h3>}
     </form>
   );
