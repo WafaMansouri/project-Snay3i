@@ -8,7 +8,12 @@ router.get("/:name", authMiddleware, (req, res) => {
   let arr = req.params.name.split(" ");
   let f_name = arr[0];
   let l_name = arr[1];
-  Artisan.find({ $or: [{ f_name: f_name }, { l_name: l_name }] })
+  Artisan.find({
+    $or: [
+      { f_name: { $regex: f_name, $options: "i" } },
+      { l_name: { $regex: l_name, $options: "i" } },
+    ],
+  })
     .exec()
     .then((artisan) => {
       res.status(201).send(artisan);

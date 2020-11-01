@@ -2,7 +2,12 @@ const mongoose = require("mongoose");
 const artisanSchema = mongoose.Schema({
   f_name: { type: String, required: true },
   l_name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
   password: { type: String, required: true },
   state: { type: String, default: "Artisan" },
   category: String,

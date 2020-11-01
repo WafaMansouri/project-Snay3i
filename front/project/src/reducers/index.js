@@ -4,9 +4,11 @@ import CategoryReducer from "./categoryReducer";
 import addPostReducer from "./addPostReducer";
 import SearchReducer from "./searchReducer";
 import VisitReducer from "./visitReducer";
-import RequestClientReducer from "./requestClientReducer";
+import SendRequestReducer from "./sendRequestReducer";
 import RequestArtisanReducer from "./requestArtisanReducer";
+import RequestClientReducer from "./requestClientReducer";
 import ResponseArtisanReducer from "./responseArtisanReducer";
+import IgnoreReducer from "./ignoreReducer";
 
 export default combineReducers({
   auth: AuthReducer,
@@ -14,7 +16,9 @@ export default combineReducers({
   addPost: addPostReducer,
   search: SearchReducer,
   visit: VisitReducer,
-  request_client: RequestClientReducer,
+  send_request: SendRequestReducer,
   request_artisan: RequestArtisanReducer,
+  request_client: RequestClientReducer,
   response_artisan: ResponseArtisanReducer,
+  ignore: IgnoreReducer,
 });

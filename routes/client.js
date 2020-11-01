@@ -2,7 +2,7 @@ const express = require("express");
 const authMiddleware = require("../helpers/authMiddleware");
 const Intervention = require("../models/intervention");
 const router = express.Router();
-//get artisan requests
+//get client requests
 router.get("/requests", authMiddleware, (req, res) => {
   Intervention.find({ id_client: req.user_Id })
     .populate("id_artisan")

@@ -18,7 +18,11 @@ router.get("/requests", authMiddleware, (req, res) => {
 //post response
 router.post("/response", authMiddleware, (req, res) => {
   Intervention.findOneAndUpdate(
-    { id_artisan: req.user_Id, id_client: req.body.id_client },
+    {
+      id_artisan: req.user_Id,
+      id_client: req.body.id_client,
+      state: { $in: ["Send Request", "Respond Artisan"] },
+    },
     { msg_artisan: req.body.msg_artisan, state: "Respond Artisan" },
     { new: true, useFindAndModify: false }
   )

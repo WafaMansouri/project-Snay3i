@@ -1,8 +1,7 @@
 import {
-  SEND_REQUEST_SUCCESS,
-  SEND_REQUEST_FAIL,
-  CHECK_REQUEST_CLIENT_SUCCESS,
-  CHECK_REQUEST_CLIENT_FAIL,
+  CHECK_REQUESTS_CLIENT_SUCCESS,
+  CHECK_REQUESTS_CLIENT_FAIL,
+  LOGOUT,
 } from "../actions/types";
 const initState = {
   errors: null,
@@ -11,12 +10,13 @@ const initState = {
 
 const RequestClientReducer = (state = initState, action) => {
   switch (action.type) {
-    // case SEND_REQUEST_SUCCESS:
-    case CHECK_REQUEST_CLIENT_SUCCESS:
+    case CHECK_REQUESTS_CLIENT_SUCCESS:
       return { ...state, requests: action.payload, errors: null };
-    // case SEND_REQUEST_FAIL:
-    case CHECK_REQUEST_CLIENT_FAIL:
+
+    case CHECK_REQUESTS_CLIENT_FAIL:
       return { ...state, requests: null, errors: action.payload };
+    case LOGOUT:
+      return { ...state, errors: null, requests: null };
     default:
       return state;
   }

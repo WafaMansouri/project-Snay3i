@@ -54,9 +54,15 @@ const NavBar = () => {
             Log Out
           </Link>
           {/* icon notification */}
-          <Link to="/requests">
-            <i class="fas fa-envelope-square"></i>
-          </Link>
+          {auth.user && auth.user.state === "Client" ? (
+            <Link to="/requests-client">
+              <i class="fas fa-envelope-square"></i>
+            </Link>
+          ) : (
+            <Link to="/requests">
+              <i class="fas fa-envelope-square"></i>
+            </Link>
+          )}
         </>
       ) : (
         <>

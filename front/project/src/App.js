@@ -13,6 +13,7 @@ import VisitProfile from "./pages/VisitProfile";
 import ContactModal from "./pages/ContactModal";
 import ArtisanResponse from "./pages/ArtisanResponse";
 import Requests from "./pages/Requests";
+import RequestsClient from "./pages/RequestsClient";
 import { useDispatch, useSelector } from "react-redux";
 import { checkRequest_artisan } from "./actions/artisanActions";
 import { checkRequest_client } from "./actions/clientActions";
@@ -27,12 +28,7 @@ function App() {
       dispatch(checkRequest_artisan());
     }
   }, [auth]);
-  // To Check the requests of the connected client
-  useEffect(() => {
-    if (auth.isAuth && auth.user && auth.user.state === "Client") {
-      dispatch(checkRequest_client());
-    }
-  }, [auth]);
+
   return (
     <div className="App">
       <Router>
@@ -48,6 +44,7 @@ function App() {
           <Route exact path="/visit" component={VisitProfile} />
           <Route exact path="/contact" component={ContactModal} />
           <Route exact path="/requests" component={Requests} />
+          <Route exact path="/requests-client" component={RequestsClient} />
           <Route
             exact
             path="/artisanResponse/:id_client"

@@ -30,11 +30,13 @@ router.post(
       Intervention.findOne({
         id_client: req.user_Id,
         id_artisan: req.body.id_artisan,
+        state: { $in: ["Send Request", "Respond Artisan"] },
       })
         .exec()
         .then((intervention) => {
-          if (intervention) res.status(201).send(intervention);
-          else {
+          if (!intervention) {
+            //   res.status(201).send(intervention);
+            // else
             let newIntervention = new Intervention({
               id_client: req.user_Id,
               id_artisan: req.body.id_artisan,
@@ -43,6 +45,8 @@ router.post(
             });
             newIntervention.save();
             res.send(newIntervention);
+          } else {
+            res.send("You have already a request!");
           }
         })
         .catch((err) => {

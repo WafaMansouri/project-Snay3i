@@ -1,6 +1,7 @@
 import {
   CHECK_REQUESTS_ARTISAN_SUCCESS,
   CHECK_REQUESTS_ARTISAN_FAIL,
+  LOGOUT,
 } from "../actions/types";
 const initState = {
   errors: null,
@@ -14,6 +15,8 @@ const RequestArtisanReducer = (state = initState, action) => {
 
     case CHECK_REQUESTS_ARTISAN_FAIL:
       return { ...state, requests: null, errors: action.payload };
+    case LOGOUT:
+      return { ...state, requests: null, errors: null };
     default:
       return state;
   }
