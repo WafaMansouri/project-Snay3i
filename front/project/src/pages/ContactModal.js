@@ -69,7 +69,8 @@ function ContactModal() {
             </form>
           </div>
         ) : send_request.request &&
-          send_request.request.state === "Send Request" ? (
+          send_request.request.state === "Send Request" &&
+          send_request.request.id_artisan === visit.artisan._id ? (
           <div className={"modal-box"}>
             <form
               action=""

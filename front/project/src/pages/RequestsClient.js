@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { ignoreAction } from "../actions/ignoreAction";
+import { ignore_clientAction } from "../actions/ignore_clientAction";
+import { confirm_clientAction } from "../actions/clientActions";
 import { checkRequest_client } from "../actions/clientActions";
+import { rejectAction } from "../actions/rejectAction";
 
 const RequestsClient = () => {
   const auth = useSelector((state) => state.auth);
@@ -38,25 +40,45 @@ const RequestsClient = () => {
     </div>
   );
 };
+//Request Modal
 const RequestModal = ({ request }) => {
   const dispatch = useDispatch();
   const handleIgnore = () => {
-    dispatch(ignoreAction(request._id));
+    dispatch(ignore_clientAction(request._id));
   };
   const ignore = useSelector((state) => state.ignore);
-
-  return ignore.ignored_req ? (
-    <h2>Request Ignored with Success</h2>
-  ) : (
-    request.state !== "Ignored" && (
-      <div style={{ border: "1px solid green" }}>
-        <h3>Your Message: {request.msg_client}</h3>
-        <h3>Date Request: {new Date(request.created_at).toUTCString()}</h3>
-        <h3>Response: {request.msg_artisan}</h3>
-        <button onClick={handleIgnore}>IGNORE</button>
-        {/* <button onClick={confirmAction}>CONFIRM</button> */}
+  const rejectRequest = () => {
+    dispatch(rejectAction(request._id));
+  };
+  const handleConfirm = () => {
+    dispatch(confirm_clientAction(request._id));
+  };
+  return (
+    request.state !== "Rejected" &&
+    (ignore.ignored_req ? (
+      <h2>Request Ignored with Success</h2>
+    ) : request.state === "Ignored By Artisan" ? (
+      <div>
+        <h2>Request Ignore By Artisan</h2>
+        <button onClick={rejectRequest}>OK</button>
       </div>
-    )
+    ) : (
+      request.state !== "Ignored By Client" && (
+        <div style={{ border: "1px solid green" }}>
+          <h3>Your Message: {request.msg_client}</h3>
+          <h3>Date Request: {new Date(request.created_at).toUTCString()}</h3>
+          {request.msg_artisan && <h3>Response: {request.msg_artisan}</h3>}
+          {request.state === "Accepted By Artisan" ? (
+            <i className="fas fa-check"></i>
+          ) : (
+            <button onClick={handleIgnore}>IGNORE</button>
+          )}
+          {request.state !== "Accepted By Artisan" && (
+            <button onClick={handleConfirm}>CONFIRM</button>
+          )}
+        </div>
+      )
+    ))
   );
 };
 

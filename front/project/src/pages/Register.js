@@ -68,12 +68,12 @@ const Register = ({ history }) => {
         <input type="password" name="password" onChange={handleChange} />
       </div>
       {info.state === "Artisan" && (
+        // Add Category
         <div>
           <label className="browser-default">Job Category</label>
           <select
             className="browser-default"
             name="category"
-            id=""
             onChange={handleChange}
             required
           >
@@ -87,6 +87,16 @@ const Register = ({ history }) => {
               </option>
             ))}
           </select>
+          {/* Add Address */}
+          <label className="browser-default">Governorate</label>
+          <select
+            className="browser-default"
+            name="address"
+            onChange={handleChange}
+            required
+          >
+            <Governorate />
+          </select>
         </div>
       )}
       <button type="submit">Register {info.state}</button>
@@ -94,5 +104,37 @@ const Register = ({ history }) => {
     </form>
   );
 };
-
+const Governorate = () => {
+  return (
+    <>
+      <option disabled selected>
+        "--Select Your Governorate--"
+      </option>
+      <option>Ariana</option>
+      <option>Beja</option>
+      <option>Ben Arous</option>
+      <option>Bizert</option>
+      <option>Gabes</option>
+      <option>Gafsa</option>
+      <option>Jandouba</option>
+      <option>Kairouan</option>
+      <option>Kasserine</option>
+      <option>Kebilli</option>
+      <option>Kef</option>
+      <option>Mahdia</option>
+      <option>Manouba</option>
+      <option>Medenine</option>
+      <option>Monastir</option>
+      <option>Nabeul</option>
+      <option>Sfax</option>
+      <option>Sidi Bouzid</option>
+      <option>Siliana</option>
+      <option>Sousse</option>
+      <option>Tataouine</option>
+      <option>Tozeur</option>
+      <option>Tunis</option>
+      <option>Zaouana</option>
+    </>
+  );
+};
 export default Register;

@@ -7,6 +7,12 @@ import {
   SEND_REQUEST_FAIL,
   CHECK_REQUESTS_CLIENT_SUCCESS,
   CHECK_REQUESTS_CLIENT_FAIL,
+  ACCEPT_REQUEST_SUCCESS,
+  ACCEPT_REQUEST_FAIL,
+  RATING_SUCCESS,
+  RATING_FAIL,
+  GET_RATING_CLIENT_SUCCESS,
+  GET_RATING_CLIENT_FAIL,
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
@@ -78,6 +84,60 @@ export const checkRequest_client = () => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: CHECK_REQUESTS_CLIENT_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// Confirm the Request
+export const confirm_clientAction = (id_request) => (dispatch) => {
+  setToken();
+  axios
+    .post("/client/confirm", { id_request }) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: ACCEPT_REQUEST_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: ACCEPT_REQUEST_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// Rating Artisna
+export const ratingAction = (rateInfo) => (dispatch) => {
+  setToken();
+  axios
+    .post("/client/rating", rateInfo) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: RATING_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: RATING_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// To get the rate of the client to the visited artisan
+export const getRateAction = (id) => (dispatch) => {
+  setToken();
+  axios
+    .get(`/client/rating/${id}`) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: GET_RATING_CLIENT_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_RATING_CLIENT_FAIL,
         payload: err.response.data.errors[0].msg,
       })
     );

@@ -5,6 +5,8 @@ import {
   CHECK_REQUESTS_ARTISAN_FAIL,
   RESPONSE_ARTISAN_SUCCESS,
   RESPONSE_ARTISAN_FAIL,
+  ACCEPT_REQUEST_SUCCESS,
+  ACCEPT_REQUEST_FAIL,
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
@@ -58,6 +60,24 @@ export const respondAction = (response) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: RESPONSE_ARTISAN_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// Accept the Request
+export const accept_artisanAction = (id_request) => (dispatch) => {
+  setToken();
+  axios
+    .post("/artisan/accept", { id_request }) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: ACCEPT_REQUEST_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: ACCEPT_REQUEST_FAIL,
         payload: err.response.data.errors[0].msg,
       })
     );

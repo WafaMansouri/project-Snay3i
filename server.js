@@ -30,7 +30,7 @@ app.use("/search", require("./routes/search"));
 app.use("/visit", require("./routes/visit"));
 app.use("/artisan", require("./routes/artisan"));
 app.use("/client", require("./routes/client"));
-app.use("/ignore", require("./routes/ignore"));
+app.use("/reject", require("./routes/reject"));
 //
 app.get("/", (req, res) => {
   res.send("hello");

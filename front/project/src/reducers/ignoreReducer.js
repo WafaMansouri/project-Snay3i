@@ -15,7 +15,7 @@ const IgnoreReducer = (state = initState, action) => {
     case IGNORE_REQUEST_FAIL:
       return { ...state, ignored_req: null, errors: action.payload };
     case LOGOUT:
-      return { ...state, ignored_req: null };
+      return { ...state, ignored_req: null, errors: null };
     default:
       return state;
   }

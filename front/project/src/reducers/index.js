@@ -9,6 +9,9 @@ import RequestArtisanReducer from "./requestArtisanReducer";
 import RequestClientReducer from "./requestClientReducer";
 import ResponseArtisanReducer from "./responseArtisanReducer";
 import IgnoreReducer from "./ignoreReducer";
+import AcceptReducer from "./acceptReducer";
+import RateClientReducer from "./rateClientReducer";
+import RateArtisanReducer from "./rateArtisanReducer";
 
 export default combineReducers({
   auth: AuthReducer,
@@ -21,4 +24,7 @@ export default combineReducers({
   request_client: RequestClientReducer,
   response_artisan: ResponseArtisanReducer,
   ignore: IgnoreReducer,
+  accept: AcceptReducer,
+  rate_client: RateClientReducer,
+  rate_artisan: RateArtisanReducer,
 });

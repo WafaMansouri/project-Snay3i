@@ -2,10 +2,10 @@ import { IGNORE_REQUEST_SUCCESS, IGNORE_REQUEST_FAIL } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
 // ignore the Request
-export const ignoreAction = (id_request) => (dispatch) => {
+export const ignore_clientAction = (id_request) => (dispatch) => {
   setToken();
   axios
-    .post("/ignore", { id_request }) //bind front and back
+    .post("/client/ignore", { id_request }) //bind front and back
     .then((res) =>
       dispatch({
         type: IGNORE_REQUEST_SUCCESS,

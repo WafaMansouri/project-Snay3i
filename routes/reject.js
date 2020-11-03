@@ -4,7 +4,7 @@ const Intervention = require("../models/intervention");
 const { body, validationResult } = require("express-validator");
 
 const router = express.Router();
-//ignore request
+//reject request
 router.post(
   "/",
   authMiddleware,
@@ -16,7 +16,7 @@ router.post(
     } else {
       Intervention.findByIdAndUpdate(
         req.body.id_request,
-        { state: "Ignored" },
+        { state: "Rejected" },
         { new: true, useFindAndModify: false }
       )
         .exec()

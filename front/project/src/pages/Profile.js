@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadClient } from "../actions/authActions";
 import AddPhoto from "./AddPhoto";
 import AddPostModel from "./AddPostModel";
+import { artisanRatesAction } from "../actions/artisanRatesAction";
 const Profile = () => {
   const auth = useSelector((state) => state.auth);
 
@@ -21,11 +22,21 @@ const Profile = () => {
   }, [addPost._id]);
   //update info
   const updateInfo = () => {};
-
+  // To get all the rate of the  artisan (if the connected is artisan)
+  useEffect(() => {
+    if (auth.user && auth.user.state === "Artisan")
+      dispatch(artisanRatesAction(auth.user._id));
+  }, [auth.user]);
+  const rate_artisan = useSelector((state) => state.rate_artisan);
   return addPostTest ? (
     <AddPostModel />
   ) : (
     <div>
+      {rate_artisan.rate && (
+        <i className="far fa-star" style={{ fontSize: 50 }}>
+          {rate_artisan.rate.rate.toFixed(1)}
+        </i>
+      )}
       <button onClick={updateInfo}>UPDATE YOUR PROFILE</button>
       {auth.user && (
         <ul>
