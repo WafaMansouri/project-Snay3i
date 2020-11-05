@@ -12,6 +12,8 @@ import IgnoreReducer from "./ignoreReducer";
 import AcceptReducer from "./acceptReducer";
 import RateClientReducer from "./rateClientReducer";
 import RateArtisanReducer from "./rateArtisanReducer";
+import PostsReducer from "./postsReducer";
+import UpdateReducer from "./updateReducer";
 
 export default combineReducers({
   auth: AuthReducer,
@@ -27,4 +29,6 @@ export default combineReducers({
   accept: AcceptReducer,
   rate_client: RateClientReducer,
   rate_artisan: RateArtisanReducer,
+  posts: PostsReducer,
+  update: UpdateReducer,
 });

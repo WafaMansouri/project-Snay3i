@@ -14,10 +14,11 @@ import ContactModal from "./pages/ContactModal";
 import ArtisanResponse from "./pages/ArtisanResponse";
 import Requests from "./pages/Requests";
 import RequestsClient from "./pages/RequestsClient";
+import AddPhoto from "./pages/AddPhoto";
 import { useDispatch, useSelector } from "react-redux";
 import { checkRequest_artisan } from "./actions/artisanActions";
-import { checkRequest_client } from "./actions/clientActions";
-
+import "antd/dist/antd.css";
+import UpdateProfile from "./pages/UpdateProfile";
 function App() {
   const dispatch = useDispatch();
 
@@ -45,6 +46,8 @@ function App() {
           <Route exact path="/contact" component={ContactModal} />
           <Route exact path="/requests" component={Requests} />
           <Route exact path="/requests-client" component={RequestsClient} />
+          <Route exact path="/addPhoto" component={AddPhoto} />
+          <Route exact path="/update-profile" component={UpdateProfile} />
           <Route
             exact
             path="/artisanResponse/:id_client"

@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+const AddPhoto = () => {
+  const [display, setdisplay] = useState(true);
+  const history = useHistory();
 
-export const AddPhoto = () => {
   return (
-    <div className="container">
-      <h1>PHOTO UPLOAD</h1>
-      {/* <%= typeof msg!= "undefined"? msg:""%> */}
-      <form action="/profile/" method="POST" enctype="multipart/form-data">
-        <div className="file-field input-field">
-          <div className="btn grey">
-            <span>File</span>
-            <input name="profileImage" type="file" />
-          </div>
-          <div class="file-path-wrapper">
-            <input class="file-path validate" type="text" />
-          </div>
+    display && (
+      <div className={"modal-wrapper"}>
+        <div
+          className={"modal-backdrop"}
+          onClick={() => {
+            setdisplay(false);
+            history.goBack();
+          }}
+        />
+        <div className={"modal-box"}>
+          <form>
+            <label>ADD IMAGE</label>
+            <input className="browser-default" type="file" name="photo" />
+            <button className="waves-effect waves-light btn" type="submit">
+              ADD
+            </button>
+          </form>
         </div>
-        <button type="submit" class="btn">
-          UPLOAD
-        </button>
-      </form>
-    </div>
+      </div>
+    )
   );
 };
 export default AddPhoto;

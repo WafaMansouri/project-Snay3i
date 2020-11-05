@@ -9,10 +9,17 @@ const Search = () => {
     history.goBack();
   };
   return (
-    <>
+    <div>
+      <button
+        style={{ width: 90 }}
+        className="waves-effect waves-light btn"
+        onClick={handleReturn}
+      >
+        <i class="large material-icons">arrow_back</i>
+      </button>
       {!search.artisans.errors ? (
         search.artisans.length ? (
-          <div>
+          <div className="container_search">
             {search.artisans.map((artisan, index) => {
               return <SearchCard key={index} artisan={artisan} />;
             })}
@@ -23,11 +30,12 @@ const Search = () => {
       ) : (
         <h2>{search.artisans.errors}</h2>
       )}
-      <button onClick={handleReturn}>return</button>
-    </>
+    </div>
   );
 };
+export default Search;
 
+//Search Card
 const SearchCard = ({ artisan }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,14 +45,14 @@ const SearchCard = ({ artisan }) => {
     history.push("/visit");
   };
   return (
-    <div style={{ border: "1px solid green" }}>
+    <div className="search_modal">
       <h4>{artisan.f_name + " " + artisan.l_name}</h4>
       <h4>{artisan.category}</h4>
       <h4>{artisan.description && artisan.description}</h4>
       <h4>{artisan.rate && artisan.rate}</h4>
-      <button onClick={handleVist}>Visit Profile</button>
+      <button className="waves-effect waves-light btn" onClick={handleVist}>
+        Visit Profile
+      </button>
     </div>
   );
 };
-
-export default Search;

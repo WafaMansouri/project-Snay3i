@@ -17,7 +17,7 @@ const StarRating = () => {
     if (rate_client.rate) setrating(rate_client.rate.value);
   }, [rate_client.rate]);
   return (
-    <div>
+    <div style={{ textAlign: "left" }}>
       {[...Array(5)].map((star, i) => {
         let ratingValue = i + 1;
         return (
@@ -26,7 +26,7 @@ const StarRating = () => {
             <i
               className="fas fa-star"
               style={{
-                fontSize: 20,
+                fontSize: 27,
                 color:
                   ratingValue <= rating
                     ? "#ffcc00"

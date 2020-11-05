@@ -3,6 +3,8 @@ import "../ContactModal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { respondAction } from "../actions/artisanActions";
 import { useHistory } from "react-router-dom";
+import { Calendar } from "antd";
+
 function ArtisanResponse({ match }) {
   const [display, setdisplay] = useState(true);
   const history = useHistory();
@@ -35,11 +37,19 @@ function ArtisanResponse({ match }) {
             <textarea
               onChange={handleChange}
               name="msg_artisan"
-              cols="20"
-              rows="10"
               placeholder="Write your response here"
             ></textarea>
-            <button type="submit">SEND</button>
+            <div className="calendar">
+              <Calendar
+              // dateCellRender={dateCellRender}
+              // monthCellRender={monthCellRender}
+              // onPanelChange={onPanelChange}
+              // onSelect={onSelect}
+              />
+            </div>
+            <button type="submit" className="waves-effect waves-light btn">
+              SEND
+            </button>
           </form>
         </div>
       </div>

@@ -22,7 +22,7 @@ const Requests = () => {
     }
   }, [auth]);
   return (
-    <div>
+    <div className="requests">
       {!request_artisan.errors ? (
         request_artisan.requests ? (
           <div>
@@ -36,10 +36,18 @@ const Requests = () => {
       ) : (
         <h2>{request_artisan.errors}</h2>
       )}
-      <button onClick={handleReturn}>return</button>
+      <button
+        style={{ width: 90, marginTop: 20 }}
+        className="waves-effect waves-light btn"
+        onClick={handleReturn}
+      >
+        <i class="large material-icons">arrow_back</i>
+      </button>
     </div>
   );
 };
+export default Requests;
+
 //Request Modal
 const RequestModal = ({ request }) => {
   const history = useHistory();
@@ -59,18 +67,23 @@ const RequestModal = ({ request }) => {
     request.state !== "Rejected" &&
     request.state !== "Ignored By Artisan" &&
     (request.state === "Ignored By Client" ? (
-      <div>
+      <div className="request_modal">
         <h2>
           Request from &nbsp;
           {request.id_client.f_name + " " + request.id_client.l_name}&nbsp;
           Ignored By The Client
         </h2>
-        <button onClick={rejectRequest}>OK</button>
+        <button
+          className="waves-effect waves-light btn"
+          onClick={rejectRequest}
+        >
+          OK
+        </button>
       </div>
     ) : ignore.ignored_req && ignore.ignored_req._id === request._id ? (
       <h2>Request Ignored with Success</h2>
     ) : (
-      <div style={{ border: "1px solid green" }}>
+      <div className="request_modal">
         {response_artisan.response ? (
           <h3>
             Your Response:{" "}
@@ -92,8 +105,14 @@ const RequestModal = ({ request }) => {
           <i class="fas fa-check"></i>
         ) : (
           <div>
-            <button onClick={handleIgnore}>IGNORE</button>
             <button
+              className="waves-effect waves-light btn"
+              onClick={handleIgnore}
+            >
+              IGNORE
+            </button>
+            <button
+              className="waves-effect waves-light btn"
               onClick={(e) =>
                 history.push(`/artisanResponse/${request.id_client._id}`)
               }
@@ -102,12 +121,15 @@ const RequestModal = ({ request }) => {
                 ? "Update"
                 : "Respond"}
             </button>
-            <button onClick={handleAccept}>ACCEPT</button>
+            <button
+              className="waves-effect waves-light btn"
+              onClick={handleAccept}
+            >
+              ACCEPT
+            </button>
           </div>
         )}
       </div>
     ))
   );
 };
-
-export default Requests;

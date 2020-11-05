@@ -22,7 +22,14 @@ const RequestsClient = () => {
     history.goBack();
   };
   return (
-    <div>
+    <div className="requests">
+      <button
+        style={{ width: 90 }}
+        className="waves-effect waves-light btn"
+        onClick={handleReturn}
+      >
+        <i class="large material-icons">arrow_back</i>
+      </button>
       {!request_client.errors ? (
         request_client.requests ? (
           <div>
@@ -36,10 +43,11 @@ const RequestsClient = () => {
       ) : (
         <h2>{request_client.errors}</h2>
       )}
-      <button onClick={handleReturn}>return</button>
     </div>
   );
 };
+export default RequestsClient;
+
 //Request Modal
 const RequestModal = ({ request }) => {
   const dispatch = useDispatch();
@@ -58,28 +66,41 @@ const RequestModal = ({ request }) => {
     (ignore.ignored_req ? (
       <h2>Request Ignored with Success</h2>
     ) : request.state === "Ignored By Artisan" ? (
-      <div>
+      <div className="request_modal">
         <h2>Request Ignore By Artisan</h2>
-        <button onClick={rejectRequest}>OK</button>
+        <button
+          className="waves-effect waves-light btn"
+          onClick={rejectRequest}
+        >
+          OK
+        </button>
       </div>
     ) : (
       request.state !== "Ignored By Client" && (
-        <div style={{ border: "1px solid green" }}>
+        <div className="request_modal">
           <h3>Your Message: {request.msg_client}</h3>
           <h3>Date Request: {new Date(request.created_at).toUTCString()}</h3>
           {request.msg_artisan && <h3>Response: {request.msg_artisan}</h3>}
           {request.state === "Accepted By Artisan" ? (
             <i className="fas fa-check"></i>
           ) : (
-            <button onClick={handleIgnore}>IGNORE</button>
+            <button
+              className="waves-effect waves-light btn"
+              onClick={handleIgnore}
+            >
+              IGNORE
+            </button>
           )}
           {request.state !== "Accepted By Artisan" && (
-            <button onClick={handleConfirm}>CONFIRM</button>
+            <button
+              className="waves-effect waves-light btn"
+              onClick={handleConfirm}
+            >
+              CONFIRM
+            </button>
           )}
         </div>
       )
     ))
   );
 };
-
-export default RequestsClient;

@@ -3,6 +3,8 @@ import "../ContactModal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { sendRequestAction } from "../actions/clientActions";
 import { useHistory } from "react-router-dom";
+import { Calendar } from "antd";
+
 function ContactModal() {
   const visit = useSelector((state) => state.visit);
   const history = useHistory();
@@ -12,11 +14,12 @@ function ContactModal() {
     msg_client: "",
   });
   const handleChange = (e) => {
-    setrequestInfo({
-      ...requestInfo,
-      [e.target.name]: e.target.value,
-      id_artisan: visit.artisan._id,
-    });
+    if (visit.artisan)
+      setrequestInfo({
+        ...requestInfo,
+        [e.target.name]: e.target.value,
+        id_artisan: visit.artisan._id,
+      });
   };
   const dispatch = useDispatch();
   const sendRequest = (e) => {
@@ -29,7 +32,7 @@ function ContactModal() {
   const request_client = useSelector((state) => state.request_client);
   const [testRequest, settestRequest] = useState(false);
   useEffect(() => {
-    if (visit.artisan && visit.artisan._id) {
+    if (visit.artisan && visit.artisan._id && request_client.requests) {
       settestRequest(
         request_client.requests.find(
           (el) =>
@@ -89,17 +92,31 @@ function ContactModal() {
             </form>
           </div>
         ) : (
-          <div className={"modal-box"}>
-            <form action="" onSubmit={sendRequest}>
-              <textarea
-                name="msg_client"
-                cols="20"
-                rows="10"
-                placeholder="describe your request"
-                onChange={handleChange}
-              ></textarea>
-              <button type="submit">SEND</button>
-            </form>
+          <div
+            style={{ display: "flex", flexDirection: "row" }}
+            className={"modal-box"}
+          >
+            <textarea
+              name="msg_client"
+              placeholder="describe your request"
+              onChange={handleChange}
+            ></textarea>
+
+            <div className="calendar">
+              <Calendar
+              // dateCellRender={dateCellRender}
+              // monthCellRender={monthCellRender}
+              // onPanelChange={onPanelChange}
+              // onSelect={onSelect}
+              />
+            </div>
+            <button
+              type="submit"
+              className="waves-effect waves-light btn"
+              onClick={sendRequest}
+            >
+              SEND
+            </button>
           </div>
         )}
       </div>

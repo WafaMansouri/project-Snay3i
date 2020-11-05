@@ -2,6 +2,7 @@ const express = require("express");
 const authMiddleware = require("../helpers/authMiddleware");
 const Intervention = require("../models/intervention");
 const Rate = require("../models/rate");
+const Post = require("../models/post");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 
@@ -103,11 +104,22 @@ router.get("/rates/:id_artisan", authMiddleware, (req, res) => {
           countRate += rate.value;
         });
         let rate = countRate / rates.length;
-        console.log(rate);
         res.status(201).send({ rate });
       } else {
-        res.status(200).send(null);
+        res.status(201).send(null);
       }
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+//get artisan all posts
+router.get("/posts/:id", authMiddleware, (req, res) => {
+  Post.find({ id_owner: req.params.id })
+    .exec()
+    .then((posts) => {
+      res.status(201).send(posts);
     })
     .catch((err) => {
       console.log(err);

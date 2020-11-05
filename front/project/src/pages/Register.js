@@ -47,61 +47,91 @@ const Register = ({ history }) => {
     }
   };
   return (
-    <form onSubmit={registerNow}>
-      <button type="button" onClick={handleUserState}>
-        {info.state}
-      </button>
-      <div>
-        <label>First Name</label>
-        <input type="text" name="f_name" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Last Name</label>
-        <input type="text" name="l_name" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="password" name="password" onChange={handleChange} />
-      </div>
-      {info.state === "Artisan" && (
-        // Add Category
+    <div className="container_login">
+      <form className="form_login" onSubmit={registerNow}>
+        <button type="button" onClick={handleUserState}>
+          {info.state}
+        </button>
         <div>
-          <label className="browser-default">Job Category</label>
-          <select
+          <input
             className="browser-default"
-            name="category"
+            type="text"
+            name="f_name"
+            placeholder="  &#xF007; First Name"
+            style={{ fontFamily: "Arial, FontAwesome" }}
             onChange={handleChange}
-            required
-          >
-            {/* {handleCategory()} */}
-            <option value="" disabled selected>
-              "--Select Category--"
-            </option>
-            {category.categories.map((el, index) => (
-              <option key={index} value={el.name}>
-                {el.name}
-              </option>
-            ))}
-          </select>
-          {/* Add Address */}
-          <label className="browser-default">Governorate</label>
-          <select
-            className="browser-default"
-            name="address"
-            onChange={handleChange}
-            required
-          >
-            <Governorate />
-          </select>
+          />
         </div>
-      )}
-      <button type="submit">Register {info.state}</button>
-      {errors && <h3>{errors}</h3>}
-    </form>
+        <div>
+          <input
+            className="browser-default"
+            type="text"
+            name="l_name"
+            placeholder="  &#xF007; Last Name"
+            style={{ fontFamily: "Arial, FontAwesome" }}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            className="browser-default"
+            type="email"
+            name="email"
+            placeholder="  &#xF0E0; Email"
+            style={{ fontFamily: "Arial, FontAwesome" }}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <input
+            className="browser-default"
+            type="password"
+            name="password"
+            placeholder="  &#xF023; Password"
+            style={{ fontFamily: "Arial, FontAwesome" }}
+            onChange={handleChange}
+          />
+        </div>
+        {info.state === "Artisan" && (
+          // Add Category
+          <div>
+            <select
+              className="browser-default"
+              name="category"
+              onChange={handleChange}
+              required
+            >
+              {/* {handleCategory()} */}
+              <option value="" disabled selected>
+                "--Select Category--"
+              </option>
+              {category.categories.map((el, index) => (
+                <option key={index} value={el.name}>
+                  {el.name}
+                </option>
+              ))}
+            </select>
+            {/* Add Address */}
+            <select
+              className="browser-default"
+              name="address"
+              onChange={handleChange}
+              required
+            >
+              <Governorate />
+            </select>
+          </div>
+        )}
+        <button
+          className="waves-effect waves-light btn"
+          style={{ borderRadius: 8 }}
+          type="submit"
+        >
+          Register {info.state}
+        </button>
+        {errors && <h5 style={{ color: "red", marginTop: 20 }}>{errors}</h5>}
+      </form>
+    </div>
   );
 };
 const Governorate = () => {

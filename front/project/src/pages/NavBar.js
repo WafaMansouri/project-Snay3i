@@ -31,7 +31,7 @@ const NavBar = () => {
   };
   return (
     <>
-      <form onSubmit={searchByName}>
+      <form className="search" onSubmit={searchByName}>
         <input
           value={name}
           type="text"
@@ -56,11 +56,11 @@ const NavBar = () => {
           {/* icon notification */}
           {auth.user && auth.user.state === "Client" ? (
             <Link to="/requests-client">
-              <i className="fas fa-envelope-square"></i>
+              <i class="medium material-icons">drafts</i>
             </Link>
           ) : (
             <Link to="/requests">
-              <i className="fas fa-envelope-square"></i>
+              <i class="medium material-icons">drafts</i>
             </Link>
           )}
         </>

@@ -1,17 +1,188 @@
-.App {
-  text-align: center;
-}
-.fas.fa-check {
-  color: green;
-  font-size: 3em;
-}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.App-header {
+@import "~antd/dist/antd.css";
+.ant-picker-cell-inner,
+ant-picker-calendar-date {
+  height: 30px !important;
+}
+.btn {
+  font-size: 1.4em;
+}
+input {
+  font-size: 1.5em !important;
+}
+textarea {
+  margin-top: 40px;
+  height: 200px;
+  width: 300px;
+  font-size: 1.5em;
+}
+.calendar {
+  width: 300px !important;
+  height: 300px !important;
+}
+.search {
+  width: 200px !important;
+  display: inline-flex;
+}
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+/* styling login and register */
+.form_login {
+  width: 500px;
+  border: solid black 2px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 50px 0 50px;
+  border-radius: 8px;
+  background-color: white;
+  margin-top: 60px;
+}
+.container_login {
+  width: 100%;
+  height: 100vh;
+  background-color: #cadfca;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+}
+.container_login input,
+.container_login label,
+.container_login select {
+  color: black;
+  font-size: 1.5em;
+  height: 60px;
+  width: 400px !important;
+  margin: 10px;
+  border: solid black 1px;
+  border-radius: 8px;
+}
+.fas.fa-check {
+  color: #26a69a;
+  font-size: 3em;
+}
+/* styling the button of login and register */
+.container_login .waves-effect.waves-light.btn {
+  margin-top: 15px;
+  width: 400px;
+  height: 50px;
+}
+button {
+  margin: 15px;
+}
+/* styling Profile */
+.profile {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
+  background-color: #cadfca;
+  width: 98.7vw;
+  padding-top: 30px;
+  margin: 0;
+}
+.profile li {
+  font-size: 2em;
+  display: flex;
+}
+.containerInfo {
+  position: relative;
+  padding-bottom: 25%;
+  border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  /* border: 3px solid #26a69a; */
+  padding: 50px;
+  background-color: white;
+  width: 60%;
+  margin-left: 30px;
+  margin-right: 30px;
+  min-height: 100%;
+}
+.containerInfo a {
+  font-size: 1.6em;
+  margin-bottom: 50px !important;
+  text-decoration: underline;
+  /* text-align: right; */
+}
+.container-posts {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.cadrePhoto {
+  width: 160px;
+  height: 160px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  background-image: url("/images/profileBack.png");
+  border: solid black 0px;
+  border-radius: 49.9%;
+  border-top-left-radius: 49.9%;
+  border-top-right-radius: 49.9%;
+  border-bottom-right-radius: 49.9%;
+  border-bottom-left-radius: 49.9%;
+}
+/* request modal */
+.request_modal {
+  position: relative;
+  padding-bottom: 25%;
+  border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  border: 3px solid #26a69a;
+  padding: 50px;
+  margin: 20px;
+}
+.requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* search modal */
+.container_search {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.search_modal {
+  position: relative;
+  padding-bottom: 25%;
+  border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  border: 3px solid #26a69a;
+  padding: 20px;
+  margin: 10px;
+  width: 50%;
+  height: 200px;
+}
+/* styling post modal */
+.card,
+.card-action,
+.card-image {
+  border-radius: 20px 20px 20px 20px !important;
+}
+.card-image img {
+  border-radius: 20px 20px 0px 0px !important;
+}
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -20,7 +191,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
 @keyframes App-logo-spin {
   from {

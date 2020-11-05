@@ -47,23 +47,48 @@ const Login = ({ history, match }) => {
   };
 
   return (
-    <form onSubmit={handleLogin} onFocus={() => seterrors(null)}>
-      {match.path !== "/loginAdmin" && (
-        <button type="button" onClick={handleUserState}>
-          {userState}
+    <div className="container_login">
+      <form
+        className="form_login"
+        onSubmit={handleLogin}
+        onFocus={() => seterrors(null)}
+      >
+        {match.path !== "/loginAdmin" && (
+          <button type="button" onClick={handleUserState}>
+            {userState}
+          </button>
+        )}
+        <div>
+          <input
+            className="browser-default"
+            type="email"
+            name="email"
+            onChange={handleChange}
+            required
+            placeholder="  &#xF0E0; Email "
+            style={{ fontFamily: "Arial, FontAwesome" }}
+          />
+        </div>
+        <div>
+          <input
+            className="browser-default"
+            type="password"
+            name="password"
+            onChange={handleChange}
+            placeholder="  &#xF023; Password"
+            style={{ fontFamily: "Arial, FontAwesome" }}
+          />
+        </div>
+        <button
+          className="waves-effect waves-light btn"
+          style={{ borderRadius: 8 }}
+          type="submit"
+        >
+          Login
         </button>
-      )}
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" onChange={handleChange} />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="password" name="password" onChange={handleChange} />
-      </div>
-      <button type="submit">Login</button>
-      {errors && <h1>{errors}</h1>}
-    </form>
+        {errors && <h6 style={{ color: "red", marginTop: 20 }}>{errors}</h6>}
+      </form>
+    </div>
   );
 };
 

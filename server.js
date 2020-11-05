@@ -31,7 +31,4 @@ app.use("/visit", require("./routes/visit"));
 app.use("/artisan", require("./routes/artisan"));
 app.use("/client", require("./routes/client"));
 app.use("/reject", require("./routes/reject"));
-//
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+app.use("/update", require("./routes/update"));

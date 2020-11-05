@@ -36,7 +36,6 @@ router.post(
         .exec()
         .then((intervention) => {
           res.status(200).send(intervention);
-          //   console.log(intervention);
         })
         .catch((err) => {
           console.log(err);
