@@ -3,17 +3,40 @@ const authMiddleware = require("../helpers/authMiddleware");
 const router = express.Router();
 const Post = require("../models/post");
 const { body, validationResult } = require("express-validator");
+const multer = require("multer");
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+var upload = multer({ storage: storage });
+
 // Create post
 router.post(
   "/",
   authMiddleware,
   [
-    body("description", "You should write a description").isLength({
-      min: 10,
-    }),
+    [
+      body("description", "You should write a description").isLength({
+        min: 10,
+      }),
+    ],
+    upload.single("avatar"),
   ],
   (req, res) => {
-    let newPost = new Post({ ...req.body, id_owner: req.user_Id });
+    let myBody = JSON.parse(req.body.info);
+    let path = `${req.protocol}://${req.hostname}:4000/uploads/${req.file.filename}`;
+    let newPost = new Post({
+      ...myBody,
+      id_owner: req.user_Id,
+      photo: path,
+    });
+
     newPost
       .save()
       .then((post) => res.status(201).send(post))

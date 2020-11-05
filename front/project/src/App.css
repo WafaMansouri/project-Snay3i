@@ -182,6 +182,11 @@ button {
 .card-image img {
   border-radius: 20px 20px 0px 0px !important;
 }
+.card-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 /* .App-header {
   background-color: #282c34;
   min-height: 100vh;

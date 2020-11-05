@@ -6,13 +6,17 @@ import { useHistory } from "react-router-dom";
 const AddPostModel = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [file, setfile] = useState(null);
   const [info, setinfo] = useState({ title: "", description: "" });
   const handleChange = (e) => {
     setinfo({ ...info, [e.target.name]: e.target.value });
   };
+  const selectImageToUpload = (e) => {
+    setfile(e.target.files[0]);
+  };
   const addPost = (e) => {
     e.preventDefault();
-    dispatch(addPostAction(info));
+    dispatch(addPostAction(info, file));
     history.goBack();
   };
   const [display, setdisplay] = useState(true);
@@ -51,8 +55,8 @@ const AddPostModel = () => {
               <input
                 className="browser-default"
                 type="file"
-                name="photo"
-                onChange={handleChange}
+                name="avatar"
+                onChange={selectImageToUpload}
               />
             </div>
             <button className="waves-effect waves-light btn" type="submit">

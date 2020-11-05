@@ -11,10 +11,13 @@ import {
 import axios from "axios";
 import setToken from "../setToken";
 // To make a post
-export const addPostAction = (info) => (dispatch) => {
+export const addPostAction = (info, file) => (dispatch) => {
   setToken(); //to set the token in the header
+  let formData = new FormData();
+  formData.append("avatar", file);
+  formData.append("info", JSON.stringify(info));
   axios
-    .post("/post", info) //bind front and back
+    .post("/post", formData) //bind front and back
     .then((res) =>
       dispatch({
         type: ADD_POST_SUCCESS,

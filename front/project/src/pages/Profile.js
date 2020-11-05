@@ -136,16 +136,23 @@ const PostModal = ({ post }) => {
       <div class="col s12 m7">
         <div class="card">
           <div class="card-image">
-            <img src="images/profileBack.png" />
+            <img src={post.photo ? post.photo : "image/profileBack.png"} />
             <span class="card-title">{post.title}</span>
           </div>
           <div class="card-content">
             <p>{post.description}</p>
           </div>
           <div class="card-action">
-            <a>
-              <i class="small material-icons">favorite_border</i>
-            </a>
+            <div>
+              <i class="small material-icons" style={{ color: "#ffab40" }}>
+                favorite
+              </i>
+            </div>
+            <div>
+              <a href="">
+                <i class="small material-icons">delete</i>
+              </a>
+            </div>
           </div>
         </div>
       </div>

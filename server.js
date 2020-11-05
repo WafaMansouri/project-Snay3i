@@ -1,9 +1,7 @@
 let express = require("express");
 const connectDB = require("./helpers/connectDB");
 const app = express();
-const ejs = require("ejs");
-const path = require("path");
-
+const cors = require("cors");
 //public folder
 express.static(".public");
 // app.set("view engine", "ejs");
@@ -16,7 +14,11 @@ app.listen(PORT, function () {
     PORT
   );
 });
+//Middleware
+app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static(__dirname + "/uploads"));
+
 // connect to our Database
 connectDB();
 // redirect routes
