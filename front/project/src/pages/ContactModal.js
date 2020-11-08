@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../ContactModal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { sendRequestAction } from "../actions/clientActions";
 import { useHistory } from "react-router-dom";

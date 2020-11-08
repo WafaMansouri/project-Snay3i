@@ -3,7 +3,7 @@ const connectDB = require("./helpers/connectDB");
 const app = express();
 const cors = require("cors");
 //public folder
-express.static(".public");
+// express.static("public");
 // app.set("view engine", "ejs");
 
 let PORT = process.env.PORT || 4000;
@@ -34,3 +34,4 @@ app.use("/artisan", require("./routes/artisan"));
 app.use("/client", require("./routes/client"));
 app.use("/reject", require("./routes/reject"));
 app.use("/update", require("./routes/update"));
+app.use("/add_photo", require("./routes/add_photo"));

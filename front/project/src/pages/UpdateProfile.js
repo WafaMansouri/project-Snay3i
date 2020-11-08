@@ -2,11 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import updateAction from "../actions/updateAction";
 import { useHistory } from "react-router-dom";
+import { retrieveCategories } from "../actions/categoriesActions";
 
 const UpdateProfile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+
+  //to retrieve categories from database and update state category
+  useEffect(() => {
+    dispatch(retrieveCategories());
+  }, [dispatch]);
+  const category = useSelector((state) => state.category);
   const [info, setinfo] = useState({
     f_name: auth.user.f_name,
     l_name: auth.user.l_name,
@@ -24,9 +31,15 @@ const UpdateProfile = () => {
   const updateInfo = (e) => {
     e.preventDefault();
     dispatch(updateAction(info));
-    history.goBack();
   };
   const [display, setdisplay] = useState(true);
+  const [first, setFirst] = useState(false);
+  useEffect(() => {
+    if (first) {
+      if (!update.errors) history.goBack();
+    }
+    setFirst(true);
+  }, [update]);
   return (
     display && (
       <div className={"modal-wrapper"}>
@@ -128,20 +141,6 @@ const UpdateProfile = () => {
             </div>
             {auth.user.state === "Artisan" && (
               <div>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <input
-                    type="text"
-                    name="category"
-                    defaultValue={auth.user.category}
-                    onChange={handleChange}
-                  />
-                  <i
-                    class="material-icons"
-                    style={{ fontSize: "1.7rem", color: "gray" }}
-                  >
-                    edit
-                  </i>
-                </div>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <input
                     type="text"

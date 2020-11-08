@@ -2,6 +2,7 @@ const express = require("express");
 const authMiddleware = require("../helpers/authMiddleware");
 const Intervention = require("../models/intervention");
 const Rate = require("../models/rate");
+const Like = require("../models/like");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 
@@ -96,7 +97,7 @@ router.post("/rating", authMiddleware, (req, res) => {
       res.status(500).send({ errors: [{ msg: "Server Error!" }] });
     });
 });
-// Search and visit profile by id
+// get rate of the visited artisan
 router.get("/rating/:id", authMiddleware, (req, res) => {
   Rate.findOne({ id_artisan: req.params.id, id_client: req.user_Id })
     .exec()
@@ -108,4 +109,46 @@ router.get("/rating/:id", authMiddleware, (req, res) => {
       res.status(500).send({ errors: [{ msg: "Server Error!" }] });
     });
 });
+//add like post
+router.post("/like", authMiddleware, (req, res) => {
+  let like = new Like({
+    id_client: req.user_Id,
+    id_post: req.body.id_post,
+    id_artisan: req.body.id_artisan,
+  });
+  like
+    .save()
+    .then((like) => {
+      res.status(200).send(like);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+//delete like post
+router.delete("/like/:id_post", authMiddleware, (req, res) => {
+  Like.findOneAndDelete({ id_client: req.user_Id, id_post: req.params.id_post })
+    .then((like) => {
+      res.status(200).send(like);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+// get all the likes of the client to the visited artisan
+router.get("/like/:id", authMiddleware, (req, res) => {
+  Like.find({ id_client: req.user_Id, id_artisan: req.params.id })
+    .exec()
+    .then((likes) => {
+      // console.log(likes);
+      res.status(201).send(likes);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+
 module.exports = router;

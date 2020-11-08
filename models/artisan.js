@@ -13,10 +13,7 @@ const artisanSchema = mongoose.Schema({
   category: String,
   address: String,
   tel: Number,
-  photo: {
-    data: Buffer,
-    contentType: String,
-  },
+  avatar: String,
   age: Number,
   description: String,
 });

@@ -6,7 +6,7 @@ const clientSchema = mongoose.Schema({
   password: { type: String, required: true },
   address: String,
   tel: Number,
-  photo: Array(String),
+  avatar: String,
   age: Number,
   state: { type: String, default: "Client" },
 });

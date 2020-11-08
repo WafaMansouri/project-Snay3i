@@ -25,7 +25,7 @@ const Register = ({ history }) => {
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
-  // Redirect to the feed page after register
+  // Redirect to the profile page after register
   useEffect(() => {
     if (auth.isAuth) {
       history.push("/profile");

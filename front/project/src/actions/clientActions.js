@@ -13,6 +13,12 @@ import {
   RATING_FAIL,
   GET_RATING_CLIENT_SUCCESS,
   GET_RATING_CLIENT_FAIL,
+  ADD_LIKE_SUCCESS,
+  ADD_LIKE_FAIL,
+  DELETE_LIKE_SUCCESS,
+  DELETE_LIKE_FAIL,
+  GET_LIKES_CLIENT_SUCCESS,
+  GET_LIKES_CLIENT_FAIL,
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
@@ -138,6 +144,61 @@ export const getRateAction = (id) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: GET_RATING_CLIENT_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// add like post
+export const addLikeAction = (id_post, id_artisan) => (dispatch) => {
+  setToken();
+  axios
+    .post("/client/like", { id_post, id_artisan }) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: ADD_LIKE_SUCCESS,
+        // payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: ADD_LIKE_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// DELETE like post
+export const deleteLikeAction = (id_post) => (dispatch) => {
+  setToken();
+  axios
+    .delete(`/client/like/${id_post}`) //bind front and back
+    .then((res) => {
+      dispatch({
+        type: DELETE_LIKE_SUCCESS,
+        // payload: res.data,
+      });
+      // dispatch(clientLikesAction());
+    })
+    .catch((err) =>
+      dispatch({
+        type: DELETE_LIKE_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// To get all the likes of the client to the visited artisan
+export const clientLikesAction = (id_artisan) => (dispatch) => {
+  setToken();
+  axios
+    .get(`/client/like/${id_artisan}`) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: GET_LIKES_CLIENT_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_LIKES_CLIENT_FAIL,
         payload: err.response.data.errors[0].msg,
       })
     );

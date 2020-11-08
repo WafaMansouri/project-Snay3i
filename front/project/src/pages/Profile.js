@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { loadClient } from "../actions/authActions";
 import AddPostModel from "./AddPostModel";
 import { artisanRatesAction } from "../actions/artisanRatesAction";
-import { artisanPostsAction } from "../actions/artisanPostsAction";
+import { artisanPostsAction } from "../actions/artisanActions";
+import { likesArtisanAction } from "../actions/artisanActions";
 import { Rate } from "antd";
 import "../App.css";
 import { useHistory } from "react-router-dom";
@@ -12,7 +13,6 @@ import { useHistory } from "react-router-dom";
 const Profile = () => {
   const history = useHistory();
   const auth = useSelector((state) => state.auth);
-
   const [addPostTest, setaddPostTest] = useState(false);
   const dispatch = useDispatch();
   //to retrieve client's data when the page feed have been loaded
@@ -31,14 +31,15 @@ const Profile = () => {
     history.push("/update-profile");
   };
   // To get all the rate and posts of the artisan (if the connected is artisan)
+  const rate_artisan = useSelector((state) => state.rate_artisan);
+  const posts = useSelector((state) => state.posts);
   useEffect(() => {
     if (auth.user && auth.user.state === "Artisan") {
       dispatch(artisanRatesAction(auth.user._id));
       dispatch(artisanPostsAction(auth.user._id));
+      dispatch(likesArtisanAction(auth.user._id));
     }
   }, [auth.user]);
-  const rate_artisan = useSelector((state) => state.rate_artisan);
-  const posts = useSelector((state) => state.posts);
   return addPostTest ? (
     <AddPostModel />
   ) : (
@@ -55,7 +56,15 @@ const Profile = () => {
             <a onClick={updateInfo}>UPDATE YOUR PROFILE</a>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div className="cadrePhoto">
-                {/* <img src="/images/profileBack.png" alt="profilePhoto" /> */}
+                <img
+                  className="cadrePhoto"
+                  src={
+                    auth.user.avatar
+                      ? auth.user.avatar
+                      : "/images/profile_photo.png"
+                  }
+                  alt="profile photo"
+                />
               </div>
               <Link to="addPhoto">
                 <i class="small material-icons">add_a_photo</i>
@@ -131,26 +140,46 @@ export default Profile;
 
 //Post Modal
 const PostModal = ({ post }) => {
+  const likes_artisan = useSelector((state) => state.likes_artisan);
+  const history = useHistory();
+  const [countLikes, setcountLikes] = useState(0);
+  useEffect(() => {
+    if (likes_artisan.likes.length) {
+      let likes = 0;
+      likes_artisan.likes.forEach((like) => {
+        if (like.id_post === post._id) {
+          likes += 1;
+        }
+      });
+      setcountLikes(likes);
+    }
+  }, [likes_artisan]);
+
   return (
-    <div class="row">
-      <div class="col s12 m7">
-        <div class="card">
-          <div class="card-image">
+    <div className="row">
+      <div className="col s12 m7">
+        <div className="card">
+          <div className="card-image">
             <img src={post.photo ? post.photo : "image/profileBack.png"} />
-            <span class="card-title">{post.title}</span>
+            <span className="card-title">{post.title}</span>
           </div>
-          <div class="card-content">
+          <div className="card-content">
             <p>{post.description}</p>
           </div>
-          <div class="card-action">
+          <div className="card-action">
             <div>
-              <i class="small material-icons" style={{ color: "#ffab40" }}>
+              <i className="small material-icons" style={{ color: "#ffab40" }}>
                 favorite
               </i>
+              {countLikes && <span>{countLikes}</span>}
             </div>
             <div>
-              <a href="">
-                <i class="small material-icons">delete</i>
+              <a
+                onClick={(e) => {
+                  history.push(`/alert/${post._id}`);
+                }}
+              >
+                <i className="small material-icons">delete</i>
               </a>
             </div>
           </div>

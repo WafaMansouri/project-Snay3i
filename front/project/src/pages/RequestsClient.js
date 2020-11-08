@@ -5,6 +5,7 @@ import { ignore_clientAction } from "../actions/ignore_clientAction";
 import { confirm_clientAction } from "../actions/clientActions";
 import { checkRequest_client } from "../actions/clientActions";
 import { rejectAction } from "../actions/rejectAction";
+import { visitByIdAction } from "../actions/clientActions";
 
 const RequestsClient = () => {
   const auth = useSelector((state) => state.auth);
@@ -51,6 +52,7 @@ export default RequestsClient;
 //Request Modal
 const RequestModal = ({ request }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleIgnore = () => {
     dispatch(ignore_clientAction(request._id));
   };
@@ -60,6 +62,10 @@ const RequestModal = ({ request }) => {
   };
   const handleConfirm = () => {
     dispatch(confirm_clientAction(request._id));
+  };
+  const visitArtisan = () => {
+    dispatch(visitByIdAction(request.id_artisan._id));
+    history.push("/visit");
   };
   return (
     request.state !== "Rejected" &&
@@ -78,6 +84,12 @@ const RequestModal = ({ request }) => {
     ) : (
       request.state !== "Ignored By Client" && (
         <div className="request_modal">
+          <h3>
+            Request to:{" "}
+            <a onClick={visitArtisan}>
+              {request.id_artisan.f_name + " " + request.id_artisan.l_name}
+            </a>{" "}
+          </h3>
           <h3>Your Message: {request.msg_client}</h3>
           <h3>Date Request: {new Date(request.created_at).toUTCString()}</h3>
           {request.msg_artisan && <h3>Response: {request.msg_artisan}</h3>}

@@ -17,7 +17,7 @@ const initState = {
 const AuthReducer = (state = initState, action) => {
   switch (action.type) {
     case LOAD_SUCCESS:
-      return { ...state, user: action.payload, errors: null };
+      return { ...state, user: action.payload, errors: null, isAuth: true };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);

@@ -3,6 +3,7 @@ const authMiddleware = require("../helpers/authMiddleware");
 const Intervention = require("../models/intervention");
 const Rate = require("../models/rate");
 const Post = require("../models/post");
+const Like = require("../models/like");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 
@@ -19,7 +20,7 @@ router.get("/requests", authMiddleware, (req, res) => {
       res.status(500).send({ errors: [{ msg: "Server Error!" }] });
     });
 });
-//post response
+//respond to Client
 router.post("/response", authMiddleware, (req, res) => {
   Intervention.findOneAndUpdate(
     {
@@ -126,4 +127,29 @@ router.get("/posts/:id", authMiddleware, (req, res) => {
       res.status(500).send({ errors: [{ msg: "Server Error!" }] });
     });
 });
+//delete post
+router.delete(`/deletePost/:id_post`, authMiddleware, (req, res) => {
+  Post.findByIdAndDelete(req.params.id_post)
+    .exec()
+    .then((post) => {
+      res.status(201).send(post);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+//get artisan all LIKES
+router.get("/likes/:id", authMiddleware, (req, res) => {
+  Like.find({ id_artisan: req.params.id })
+    .exec()
+    .then((likes) => {
+      res.status(201).send(likes);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+
 module.exports = router;

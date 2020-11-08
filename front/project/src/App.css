@@ -187,6 +187,11 @@ button {
   flex-direction: row;
   justify-content: space-evenly;
 }
+.card-title {
+  color: #e73f8d !important;
+  padding-bottom: 0px !important;
+  font-weight: 450 !important;
+}
 /* .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -63,6 +63,7 @@ const RequestModal = ({ request }) => {
     dispatch(accept_artisanAction(request._id));
   };
   const ignore = useSelector((state) => state.ignore);
+ 
   return (
     request.state !== "Rejected" &&
     request.state !== "Ignored By Artisan" &&
@@ -96,9 +97,15 @@ const RequestModal = ({ request }) => {
           request.msg_artisan && <h3>Your Response: {request.msg_artisan}</h3>
         )}
 
-        <h3>
-          Client: {`${request.id_client.f_name} ${request.id_client.l_name}`}
-        </h3>
+        {request.id_client && (
+          <h3>
+            Request From{" "}
+            <a>
+              {" "}
+              {`${request.id_client.f_name} ${request.id_client.l_name}`}
+            </a>
+          </h3>
+        )}
         <h3>Message: {request.msg_client}</h3>
         <h3>Date: {new Date(request.created_at).toUTCString()}</h3>
         {request.state === "Accepted By Artisan" ? (

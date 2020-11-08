@@ -16,19 +16,20 @@ import Requests from "./pages/Requests";
 import RequestsClient from "./pages/RequestsClient";
 import AddPhoto from "./pages/AddPhoto";
 import { useDispatch, useSelector } from "react-redux";
-import { checkRequest_artisan } from "./actions/artisanActions";
+// import { checkRequest_artisan } from "./actions/artisanActions";
 import "antd/dist/antd.css";
 import UpdateProfile from "./pages/UpdateProfile";
+import Alert from "./pages/Alert";
 function App() {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
   //To Check if there is requests for the connected artisan
-  useEffect(() => {
-    if (auth.isAuth && auth.user && auth.user.state === "Artisan") {
-      dispatch(checkRequest_artisan());
-    }
-  }, [auth]);
+  // useEffect(() => {
+  //   if (auth.isAuth && auth.user && auth.user.state === "Artisan") {
+  //     dispatch(checkRequest_artisan());
+  //   }
+  // }, [auth]);
 
   return (
     <div className="App">
@@ -48,6 +49,7 @@ function App() {
           <Route exact path="/requests-client" component={RequestsClient} />
           <Route exact path="/addPhoto" component={AddPhoto} />
           <Route exact path="/update-profile" component={UpdateProfile} />
+          <Route exact path="/alert/:id_post" component={Alert} />
           <Route
             exact
             path="/artisanResponse/:id_client"

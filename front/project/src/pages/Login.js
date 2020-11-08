@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { login } from "../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
+import { loadClient } from "../actions/authActions";
 
 const Login = ({ history, match }) => {
   const [userState, setuserState] = useState("Client");
@@ -11,6 +12,8 @@ const Login = ({ history, match }) => {
   });
   const [errors, seterrors] = useState(null);
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     // handle state admin
     if (match.path === "/loginAdmin") {
@@ -25,7 +28,13 @@ const Login = ({ history, match }) => {
       seterrors(auth.errors);
     }
   }, [auth.isAuth, auth.errors, match.path]);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!auth.isAuth && localStorage.getItem("token")) {
+      // dispatch(loadClient());
+      auth.isAuth = true;
+      history.push("/profile");
+    }
+  }, [auth.isAuth]);
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
@@ -45,7 +54,6 @@ const Login = ({ history, match }) => {
       setInfo({ ...info, state: "Client" });
     }
   };
-
   return (
     <div className="container_login">
       <form

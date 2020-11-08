@@ -29,3 +29,27 @@
   padding: 40px;
   border-radius: 10px;
 }
+/* styling alert */
+.modal-backdrop.alert {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  /* background-color: rgba(0, 0, 0, 0); */
+}
+.modal-box.alert {
+  position: relative;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 20% !important;
+  width: 35%;
+  background-color: white;
+  z-index: 101;
+  padding: 40px;
+  border-radius: 10px;
+  border: solid black 1px;
+  text-align: center;
+}

@@ -7,6 +7,12 @@ import {
   RESPONSE_ARTISAN_FAIL,
   ACCEPT_REQUEST_SUCCESS,
   ACCEPT_REQUEST_FAIL,
+  GET_POSTS_ARTISAN_SUCCESS,
+  GET_POSTS_ARTISAN_FAIL,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAIL,
+  GET_LIKES_ARTISAN_SUCCESS,
+  GET_LIKES_ARTISAN_FAIL,
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
@@ -49,7 +55,7 @@ export const checkRequest_artisan = () => (dispatch) => {
       })
     );
 };
-// To make a post
+// To respond to request
 export const respondAction = (response) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
@@ -81,6 +87,60 @@ export const accept_artisanAction = (id_request) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: ACCEPT_REQUEST_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+
+// To get ALL the posts of the connected artisan
+export const artisanPostsAction = (id) => (dispatch) => {
+  setToken();
+  axios
+    .get(`/artisan/posts/${id}`) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: GET_POSTS_ARTISAN_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_POSTS_ARTISAN_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// To delete a post
+export const deletePostAction = (id_post) => (dispatch) => {
+  setToken(); //to set the token in the header
+  axios
+    .delete(`/artisan/deletePost/${id_post}`) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: DELETE_POST_SUCCESS,
+        // payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: DELETE_POST_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+// To get ALL the likes of the connected artisan
+export const likesArtisanAction = (id) => (dispatch) => {
+  axios
+    .get(`/artisan/likes/${id}`) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: GET_LIKES_ARTISAN_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_LIKES_ARTISAN_FAIL,
         payload: err.response.data.errors[0].msg,
       })
     );
