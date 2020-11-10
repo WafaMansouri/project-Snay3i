@@ -16,7 +16,6 @@ import Requests from "./pages/Requests";
 import RequestsClient from "./pages/RequestsClient";
 import AddPhoto from "./pages/AddPhoto";
 import { useDispatch, useSelector } from "react-redux";
-// import { checkRequest_artisan } from "./actions/artisanActions";
 import "antd/dist/antd.css";
 import UpdateProfile from "./pages/UpdateProfile";
 import Alert from "./pages/Alert";

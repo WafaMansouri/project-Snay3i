@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import updateAction from "../actions/updateAction";
 import { useHistory } from "react-router-dom";
 import { retrieveCategories } from "../actions/categoriesActions";
+import { useAlert } from "react-alert";
 
 const UpdateProfile = () => {
+  const alert = useAlert();
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
@@ -36,7 +38,10 @@ const UpdateProfile = () => {
   const [first, setFirst] = useState(false);
   useEffect(() => {
     if (first) {
-      if (!update.errors) history.goBack();
+      if (!update.errors) {
+        history.goBack();
+        alert.success("Update Success!");
+      }
     }
     setFirst(true);
   }, [update]);
@@ -162,6 +167,13 @@ const UpdateProfile = () => {
             <h5 style={{ color: "red", marginTop: 20 }}>
               {update.errors && update.errors}
             </h5>
+            {/* <button
+              onClick={() => {
+                alert.success("It's ok now!");
+              }}
+            >
+              Success!
+            </button> */}
             <button className="waves-effect waves-light btn" type="submit">
               UPDATE
             </button>

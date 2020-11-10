@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deletePostAction } from "../actions/artisanActions";
+import { useAlert } from "react-alert";
+
 const Alert = ({ match }) => {
+  const alert = useAlert();
   const [display, setdisplay] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -34,6 +37,11 @@ const Alert = ({ match }) => {
               dispatch(deletePostAction(match.params.id_post));
               setdisplay(false);
               history.goBack();
+              alert.success(
+                <div style={{ fontSize: "1.3em", textAlign: "center" }}>
+                  Post Deleted with success
+                </div>
+              );
             }}
             className="waves-effect waves-light btn"
             type="submit"

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPostAction } from "../actions/artisanActions";
 import { useHistory } from "react-router-dom";
+import { useAlert } from "react-alert";
 
 const AddPostModel = () => {
+  const alert = useAlert();
   const history = useHistory();
   const dispatch = useDispatch();
   const [file, setfile] = useState(null);
@@ -18,6 +20,8 @@ const AddPostModel = () => {
     e.preventDefault();
     dispatch(addPostAction(info, file));
     history.goBack();
+    alert.success(<div>Add Post Success</div>);
+    // alert.show(<div style={{ color: "blue" }}>Some Message</div>);
   };
   const [display, setdisplay] = useState(true);
 

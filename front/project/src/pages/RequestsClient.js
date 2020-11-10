@@ -6,6 +6,10 @@ import { confirm_clientAction } from "../actions/clientActions";
 import { checkRequest_client } from "../actions/clientActions";
 import { rejectAction } from "../actions/rejectAction";
 import { visitByIdAction } from "../actions/clientActions";
+//function that convert the first letter of a string to uppercase
+const upper = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1, str.length);
+};
 
 const RequestsClient = () => {
   const auth = useSelector((state) => state.auth);
@@ -87,12 +91,16 @@ const RequestModal = ({ request }) => {
           <h3>
             Request to:{" "}
             <a onClick={visitArtisan}>
-              {request.id_artisan.f_name + " " + request.id_artisan.l_name}
+              {upper(request.id_artisan.f_name) +
+                " " +
+                upper(request.id_artisan.l_name)}
             </a>{" "}
           </h3>
-          <h3>Your Message: {request.msg_client}</h3>
+          <h3>Your Message: {upper(request.msg_client)}</h3>
           <h3>Date Request: {new Date(request.created_at).toUTCString()}</h3>
-          {request.msg_artisan && <h3>Response: {request.msg_artisan}</h3>}
+          {request.msg_artisan && (
+            <h3>Response: {upper(request.msg_artisan)}</h3>
+          )}
           {request.state === "Accepted By Artisan" ? (
             <i className="fas fa-check"></i>
           ) : (

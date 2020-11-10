@@ -10,6 +10,7 @@ const { body, validationResult } = require("express-validator");
 //get artisan requests
 router.get("/requests", authMiddleware, (req, res) => {
   Intervention.find({ id_artisan: req.user_Id })
+    .sort({ created_at: -1 })
     .populate("id_client")
     .exec()
     .then((interventions) => {
@@ -118,6 +119,7 @@ router.get("/rates/:id_artisan", authMiddleware, (req, res) => {
 //get artisan all posts
 router.get("/posts/:id", authMiddleware, (req, res) => {
   Post.find({ id_owner: req.params.id })
+    .sort({ created_at: -1 })
     .exec()
     .then((posts) => {
       res.status(201).send(posts);

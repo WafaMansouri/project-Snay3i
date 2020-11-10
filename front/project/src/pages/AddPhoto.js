@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import addPhotoAction from "../actions/addPhotoAction";
+
 const AddPhoto = () => {
   const [display, setdisplay] = useState(true);
   const history = useHistory();
@@ -11,7 +12,7 @@ const AddPhoto = () => {
     e.preventDefault();
     dispatch(addPhotoAction(file));
     setdisplay(false);
-    history.back();
+    history.goBack();
   };
   return (
     display && (
@@ -23,18 +24,17 @@ const AddPhoto = () => {
             history.goBack();
           }}
         />
-        <div className={"modal-box"}>
+        <div className={"modal-box"} style={{ minHeight: 300 }}>
           <form>
-            <label>ADD IMAGE</label>
             <input
               onChange={(e) => {
                 setfile(e.target.files[0]);
               }}
-              className="browser-default"
               type="file"
               name="photo"
             />
             <button
+              style={{ width: 200, marginTop: 50 }}
               onClick={addPhoto}
               className="waves-effect waves-light btn"
               type="submit"

@@ -129,7 +129,7 @@ const Register = ({ history }) => {
         >
           Register {info.state}
         </button>
-        {errors && <h5 style={{ color: "red", marginTop: 20 }}>{errors}</h5>}
+        {errors && <h6 style={{ color: "red", marginTop: 10 }}>{errors}</h6>}
       </form>
     </div>
   );

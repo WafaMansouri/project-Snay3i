@@ -2,6 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { visitByIdAction } from "../actions/clientActions";
 import { useHistory } from "react-router-dom";
+//function that convert the first letter of a string to uppercase
+const upper = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1, str.length);
+};
+
 const Search = () => {
   const search = useSelector((state) => state.search);
   const history = useHistory();
@@ -10,11 +15,7 @@ const Search = () => {
   };
   return (
     <div>
-      <button
-        style={{ width: 90 }}
-        className="waves-effect waves-light btn"
-        onClick={handleReturn}
-      >
+      <button className="waves-effect waves-light btn" onClick={handleReturn}>
         <i class="large material-icons">arrow_back</i>
       </button>
       {!search.artisans.errors ? (
@@ -46,11 +47,29 @@ const SearchCard = ({ artisan }) => {
   };
   return (
     <div className="search_modal">
-      <h4>{artisan.f_name + " " + artisan.l_name}</h4>
-      <h4>{artisan.category}</h4>
-      <h4>{artisan.description && artisan.description}</h4>
-      <h4>{artisan.rate && artisan.rate}</h4>
-      <button className="waves-effect waves-light btn" onClick={handleVist}>
+      <ul>
+        <div>
+          <li style={{ fontWeight: "bold" }}>
+            <i class="small material-icons">account_circle</i>&nbsp;
+            {upper(artisan.f_name) + " " + upper(artisan.l_name)}
+          </li>
+          <li>
+            <i class="small material-icons">work</i>&nbsp;
+            {upper(artisan.category)}
+          </li>
+          <li>
+            <i class="small material-icons">add_location</i>&nbsp;
+            {artisan.address && upper(artisan.address)}
+          </li>
+        </div>
+        {/* <li>{artisan.description && upper(artisan.description)}</li>
+        <li>{artisan.rate && artisan.rate}</li> */}
+      </ul>
+      <button
+        style={{ borderRadius: 20 }}
+        className="waves-effect waves-light btn"
+        onClick={handleVist}
+      >
         Visit Profile
       </button>
     </div>

@@ -9,6 +9,10 @@ import { likesArtisanAction } from "../actions/artisanActions";
 import { Rate } from "antd";
 import "../App.css";
 import { useHistory } from "react-router-dom";
+//function that convert the first letter of a string to uppercase
+const upper = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1, str.length);
+};
 
 const Profile = () => {
   const history = useHistory();
@@ -86,7 +90,7 @@ const Profile = () => {
             <ul>
               <li>
                 <i class="small material-icons">account_circle</i>&nbsp;
-                {auth.user.f_name + " " + auth.user.l_name}
+                {upper(auth.user.f_name) + " " + upper(auth.user.l_name)}
               </li>
               <li>
                 <i class="small material-icons">email</i>&nbsp;
@@ -95,7 +99,7 @@ const Profile = () => {
               {auth.user.category && (
                 <li>
                   <i class="small material-icons">work</i>&nbsp;
-                  {auth.user.category}
+                  {upper(auth.user.category)}
                 </li>
               )}
               {auth.user.address && (
@@ -113,24 +117,26 @@ const Profile = () => {
               {auth.user.description && (
                 <li>
                   <i class="small material-icons">description</i>&nbsp;{" "}
-                  {auth.user.description}
+                  {upper(auth.user.description)}
                 </li>
               )}
               {auth.user.age && <li>Age: {auth.user.age}</li>}
             </ul>
           </div>
-          <div className="containerInfo">
-            {auth.user && auth.user.state === "Artisan" && (
-              <a onClick={(e) => setaddPostTest(true)}>ADD NEW POST</a>
-            )}
-            {posts.posts && (
-              <div className="container-posts">
-                {posts.posts.map((post, index) => {
-                  return <PostModal key={index} post={post} />;
-                })}
-              </div>
-            )}
-          </div>
+          {auth.user.state === "Artisan" && (
+            <div className="containerPosts">
+              {auth.user && auth.user.state === "Artisan" && (
+                <a onClick={(e) => setaddPostTest(true)}>ADD NEW POST</a>
+              )}
+              {posts.posts && (
+                <div className="container-posts">
+                  {posts.posts.map((post, index) => {
+                    return <PostModal key={index} post={post} />;
+                  })}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -161,17 +167,19 @@ const PostModal = ({ post }) => {
         <div className="card">
           <div className="card-image">
             <img src={post.photo ? post.photo : "image/profileBack.png"} />
-            <span className="card-title">{post.title}</span>
           </div>
           <div className="card-content">
-            <p>{post.description}</p>
+            <span className="card-title">{upper(post.title)}</span>
+            <p>{upper(post.description)}</p>
           </div>
           <div className="card-action">
-            <div>
-              <i className="small material-icons" style={{ color: "#ffab40" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <i className="small material-icons" style={{ color: "#ff3399" }}>
                 favorite
               </i>
-              {countLikes && <span>{countLikes}</span>}
+              <div style={{ fontSize: "1.2em" }}>
+                {countLikes && <span>{countLikes} </span>} person like this
+              </div>
             </div>
             <div>
               <a
@@ -179,7 +187,12 @@ const PostModal = ({ post }) => {
                   history.push(`/alert/${post._id}`);
                 }}
               >
-                <i className="small material-icons">delete</i>
+                <i
+                  className="small material-icons"
+                  style={{ color: "#ff3399" }}
+                >
+                  delete
+                </i>
               </a>
             </div>
           </div>

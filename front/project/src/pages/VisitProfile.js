@@ -10,7 +10,10 @@ import { deleteLikeAction } from "../actions/clientActions";
 import { clientLikesAction } from "../actions/clientActions";
 import StarRating from "./StarRating";
 import { Rate } from "antd";
-
+//function that convert the first letter of a string to uppercase
+const upper = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1, str.length);
+};
 const VisitProfile = () => {
   const auth = useSelector((state) => state.auth);
   const visit = useSelector((state) => state.visit);
@@ -60,13 +63,6 @@ const VisitProfile = () => {
   const likes_client = useSelector((state) => state.likes_client);
   return (
     <div>
-      <button
-        style={{ width: 90 }}
-        className="waves-effect waves-light btn"
-        onClick={handleReturn}
-      >
-        <i class="large material-icons">arrow_back</i>
-      </button>
       {visit.artisan && (
         <div className="profile">
           <div
@@ -76,27 +72,39 @@ const VisitProfile = () => {
               justifyContent: "space-evenly",
             }}
           >
-            <div className="containerInfo">
-              {testRequest ||
-              (send_request.request &&
-                send_request.request.state == "Send Request" &&
-                send_request.request.id_artisan === visit.artisan._id) ? (
+            <div className="containerInfo" style={{ paddingTop: 10 }}>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-evenly",
+                }}
+              >
                 <button
-                  style={{ height: 60, marginBottom: 50 }}
-                  className="waves-effect waves-light btn"
-                  onClick={handleContact}
+                  className="waves-effect waves-light btn visit"
+                  onClick={handleReturn}
                 >
-                  View Request
+                  <i class="large material-icons">arrow_back</i> Return
                 </button>
-              ) : (
-                <button
-                  style={{ height: 60, marginBottom: 50 }}
-                  className="waves-effect waves-light btn"
-                  onClick={handleContact}
-                >
-                  Contact {visit.artisan && visit.artisan.f_name}
-                </button>
-              )}
+                {testRequest ||
+                (send_request.request &&
+                  send_request.request.state == "Send Request" &&
+                  send_request.request.id_artisan === visit.artisan._id) ? (
+                  <button
+                    className="waves-effect waves-light btn visit"
+                    onClick={handleContact}
+                  >
+                    View Request
+                  </button>
+                ) : (
+                  <button
+                    className="waves-effect waves-light btn visit"
+                    onClick={handleContact}
+                  >
+                    Contact {visit.artisan && visit.artisan.f_name}
+                  </button>
+                )}
+              </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <div className="cadrePhoto">
                   <img
@@ -128,7 +136,9 @@ const VisitProfile = () => {
               <ul>
                 <li>
                   <i class="small material-icons">account_circle</i>&nbsp;
-                  {visit.artisan.f_name + " " + visit.artisan.l_name}
+                  {upper(visit.artisan.f_name) +
+                    " " +
+                    upper(visit.artisan.l_name)}
                 </li>
                 <li>
                   <i class="small material-icons">email</i>&nbsp;
@@ -137,19 +147,22 @@ const VisitProfile = () => {
                 {visit.artisan.category && (
                   <li>
                     <i class="small material-icons">work</i>&nbsp;
-                    {visit.artisan.category}
+                    {upper(visit.artisan.category)}
                   </li>
                 )}
                 {visit.artisan.address && (
-                  <li>Address: {visit.artisan.address}</li>
+                  <li>
+                    <i class="small material-icons">add_location</i>&nbsp;{" "}
+                    {upper(visit.artisan.address)}
+                  </li>
                 )}
                 {visit.artisan.description && (
-                  <li> {visit.artisan.description}</li>
+                  <li> {upper(visit.artisan.description)}</li>
                 )}
                 {visit.artisan.age && <li>Age: {visit.artisan.age}</li>}
               </ul>
             </div>
-            <div className="containerInfo">
+            <div className="containerPosts">
               {posts.posts && (
                 <div className="container-posts">
                   {posts.posts.map((post, index) => {
@@ -170,7 +183,6 @@ export default VisitProfile;
 //Post Modal
 const PostModal = ({ post }) => {
   const likes_client = useSelector((state) => state.likes_client);
-  // const [like, setlike] = useState(true);
   const visit = useSelector((state) => state.visit);
   const dispatch = useDispatch();
   const handleLike = (e) => {
@@ -186,10 +198,10 @@ const PostModal = ({ post }) => {
         <div class="card">
           <div class="card-image">
             <img src={post.photo ? post.photo : "image/profileBack.png"} />
-            <span class="card-title">{post.title}</span>
           </div>
           <div class="card-content">
-            <p>{post.description}</p>
+            <span class="card-title">{upper(post.title)}</span>
+            <p>{upper(post.description)}</p>
           </div>
           <div class="card-action">
             <div>
@@ -198,11 +210,11 @@ const PostModal = ({ post }) => {
                 !likes_client.likes.find(
                   (like) => like.id_post === post._id
                 ) ? (
-                  <i class="small material-icons" style={{ color: "#ffab40" }}>
+                  <i class="small material-icons" style={{ color: "#ff3399" }}>
                     favorite_border
                   </i>
                 ) : (
-                  <i class="small material-icons" style={{ color: "#ffab40" }}>
+                  <i class="small material-icons" style={{ color: "#ff3399" }}>
                     favorite
                   </i>
                 )}

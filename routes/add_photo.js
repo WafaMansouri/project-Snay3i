@@ -24,7 +24,7 @@ router.post("/", authMiddleware, upload.single("avatar"), (req, res) => {
     Artisan.findByIdAndUpdate(
       req.user_Id,
       { avatar: path },
-      { useFindAndModify: false } //to send the updated artisan
+      { new: true, useFindAndModify: false } //to send the updated artisan
     )
       .then((artisan) => {
         res.status(200).send(artisan);
@@ -34,7 +34,11 @@ router.post("/", authMiddleware, upload.single("avatar"), (req, res) => {
         res.status(500).send({ errors: [{ msg: "Server Error!" }] });
       });
   } else if (req.state === "Client") {
-    Client.findByIdAndUpdate(req.user_Id, { avatar: path })
+    Client.findByIdAndUpdate(
+      req.user_Id,
+      { avatar: path },
+      { new: true, useFindAndModify: false }
+    )
       .then((client) => res.send(client))
       .catch((err) => {
         console.log(err);

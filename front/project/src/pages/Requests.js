@@ -5,6 +5,10 @@ import { rejectAction } from "../actions/rejectAction";
 import { ignore_artisanAction } from "../actions/ignore_artisanAction";
 import { accept_artisanAction } from "../actions/artisanActions";
 import { checkRequest_artisan } from "../actions/artisanActions";
+//function that convert the first letter of a string to uppercase
+const upper = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1, str.length);
+};
 
 const Requests = () => {
   const request_artisan = useSelector((state) => state.request_artisan);
@@ -31,7 +35,7 @@ const Requests = () => {
             })}
           </div>
         ) : (
-          <h3>NO REQUESTS</h3>
+          <li>NO REQUESTS</li>
         )
       ) : (
         <h2>{request_artisan.errors}</h2>
@@ -63,17 +67,19 @@ const RequestModal = ({ request }) => {
     dispatch(accept_artisanAction(request._id));
   };
   const ignore = useSelector((state) => state.ignore);
- 
+
   return (
     request.state !== "Rejected" &&
     request.state !== "Ignored By Artisan" &&
     (request.state === "Ignored By Client" ? (
       <div className="request_modal">
-        <h2>
+        <h3>
           Request from &nbsp;
-          {request.id_client.f_name + " " + request.id_client.l_name}&nbsp;
-          Ignored By The Client
-        </h2>
+          {upper(request.id_client.f_name) +
+            " " +
+            upper(request.id_client.l_name)}
+          &nbsp; Ignored By The Client
+        </h3>
         <button
           className="waves-effect waves-light btn"
           onClick={rejectRequest}
@@ -82,32 +88,45 @@ const RequestModal = ({ request }) => {
         </button>
       </div>
     ) : ignore.ignored_req && ignore.ignored_req._id === request._id ? (
-      <h2>Request Ignored with Success</h2>
+      <h3>Request Ignored with Success</h3>
     ) : (
       <div className="request_modal">
-        {response_artisan.response ? (
-          <h3>
-            Your Response:{" "}
-            {response_artisan.response &&
-            response_artisan.response._id === request._id
-              ? response_artisan.response.msg_artisan
-              : request.msg_artisan}
-          </h3>
-        ) : (
-          request.msg_artisan && <h3>Your Response: {request.msg_artisan}</h3>
-        )}
+        <ul>
+          {response_artisan.response ? (
+            <li>
+              <span> Your Response:</span>{" "}
+              {response_artisan.response &&
+              response_artisan.response._id === request._id
+                ? upper(response_artisan.response.msg_artisan)
+                : upper(request.msg_artisan)}
+            </li>
+          ) : (
+            request.msg_artisan && (
+              <li>
+                <span> Your Response:</span> {upper(request.msg_artisan)}
+              </li>
+            )
+          )}
 
-        {request.id_client && (
-          <h3>
-            Request From{" "}
-            <a>
-              {" "}
-              {`${request.id_client.f_name} ${request.id_client.l_name}`}
-            </a>
-          </h3>
-        )}
-        <h3>Message: {request.msg_client}</h3>
-        <h3>Date: {new Date(request.created_at).toUTCString()}</h3>
+          {request.id_client && (
+            <li>
+              <span> Request from:</span>{" "}
+              <a>
+                {" "}
+                {`${upper(request.id_client.f_name)} ${upper(
+                  request.id_client.l_name
+                )}`}
+              </a>
+            </li>
+          )}
+          <li>
+            {" "}
+            <span>Message:</span> {upper(request.msg_client)}
+          </li>
+          <li>
+            <span>Date:</span> {new Date(request.created_at).toUTCString()}
+          </li>
+        </ul>
         {request.state === "Accepted By Artisan" ? (
           <i class="fas fa-check"></i>
         ) : (

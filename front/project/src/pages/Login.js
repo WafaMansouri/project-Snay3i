@@ -57,7 +57,7 @@ const Login = ({ history, match }) => {
   return (
     <div className="container_login">
       <form
-        className="form_login"
+        className="form_login login"
         onSubmit={handleLogin}
         onFocus={() => seterrors(null)}
       >
@@ -86,6 +86,20 @@ const Login = ({ history, match }) => {
             placeholder="  &#xF023; Password"
             style={{ fontFamily: "Arial, FontAwesome" }}
           />
+        </div>
+        <div
+          style={{
+            width: "80%",
+            textAlign: "left",
+            margin: "0px 0px 15px 0px",
+          }}
+        >
+          <a
+            href="/register"
+            style={{ fontSize: "1.2em", textDecoration: "underline" }}
+          >
+            New to Snay3i? Register here
+          </a>
         </div>
         <button
           className="waves-effect waves-light btn"
