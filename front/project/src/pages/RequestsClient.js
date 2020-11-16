@@ -6,6 +6,7 @@ import { confirm_clientAction } from "../actions/clientActions";
 import { checkRequest_client } from "../actions/clientActions";
 import { rejectAction } from "../actions/rejectAction";
 import { visitByIdAction } from "../actions/clientActions";
+import { useAlert } from "react-alert";
 //function that convert the first letter of a string to uppercase
 const upper = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1, str.length);
@@ -13,6 +14,8 @@ const upper = (str) => {
 
 const RequestsClient = () => {
   const auth = useSelector((state) => state.auth);
+  const reject = useSelector((state) => state.reject);
+  const ignore = useSelector((state) => state.ignore);
   const dispatch = useDispatch();
 
   // To Check the requests of the connected client
@@ -20,7 +23,7 @@ const RequestsClient = () => {
     if (auth.isAuth && auth.user && auth.user.state === "Client") {
       dispatch(checkRequest_client());
     }
-  }, [auth]);
+  }, [auth, reject.rejected_req, ignore.ignored_req]);
   const request_client = useSelector((state) => state.request_client);
   const history = useHistory();
   const handleReturn = () => {
@@ -36,14 +39,14 @@ const RequestsClient = () => {
         <i class="large material-icons">arrow_back</i>
       </button>
       {!request_client.errors ? (
-        request_client.requests ? (
+        request_client.requests && request_client.requests.length ? (
           <div>
             {request_client.requests.map((request, index) => {
               return <RequestModal key={index} request={request} />;
             })}
           </div>
         ) : (
-          <h3>NO REQUESTS</h3>
+          <h3 style={{ marginTop: 50 }}>NO REQUESTS</h3>
         )
       ) : (
         <h2>{request_client.errors}</h2>
@@ -55,12 +58,13 @@ export default RequestsClient;
 
 //Request Modal
 const RequestModal = ({ request }) => {
+  const alert = useAlert();
   const dispatch = useDispatch();
   const history = useHistory();
   const handleIgnore = () => {
     dispatch(ignore_clientAction(request._id));
+    alert.success("Ignored with Success!");
   };
-  const ignore = useSelector((state) => state.ignore);
   const rejectRequest = () => {
     dispatch(rejectAction(request._id));
   };
@@ -73,34 +77,66 @@ const RequestModal = ({ request }) => {
   };
   return (
     request.state !== "Rejected" &&
-    (ignore.ignored_req ? (
-      <h2>Request Ignored with Success</h2>
-    ) : request.state === "Ignored By Artisan" ? (
+    (request.state === "Ignored By Artisan" ? (
       <div className="request_modal">
-        <h2>Request Ignore By Artisan</h2>
-        <button
-          className="waves-effect waves-light btn"
-          onClick={rejectRequest}
-        >
-          OK
-        </button>
+        <div className="title_request">
+          Request to &nbsp;
+          <a href="">
+            {upper(request.id_artisan.f_name) +
+              " " +
+              upper(request.id_artisan.l_name)}
+          </a>
+        </div>
+        <ul>
+          <li style={{ fontWeight: "bold", marginTop: 20 }}>
+            Ignored By The Artisan
+          </li>
+        </ul>
+        <div style={{ textAlign: "center" }}>
+          <button
+            className="waves-effect waves-light btn"
+            onClick={rejectRequest}
+          >
+            OK
+          </button>
+        </div>
       </div>
     ) : (
       request.state !== "Ignored By Client" && (
         <div className="request_modal">
-          <h3>
-            Request to:{" "}
+          <div className="title_request">
+            <span> Request to:</span>{" "}
             <a onClick={visitArtisan}>
+              {" "}
               {upper(request.id_artisan.f_name) +
                 " " +
                 upper(request.id_artisan.l_name)}
-            </a>{" "}
-          </h3>
-          <h3>Your Message: {upper(request.msg_client)}</h3>
-          <h3>Date Request: {new Date(request.created_at).toUTCString()}</h3>
-          {request.msg_artisan && (
-            <h3>Response: {upper(request.msg_artisan)}</h3>
-          )}
+            </a>
+          </div>
+          <ul>
+            <li>
+              <span> Your Message: </span>
+              {upper(request.msg_client)}
+            </li>
+            <li>
+              <span> Sent at: </span>
+              {new Date(request.created_at).toUTCString()}
+            </li>
+            {request.msg_artisan && (
+              <li>
+                <span> Response: </span>
+                {upper(request.msg_artisan)}
+              </li>
+            )}
+            <li>
+              <span>Date required:</span> {request.date_client}
+            </li>
+            {request.date_artisan && (
+              <li>
+                <span>Date Offers:</span> {upper(request.date_artisan)}
+              </li>
+            )}
+          </ul>
           {request.state === "Accepted By Artisan" ? (
             <i className="fas fa-check"></i>
           ) : (
@@ -111,14 +147,15 @@ const RequestModal = ({ request }) => {
               IGNORE
             </button>
           )}
-          {request.state !== "Accepted By Artisan" && (
-            <button
-              className="waves-effect waves-light btn"
-              onClick={handleConfirm}
-            >
-              CONFIRM
-            </button>
-          )}
+          {request.state !== "Accepted By Artisan" &&
+            request.state !== "Send Request" && (
+              <button
+                className="waves-effect waves-light btn"
+                onClick={handleConfirm}
+              >
+                CONFIRM
+              </button>
+            )}
         </div>
       )
     ))

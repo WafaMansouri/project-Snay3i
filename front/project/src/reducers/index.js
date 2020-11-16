@@ -9,6 +9,7 @@ import RequestArtisanReducer from "./requestArtisanReducer";
 import RequestClientReducer from "./requestClientReducer";
 import ResponseArtisanReducer from "./responseArtisanReducer";
 import IgnoreReducer from "./ignoreReducer";
+import RejectReducer from "./rejectReducer";
 import AcceptReducer from "./acceptReducer";
 import RateClientReducer from "./rateClientReducer";
 import RateArtisanReducer from "./rateArtisanReducer";
@@ -28,6 +29,7 @@ export default combineReducers({
   request_client: RequestClientReducer,
   response_artisan: ResponseArtisanReducer,
   ignore: IgnoreReducer,
+  reject: RejectReducer,
   accept: AcceptReducer,
   rate_client: RateClientReducer,
   rate_artisan: RateArtisanReducer,

@@ -3,15 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendRequestAction } from "../actions/clientActions";
 import { useHistory } from "react-router-dom";
 import { Calendar } from "antd";
+import { useAlert } from "react-alert";
 
 function ContactModal() {
+  const alert = useAlert();
   const visit = useSelector((state) => state.visit);
   const history = useHistory();
   const [display, setdisplay] = useState(true);
+  // const [date_client, setdate_client] = useState("");
   const [requestInfo, setrequestInfo] = useState({
     id_artisan: "",
     msg_client: "",
+    date_client: "",
   });
+  const [first, setFirst] = useState(false);
   const handleChange = (e) => {
     if (visit.artisan)
       setrequestInfo({
@@ -24,9 +29,19 @@ function ContactModal() {
   const sendRequest = (e) => {
     e.preventDefault();
     dispatch(sendRequestAction(requestInfo));
-    history.goBack();
+    // alert.success("Request Sent");
+    // history.goBack();
   };
   const send_request = useSelector((state) => state.send_request);
+  useEffect(() => {
+    if (first) {
+      if (!send_request.errors) {
+        history.goBack();
+        alert.success("send_request Success!");
+      }
+    }
+    setFirst(true);
+  }, [send_request]);
   //To Check if there is a request with the visited artisan or not
   const request_client = useSelector((state) => state.request_client);
   const [testRequest, settestRequest] = useState(false);
@@ -91,24 +106,28 @@ function ContactModal() {
             </form>
           </div>
         ) : (
-          <div
-            style={{ display: "flex", flexDirection: "row" }}
-            className={"modal-box"}
-          >
-            <textarea
-              name="msg_client"
-              placeholder="describe your request"
-              onChange={handleChange}
-            ></textarea>
+          <div className={"modal-box contact"}>
+            <div>
+              <textarea
+                name="msg_client"
+                placeholder="describe your request"
+                onChange={handleChange}
+              ></textarea>
 
-            <div className="calendar">
-              <Calendar
-              // dateCellRender={dateCellRender}
-              // monthCellRender={monthCellRender}
-              // onPanelChange={onPanelChange}
-              // onSelect={onSelect}
-              />
+              <div className="calendar">
+                <Calendar
+                  onSelect={(e) => {
+                    setrequestInfo({
+                      ...requestInfo,
+                      date_client: e._d.toDateString(),
+                    });
+                  }}
+                />
+              </div>
             </div>
+            <h6 style={{ color: "red", marginTop: 20 }}>
+              {send_request.errors && send_request.errors}
+            </h6>
             <button
               type="submit"
               className="waves-effect waves-light btn"
@@ -123,23 +142,3 @@ function ContactModal() {
   );
 }
 export default ContactModal;
-
-//  {send_request.request &&
-//       send_request.request.state === "Send Request" ? (
-//         <div className={"modal-box"}>
-//           <form
-//             action=""
-//             onSubmit={(e) => {
-//               setdisplay(false);
-//               history.goBack();
-//             }}
-//           >
-//             <h3>Request sent at:</h3>
-//             <h4>{new Date(send_request.request.created_at).toUTCString()}</h4>
-//             <h3>Your message:</h3>
-//             <h4>{send_request.request.msg_client}</h4>
-//             <h3>Time Required:</h3>
-//             <h4>{send_request.request.msg_client}</h4>
-//             <button type="submit">OK</button>
-//           </form>
-//           </div> }

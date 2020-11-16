@@ -12,6 +12,8 @@
     "react": "^17.0.0",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",
+    "react-animate-on-scroll": "^2.1.5",
+    "react-cool-portal": "^1.0.25",
     "react-dom": "^17.0.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

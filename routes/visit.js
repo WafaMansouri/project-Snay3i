@@ -6,7 +6,7 @@ const Intervention = require("../models/intervention");
 const { body, validationResult } = require("express-validator");
 
 // Search and visit profile by id
-router.get("/artisan/:id", authMiddleware, (req, res) => {
+router.get("/artisan/:id", (req, res) => {
   Artisan.findOne({ _id: req.params.id })
     .exec()
     .then((artisan) => {
@@ -21,7 +21,10 @@ router.get("/artisan/:id", authMiddleware, (req, res) => {
 router.post(
   "/request",
   authMiddleware,
-  [body("msg_client", "Your message shouldn't be empty").notEmpty()],
+  [
+    body("msg_client", "Your message shouldn't be empty").notEmpty(),
+    body("date_client", "You should pick a date").notEmpty(),
+  ],
   (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -35,18 +38,17 @@ router.post(
         .exec()
         .then((intervention) => {
           if (!intervention) {
-            //   res.status(201).send(intervention);
-            // else
             let newIntervention = new Intervention({
               id_client: req.user_Id,
               id_artisan: req.body.id_artisan,
               msg_client: req.body.msg_client,
+              date_client: req.body.date_client,
               state: "Send Request",
             });
             newIntervention.save();
-            res.send(newIntervention);
+            res.status(200).send(newIntervention);
           } else {
-            res.send("You have already a request!");
+            res.status(200).send("You have already a request!");
           }
         })
         .catch((err) => {

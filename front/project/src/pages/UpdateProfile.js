@@ -163,17 +163,9 @@ const UpdateProfile = () => {
                 </div>
               </div>
             )}
-
             <h5 style={{ color: "red", marginTop: 20 }}>
               {update.errors && update.errors}
             </h5>
-            {/* <button
-              onClick={() => {
-                alert.success("It's ok now!");
-              }}
-            >
-              Success!
-            </button> */}
             <button className="waves-effect waves-light btn" type="submit">
               UPDATE
             </button>

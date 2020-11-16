@@ -94,7 +94,7 @@ export const accept_artisanAction = (id_request) => (dispatch) => {
 
 // To get ALL the posts of the connected artisan
 export const artisanPostsAction = (id) => (dispatch) => {
-  setToken();
+  // setToken();
   axios
     .get(`/artisan/posts/${id}`) //bind front and back
     .then((res) =>

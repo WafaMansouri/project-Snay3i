@@ -118,7 +118,9 @@ const VisitProfile = () => {
                   />
                 </div>
               </div>
-              <StarRating /> {/* your rating */}
+              {/* your rating */}
+              {auth.isAuth && <StarRating />}
+
               {/* The artisan's rate */}
               {rate_artisan.rate && (
                 <Rate
@@ -182,15 +184,21 @@ export default VisitProfile;
 
 //Post Modal
 const PostModal = ({ post }) => {
+  const auth = useSelector((state) => state.auth);
   const likes_client = useSelector((state) => state.likes_client);
   const visit = useSelector((state) => state.visit);
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleLike = (e) => {
-    if (likes_client.likes.find((like) => like.id_post === post._id))
-      dispatch(deleteLikeAction(post._id));
-    else dispatch(addLikeAction(post._id, visit.artisan._id));
-    // To get all the likes to the visited artisan's posts
-    dispatch(clientLikesAction(visit.artisan._id));
+    if (!auth.isAuth) {
+      history.push("/login");
+    } else {
+      if (likes_client.likes.find((like) => like.id_post === post._id))
+        dispatch(deleteLikeAction(post._id));
+      else dispatch(addLikeAction(post._id, visit.artisan._id));
+      // To get all the likes to the visited artisan's posts
+      dispatch(clientLikesAction(visit.artisan._id));
+    }
   };
   return (
     <div class="row">

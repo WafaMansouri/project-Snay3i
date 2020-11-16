@@ -8,7 +8,11 @@ const { body, validationResult } = require("express-validator");
 
 //get client requests
 router.get("/requests", authMiddleware, (req, res) => {
-  Intervention.find({ id_client: req.user_Id })
+  Intervention.find({
+    id_client: req.user_Id,
+    state: { $nin: ["Ignored By Client", "Rejected"] },
+  })
+    .sort({ created_at: -1 })
     .populate("id_artisan")
     .exec()
     .then((interventions) => {
@@ -142,7 +146,6 @@ router.get("/like/:id", authMiddleware, (req, res) => {
   Like.find({ id_client: req.user_Id, id_artisan: req.params.id })
     .exec()
     .then((likes) => {
-      // console.log(likes);
       res.status(201).send(likes);
     })
     .catch((err) => {

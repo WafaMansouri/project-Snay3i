@@ -26,7 +26,25 @@ import setToken from "../setToken";
 export const searchByNameAction = (name) => (dispatch) => {
   //   setToken(); //to set the token in the header
   axios
-    .get(`/search/${name}`) //bind front and back
+    .get(`/search/name/${name}`) //bind front and back
+    .then((res) =>
+      dispatch({
+        type: SEARCH_SUCCESS,
+        payload: res.data,
+      })
+    )
+    .catch((err) =>
+      dispatch({
+        type: SEARCH_FAIL,
+        payload: err.response.data.errors[0].msg,
+      })
+    );
+};
+
+export const searchByCategoryAction = (category) => (dispatch) => {
+  //   setToken(); //to set the token in the header
+  axios
+    .get(`/search/category/${category}`) //bind front and back
     .then((res) =>
       dispatch({
         type: SEARCH_SUCCESS,
@@ -42,7 +60,7 @@ export const searchByNameAction = (name) => (dispatch) => {
 };
 //to visit the artisan appear in the Search section
 export const visitByIdAction = (id) => (dispatch) => {
-  setToken();
+  // setToken();
   axios
     .get(`/visit/artisan/${id}`) //bind front and back
     .then((res) =>

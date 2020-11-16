@@ -23,12 +23,6 @@ function App() {
   const dispatch = useDispatch();
 
   const auth = useSelector((state) => state.auth);
-  //To Check if there is requests for the connected artisan
-  // useEffect(() => {
-  //   if (auth.isAuth && auth.user && auth.user.state === "Artisan") {
-  //     dispatch(checkRequest_artisan());
-  //   }
-  // }, [auth]);
 
   return (
     <div className="App">

@@ -53,3 +53,13 @@
   border: solid black 1px;
   text-align: center;
 }
+/* styling contact modal  */
+.modal-box.contact {
+  display: flex;
+  flex-direction: column;
+}
+.modal-box.contact > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

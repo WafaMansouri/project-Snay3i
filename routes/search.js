@@ -4,7 +4,7 @@ const router = express.Router();
 const Artisan = require("../models/artisan");
 
 // Search list artisans by name
-router.get("/:name", (req, res) => {
+router.get("/name/:name", (req, res) => {
   let whiteSpace = req.params.name.search(" ");
   if (whiteSpace > -1) {
     let arr = req.params.name.split(" ");
@@ -17,8 +17,8 @@ router.get("/:name", (req, res) => {
       ],
     })
       .exec()
-      .then((artisan) => {
-        res.status(201).send(artisan);
+      .then((artisans) => {
+        res.status(201).send(artisans);
       })
       .catch((err) => {
         console.log(err);
@@ -32,8 +32,8 @@ router.get("/:name", (req, res) => {
       ],
     })
       .exec()
-      .then((artisan) => {
-        res.status(201).send(artisan);
+      .then((artisans) => {
+        res.status(201).send(artisans);
       })
       .catch((err) => {
         console.log(err);
@@ -41,6 +41,18 @@ router.get("/:name", (req, res) => {
       });
 });
 
+// Search list artisans by category
+router.get("/category/:category", (req, res) => {
+  Artisan.find({ category: { $regex: req.params.category, $options: "i" } })
+    .exec()
+    .then((artisans) => {
+      res.status(201).send(artisans);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
 // Search and visit profile by id
 router.get("/id/:id", authMiddleware, (req, res) => {
   Artisan.findById({ id: req.params.id })

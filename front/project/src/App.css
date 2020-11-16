@@ -172,14 +172,23 @@ button {
 /* request modal */
 .request_modal {
   position: relative;
+  width: 100%;
   padding-bottom: 25%;
   border-radius: 20px 20px 20px 20px;
   -moz-border-radius: 20px 20px 20px 20px;
   -webkit-border-radius: 20px 20px 20px 20px;
   border: 3px solid #26a69a;
-  padding: 50px;
+  padding: 0px 0px 50px 0px;
   margin: 20px;
   text-align: left;
+}
+.title_request {
+  border-bottom: 3px solid #26a69a;
+  font-size: 2em;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .request_modal li {
   font-size: 1.5em;
@@ -187,11 +196,15 @@ button {
 .request_modal li span {
   font-weight: 600;
 }
+.request_modal ul {
+  margin-left: 40px;
+}
 .requests {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 /* search modal */
 .container_search {
@@ -263,6 +276,7 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   padding: 0px 20px;
   position: sticky;
   top: 0px;
@@ -288,15 +302,216 @@ button {
   flex-direction: row;
   justify-content: space-between;
 }
-/* styling alert */
+/* styling dropdown search  in navbar */
+.dropbtn {
+  background-color: #4eaca2;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 80px;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #332d2d;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  left: auto;
+  right: auto;
+  top: auto !important;
+  font-size: 0.7em;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 0px !important;
+  margin: 0px !important;
+  text-decoration: none;
+  display: block;
+  overflow: visible;
+  height: 50px;
+  background-color: #26a69a;
+  text-align: center;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #e7e9e7;
+  color: #26a69a !important;
+  font-size: 2.2em;
+}
+.dropdown-content a:active {
+  background-color: #c3ddda;
+  /* color: white !important; */
+}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #26a69a;
+}
+
+/* styling alert message*/
 #__react-alert__ > div > div > div {
   background-color: #121c25 !important;
   color: white !important;
-  font-size: 1.3em;
+  font-size: 1.2em;
   text-align: center;
-  width: 250px !important;
+  min-width: 250px !important;
   height: 70px !important;
   border-radius: 20px !important;
+}
+/* styling home page */
+.home_header {
+  background-color: #ebf3eb;
+  display: flex;
+  flex-wrap: wrap;
+}
+.home_header .home1 {
+  margin: 10px;
+  width: 100%;
+  background-image: url("/images/home11.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 100px) !important;
+  font-family: "Indie Flower", cursive;
+  /* font-family: "Gochi Hand", cursive; */
+  font-size: 76px;
+  line-height: 85px;
+  padding-bottom: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: rgb(6, 120, 183);
+}
+.photos_home {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  height: 34% !important;
+  background-color: #ebf3eb;
+  margin: 0;
+}
+.photos_home img {
+  margin: 10px;
+  width: 12%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 100px;
+}
+.home_header .home1 img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  /* border-radius: 20px; */
+}
+.cadreNumber {
+  width: 80px;
+  height: 80px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  background-color: pink;
+  border-radius: 49.9%;
+  border-top-left-radius: 49.9%;
+  border-top-right-radius: 49.9%;
+  border-bottom-right-radius: 49.9%;
+  border-bottom-left-radius: 49.9%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  margin-right: 20px;
+}
+.cadreNumber + div {
+  font-size: 1.6em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  width: 30%;
+  text-align: justify;
+}
+.how_it_work {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0px 0px 30px 80px;
+}
+.oval {
+  width: 250px;
+  height: 130px;
+  background: pink;
+  border-radius: 70px / 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  margin: 20px;
+  padding: 5px;
+}
+.why_snai3i {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+.container_how_it_work {
+  background-color: #ebf3eb;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+/* styling the footer */
+#footer {
+  height: 300px;
+  background-color: rgb(38, 166, 154);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  padding: 20px;
+}
+#heart {
+  position: relative;
+  width: 100px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#heart > h6 {
+  z-index: 3;
+  color: white;
+  font-size: 1.15em;
+  margin-bottom: 1.4em;
+}
+#heart:before,
+#heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background-color: #161d1d;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  z-index: 2;
+}
+#heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
 }
 /* .App-header {
   background-color: #282c34;

@@ -9,7 +9,10 @@ const { body, validationResult } = require("express-validator");
 
 //get artisan requests
 router.get("/requests", authMiddleware, (req, res) => {
-  Intervention.find({ id_artisan: req.user_Id })
+  Intervention.find({
+    id_artisan: req.user_Id,
+    state: { $nin: ["Ignored By Artisan", "Rejected"] },
+  })
     .sort({ created_at: -1 })
     .populate("id_client")
     .exec()
@@ -22,25 +25,39 @@ router.get("/requests", authMiddleware, (req, res) => {
     });
 });
 //respond to Client
-router.post("/response", authMiddleware, (req, res) => {
-  Intervention.findOneAndUpdate(
-    {
-      id_artisan: req.user_Id,
-      id_client: req.body.id_client,
-      state: { $in: ["Send Request", "Respond Artisan"] },
-    },
-    { msg_artisan: req.body.msg_artisan, state: "Respond Artisan" },
-    { new: true, useFindAndModify: false }
-  )
-    .exec()
-    .then((intervention) => {
-      res.status(200).send(intervention);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
-    });
-});
+router.post(
+  "/response",
+  authMiddleware,
+  [body("msg_artisan", "Your message shouldn't be empty").notEmpty()],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    } else {
+      Intervention.findOneAndUpdate(
+        {
+          id_artisan: req.user_Id,
+          id_client: req.body.id_client,
+          state: { $in: ["Send Request", "Respond Artisan"] },
+        },
+        {
+          msg_artisan: req.body.msg_artisan,
+          date_artisan: req.body.date_artisan,
+          state: "Respond Artisan",
+        },
+        { new: true, useFindAndModify: false }
+      )
+        .exec()
+        .then((intervention) => {
+          res.status(200).send(intervention);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+        });
+    }
+  }
+);
 //Ignore request
 router.post(
   "/ignore",
@@ -96,7 +113,7 @@ router.post(
   }
 );
 //get artisan all rates
-router.get("/rates/:id_artisan", authMiddleware, (req, res) => {
+router.get("/rates/:id_artisan", (req, res) => {
   Rate.find({ id_artisan: req.params.id_artisan })
     .exec()
     .then((rates) => {
@@ -117,7 +134,7 @@ router.get("/rates/:id_artisan", authMiddleware, (req, res) => {
     });
 });
 //get artisan all posts
-router.get("/posts/:id", authMiddleware, (req, res) => {
+router.get("/posts/:id", (req, res) => {
   Post.find({ id_owner: req.params.id })
     .sort({ created_at: -1 })
     .exec()
@@ -142,7 +159,7 @@ router.delete(`/deletePost/:id_post`, authMiddleware, (req, res) => {
     });
 });
 //get artisan all LIKES
-router.get("/likes/:id", authMiddleware, (req, res) => {
+router.get("/likes/:id", (req, res) => {
   Like.find({ id_artisan: req.params.id })
     .exec()
     .then((likes) => {
