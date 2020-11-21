@@ -1,6 +1,7 @@
 import { UPDATE_INFO_SUCCESS, UPDATE_INFO_FAIL } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
+import { loadClient } from "./authActions";
 
 //Update info
 const updateAction = (info) => (dispatch) => {
@@ -8,12 +9,13 @@ const updateAction = (info) => (dispatch) => {
 
   axios
     .post("/update", info) //bind front and back
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: UPDATE_INFO_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      dispatch(loadClient());
+    })
     .catch((err) =>
       dispatch({
         type: UPDATE_INFO_FAIL,

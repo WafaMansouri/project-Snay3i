@@ -17,7 +17,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-// Create post
+// add photo
 router.post("/", authMiddleware, upload.single("avatar"), (req, res) => {
   let path = `${req.protocol}://${req.hostname}:4000/uploads/profile_photos/${req.file.filename}`;
   if (req.state === "Artisan") {

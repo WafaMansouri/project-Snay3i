@@ -115,21 +115,32 @@ router.get("/rating/:id", authMiddleware, (req, res) => {
 });
 //add like post
 router.post("/like", authMiddleware, (req, res) => {
-  let like = new Like({
+  Like.findOne({
     id_client: req.user_Id,
     id_post: req.body.id_post,
     id_artisan: req.body.id_artisan,
-  });
-  like
-    .save()
+  })
+    .exec()
     .then((like) => {
-      res.status(200).send(like);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+      if (!like) {
+        let like = new Like({
+          id_client: req.user_Id,
+          id_post: req.body.id_post,
+          id_artisan: req.body.id_artisan,
+        });
+        like
+          .save()
+          .then((like) => {
+            res.status(200).send(like);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+          });
+      }
     });
 });
+
 //delete like post
 router.delete("/like/:id_post", authMiddleware, (req, res) => {
   Like.findOneAndDelete({ id_client: req.user_Id, id_post: req.params.id_post })
@@ -141,6 +152,7 @@ router.delete("/like/:id_post", authMiddleware, (req, res) => {
       res.status(500).send({ errors: [{ msg: "Server Error!" }] });
     });
 });
+
 // get all the likes of the client to the visited artisan
 router.get("/like/:id", authMiddleware, (req, res) => {
   Like.find({ id_client: req.user_Id, id_artisan: req.params.id })

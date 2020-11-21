@@ -1,20 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sendRequestAction } from "../actions/clientActions";
+import {
+  checkRequest_client,
+  confirm_clientAction,
+  sendRequestAction,
+} from "../actions/clientActions";
 import { useHistory } from "react-router-dom";
 import { Calendar } from "antd";
 import { useAlert } from "react-alert";
+import { ignore_clientAction } from "../actions/ignore_clientAction";
+import { DatePicker, Space } from "antd";
+import DateRangePickerExample from "./DateRangePickerExample";
 
 function ContactModal() {
+  const { RangePicker } = DatePicker;
   const alert = useAlert();
   const visit = useSelector((state) => state.visit);
   const history = useHistory();
   const [display, setdisplay] = useState(true);
-  // const [date_client, setdate_client] = useState("");
   const [requestInfo, setrequestInfo] = useState({
     id_artisan: "",
     msg_client: "",
-    date_client: "",
+    start_date: "",
+    end_date: "",
   });
   const [first, setFirst] = useState(false);
   const handleChange = (e) => {
@@ -29,8 +37,8 @@ function ContactModal() {
   const sendRequest = (e) => {
     e.preventDefault();
     dispatch(sendRequestAction(requestInfo));
-    // alert.success("Request Sent");
-    // history.goBack();
+    dispatch(checkRequest_client());
+    console.log(requestInfo.start_date);
   };
   const send_request = useSelector((state) => state.send_request);
   useEffect(() => {
@@ -56,6 +64,13 @@ function ContactModal() {
       );
     }
   }, [visit.artisan]);
+  const handleIgnore = () => {
+    dispatch(ignore_clientAction(testRequest._id));
+    alert.success("Ignored with Success!");
+  };
+  const handleConfirm = () => {
+    dispatch(confirm_clientAction(testRequest._id));
+  };
   return (
     display && (
       <div className={"modal-wrapper"}>
@@ -76,33 +91,51 @@ function ContactModal() {
                 history.goBack();
               }}
             >
-              <h3>Request sent at:</h3>
-              <h4>{new Date(testRequest.created_at).toUTCString()}</h4>
-              <h3>Your message:</h3>
-              <h4>{testRequest.msg_client}</h4>
-              <h3>Time Required:</h3>
-              <h4>{testRequest.msg_client}</h4>
-              <button type="submit">OK</button>
-            </form>
-          </div>
-        ) : send_request.request &&
-          send_request.request.state === "Send Request" &&
-          send_request.request.id_artisan === visit.artisan._id ? (
-          <div className={"modal-box"}>
-            <form
-              action=""
-              onSubmit={(e) => {
-                setdisplay(false);
-                history.goBack();
-              }}
-            >
-              <h3>Request sent at:</h3>
-              <h4>{new Date(send_request.request.created_at).toUTCString()}</h4>
-              <h3>Your message:</h3>
-              <h4>{send_request.request.msg_client}</h4>
-              <h3>Time Required:</h3>
-              <h4>{send_request.request.msg_client}</h4>
-              <button type="submit">OK</button>
+              <ul className="view_request">
+                <li>
+                  <span>Request sent at:</span>{" "}
+                  {new Date(testRequest.created_at).toUTCString()}
+                </li>
+                <li>
+                  <span>Your message:</span> {testRequest.msg_client}
+                </li>
+                <li>
+                  <span>Date required: from</span> {testRequest.start_date} to{" "}
+                  {testRequest.end_date}
+                </li>
+                {testRequest.msg_artisan && (
+                  <li>
+                    <span>Response:</span> {testRequest.msg_artisan}
+                  </li>
+                )}
+                {testRequest.dat_artisan && (
+                  <li>
+                    <span>Date offers:</span> {testRequest.date_artisan}
+                  </li>
+                )}
+              </ul>
+              {testRequest.state === "Accepted By Artisan" ? (
+                <i className="fas fa-check"></i>
+              ) : (
+                <button
+                  className="waves-effect waves-light btn"
+                  onClick={handleIgnore}
+                >
+                  IGNORE
+                </button>
+              )}
+              {testRequest.state !== "Accepted By Artisan" &&
+                testRequest.state !== "Send Request" && (
+                  <button
+                    className="waves-effect waves-light btn"
+                    onClick={handleConfirm}
+                  >
+                    CONFIRM
+                  </button>
+                )}
+              <button className="waves-effect waves-light btn" type="submit">
+                OK
+              </button>
             </form>
           </div>
         ) : (
@@ -113,16 +146,28 @@ function ContactModal() {
                 placeholder="describe your request"
                 onChange={handleChange}
               ></textarea>
-
               <div className="calendar">
-                <Calendar
+                {/* <Calendar
                   onSelect={(e) => {
                     setrequestInfo({
                       ...requestInfo,
                       date_client: e._d.toDateString(),
                     });
                   }}
+                /> */}
+                {/* <Space direction="vertical" size={12}>
+                  <RangePicker
+                    bordered={false}
+                    onCalendarChange={(e) => {
+                      console.log(e);
+                    }}
+                  />
+                </Space> */}
+                <DateRangePickerExample
+                  retrieve_dates={setrequestInfo}
+                  requestInfo={requestInfo}
                 />
+                ,
               </div>
             </div>
             <h6 style={{ color: "red", marginTop: 20 }}>

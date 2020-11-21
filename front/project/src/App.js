@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -17,11 +17,8 @@ import RequestsClient from "./pages/RequestsClient";
 import AddPhoto from "./pages/AddPhoto";
 import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
-import UpdateProfile from "./pages/UpdateProfile";
-import Alert from "./pages/Alert";
+// import UpdateProfile from "./pages/UpdateProfile";
 function App() {
-  const dispatch = useDispatch();
-
   const auth = useSelector((state) => state.auth);
 
   return (
@@ -40,9 +37,8 @@ function App() {
           <Route exact path="/contact" component={ContactModal} />
           <Route exact path="/requests" component={Requests} />
           <Route exact path="/requests-client" component={RequestsClient} />
-          <Route exact path="/addPhoto" component={AddPhoto} />
-          <Route exact path="/update-profile" component={UpdateProfile} />
-          <Route exact path="/alert/:id_post" component={Alert} />
+          {/* <Route exact path="/addPhoto" component={AddPhoto} /> */}
+          {/* <Route exact path="/update-profile" component={UpdateProfile} /> */}
           <Route
             exact
             path="/artisanResponse/:id_client"

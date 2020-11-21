@@ -27,8 +27,7 @@ const Home = () => {
             </span>
           </div>
         </div>
-        <div>
-          <div className="why_snai3i">
+        {/* <div className="why_snai3i">
             <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
               <h1 style={{ color: "rgb(60,118,96)" }}>Why SNAY3I ?</h1>
             </ScrollAnimation>
@@ -72,8 +71,66 @@ const Home = () => {
               </div>
               <div className="oval">You need a good worker?</div>
             </div>
+          </div> */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+            // backgroundColor: "#222",
+            minHeight: "100vh",
+          }}
+        >
+          <div className="container1">
+            <div className="card1">
+              <div className="imgBx" data-text="How it works?">
+                <img src="/images/customer-support.png" alt="img" />
+              </div>
+              <div className="content1">
+                <div>
+                  <h3>How it works?</h3>
+                  <ol>
+                    <li>Create an account Artisan or Client</li>
+                    <li>Artisans can share posts exposing their works</li>
+                    <li>
+                      Client send request to artisan in which set message and
+                      date
+                    </li>
+                    <li>
+                      Artisan respond by accepting or by send message to change
+                      the date or by ignoring the request
+                    </li>
+                    <li>Clients can rate artisans</li>
+                    <li>
+                      Client can select his artisan by category and rate or by
+                      name
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div className="card1">
+              <div className="imgBx" data-text="Why Snai3i?">
+                <img src="/images/team.png" alt="img" />
+              </div>
+              <div className="content1">
+                <div>
+                  <h3>Why Snai3i?</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                    quam provident deserunt incidunt consequatur a
+                    exercitationem ab dolor aliquid quae, reprehenderit beatae
+                    est illum repudiandae tenetur laborum quod! Ullam,
+                    molestias?
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="container_how_it_work">
+        </div>
+      </div>
+      {/* <div className="container_how_it_work">
             <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
               <h1 style={{ color: "rgb(60,118,96)" }}>How does it work ?</h1>
             </ScrollAnimation>
@@ -108,17 +165,16 @@ const Home = () => {
                 Client can select his artisan by category and rate or by name
               </div>
             </div>
-          </div>
-        </div>
-        <div className="photos_home">
-          <img src="/images/home4.jpg" />
-          <img src="/images/home5.jpg" />
-          <img src="/images/home6.jpg" />
-          <img src="/images/home7.jpg" />
-          <img src="/images/home8.jpg" />
-          <img src="/images/home2.jpg" />
-        </div>
+          </div> */}
+      <div className="photos_home">
+        <img src="/images/home4.jpg" />
+        <img src="/images/home5.jpg" />
+        <img src="/images/home6.jpg" />
+        <img src="/images/home7.jpg" />
+        <img src="/images/home8.jpg" />
+        <img src="/images/home2.jpg" />
       </div>
+
       <Footer />
     </div>
   );

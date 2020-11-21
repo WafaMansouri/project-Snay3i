@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addPostAction } from "../actions/artisanActions";
-import { useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
+import { Progress } from "antd";
 
-const AddPostModel = () => {
+const AddPostModel = (props) => {
   const alert = useAlert();
-  const history = useHistory();
   const dispatch = useDispatch();
   const [file, setfile] = useState(null);
   const [info, setinfo] = useState({ title: "", description: "" });
+  const [percent, setpercent] = useState(0);
+  let config = {
+    headers: { "Content-Type": "multipart/form-data" },
+    onUploadProgress: (progressEvent) =>
+      setpercent(
+        parseInt(Math.floor((progressEvent.loaded * 100) / progressEvent.total))
+      ),
+  };
   const handleChange = (e) => {
     setinfo({ ...info, [e.target.name]: e.target.value });
   };
@@ -18,13 +25,18 @@ const AddPostModel = () => {
   };
   const addPost = (e) => {
     e.preventDefault();
-    dispatch(addPostAction(info, file));
-    history.goBack();
-    alert.success(<div>Add Post Success</div>);
-    // alert.show(<div style={{ color: "blue" }}>Some Message</div>);
+    dispatch(addPostAction(info, file, config));
   };
   const [display, setdisplay] = useState(true);
-
+  useEffect(() => {
+    if (percent === 100) {
+      setTimeout(() => {
+        setdisplay(false);
+        props.setaddPostTest(false);
+        alert.success(<div>Add Post Success</div>);
+      }, 1000);
+    }
+  }, [percent]);
   return (
     display && (
       <div className={"modal-wrapper"}>
@@ -32,7 +44,7 @@ const AddPostModel = () => {
           className={"modal-backdrop"}
           onClick={() => {
             setdisplay(false);
-            history.goBack();
+            props.setaddPostTest(false);
           }}
         />
         <div className={"modal-box"}>
@@ -55,7 +67,6 @@ const AddPostModel = () => {
               />
             </div>
             <div>
-              <label>ADD IMAGE</label>
               <input
                 className="browser-default"
                 type="file"
@@ -63,10 +74,9 @@ const AddPostModel = () => {
                 onChange={selectImageToUpload}
               />
             </div>
-            <button className="waves-effect waves-light btn" type="submit">
-              ADD
-            </button>
+            <button className="waves-effect waves-light btn">ADD</button>
           </form>
+          <Progress type="circle" percent={percent} />
         </div>
       </div>
     )

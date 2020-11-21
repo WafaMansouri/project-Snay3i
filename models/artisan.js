@@ -16,6 +16,7 @@ const artisanSchema = mongoose.Schema({
   avatar: String,
   age: Number,
   description: String,
+  created_at: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Artisan", artisanSchema);

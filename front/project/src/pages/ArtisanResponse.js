@@ -5,6 +5,7 @@ import { respondAction } from "../actions/artisanActions";
 import { useHistory } from "react-router-dom";
 import { Calendar } from "antd";
 import { useAlert } from "react-alert";
+import DatePickerCalendarExample from "./DatePickerCaledarExample";
 
 function ArtisanResponse({ match }) {
   const alert = useAlert();
@@ -12,19 +13,29 @@ function ArtisanResponse({ match }) {
   const [display, setdisplay] = useState(true);
   const history = useHistory();
   const dispatch = useDispatch();
+  const [newDates, setnewDates] = useState({});
   const [response, setresponse] = useState({
     id_client: match.params.id_client,
     msg_artisan: "",
+    start_date_artisan: "",
+    end_date_artisan: "",
   });
   const [first, setFirst] = useState(false);
   const handleChange = (e) => {
-    setresponse({ ...response, [e.target.name]: e.target.value });
+    setresponse({
+      ...response,
+      [e.target.name]: e.target.value,
+    });
   };
   const handleRespond = (e) => {
     e.preventDefault();
-    dispatch(respondAction(response));
-    // setdisplay(false);
-    // history.goBack();
+    dispatch(
+      respondAction({
+        ...response,
+        start_date_artisan: newDates.start_date_artisan,
+        end_date_artisan: newDates.end_date_artisan,
+      })
+    );
   };
   const response_artisan = useSelector((state) => state.response_artisan);
   useEffect(() => {
@@ -54,13 +65,17 @@ function ArtisanResponse({ match }) {
               placeholder="Write your response here"
             ></textarea>
             <div className="calendar">
-              <Calendar
+              {/* <Calendar
                 onSelect={(e) => {
                   setresponse({
                     ...response,
                     date_artisan: e._d.toDateString(),
                   });
                 }}
+              /> */}
+              <DatePickerCalendarExample
+                id_client={match.params.id_client}
+                setnewDates={setnewDates}
               />
             </div>
           </div>

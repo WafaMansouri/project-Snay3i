@@ -4,28 +4,38 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkRequest_client } from "../actions/clientActions";
 import { artisanRatesAction } from "../actions/artisanRatesAction";
-import { artisanPostsAction } from "../actions/artisanActions";
+import {
+  artisanPostsAction,
+  likesArtisanAction,
+} from "../actions/artisanActions";
 import { addLikeAction } from "../actions/clientActions";
 import { deleteLikeAction } from "../actions/clientActions";
-import { clientLikesAction } from "../actions/clientActions";
 import StarRating from "./StarRating";
 import { Rate } from "antd";
 //function that convert the first letter of a string to uppercase
 const upper = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1, str.length);
 };
+
 const VisitProfile = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const request_client = useSelector((state) => state.request_client);
   const auth = useSelector((state) => state.auth);
   const visit = useSelector((state) => state.visit);
-  const send_request = useSelector((state) => state.send_request);
-  const request_client = useSelector((state) => state.request_client);
-  const [testRequest, settestRequest] = useState(false);
   // To Check the requests of the connected client
   useEffect(() => {
     if (auth.isAuth && auth.user && auth.user.state === "Client") {
       dispatch(checkRequest_client());
     }
   }, [auth]);
+  // To get all likes and posts of the visited artisan
+  useEffect(() => {
+    if (visit.artisan) {
+      dispatch(artisanPostsAction(visit.artisan._id));
+      dispatch(likesArtisanAction(visit.artisan._id));
+    }
+  }, [visit.artisan]);
   //To Check if there is a request with the visited artisan or not
   useEffect(() => {
     if (auth.isAuth && visit.artisan && request_client.requests) {
@@ -37,30 +47,24 @@ const VisitProfile = () => {
         )
       );
     }
-  }, [visit.artisan]);
-  // To get the posts of the visited artisan
-  useEffect(() => {
-    visit.artisan && dispatch(artisanPostsAction(visit.artisan._id));
-  }, [visit.artisan]);
-  const dispatch = useDispatch();
-  const history = useHistory();
+  }, [visit.artisan, request_client]);
   const handleReturn = () => {
     history.goBack();
   };
-  const posts = useSelector((state) => state.posts);
 
   const handleContact = () => {
     auth.isAuth ? history.push("/contact") : history.push("/login");
   };
+
   // To get all the rate of the visited artisan
   useEffect(() => {
     if (visit.artisan) {
       dispatch(artisanRatesAction(visit.artisan._id));
-      dispatch(clientLikesAction(visit.artisan._id));
     }
   }, [visit.artisan]);
+  const posts = useSelector((state) => state.posts);
+  const [testRequest, settestRequest] = useState(false);
   const rate_artisan = useSelector((state) => state.rate_artisan);
-  const likes_client = useSelector((state) => state.likes_client);
   return (
     <div>
       {visit.artisan && (
@@ -86,10 +90,7 @@ const VisitProfile = () => {
                 >
                   <i class="large material-icons">arrow_back</i> Return
                 </button>
-                {testRequest ||
-                (send_request.request &&
-                  send_request.request.state == "Send Request" &&
-                  send_request.request.id_artisan === visit.artisan._id) ? (
+                {testRequest ? (
                   <button
                     className="waves-effect waves-light btn visit"
                     onClick={handleContact}
@@ -168,7 +169,7 @@ const VisitProfile = () => {
               {posts.posts && (
                 <div className="container-posts">
                   {posts.posts.map((post, index) => {
-                    return <PostModal key={index} post={post} />;
+                    return <PostModal key={post._id} post={post} />;
                   })}
                 </div>
               )}
@@ -185,19 +186,47 @@ export default VisitProfile;
 //Post Modal
 const PostModal = ({ post }) => {
   const auth = useSelector((state) => state.auth);
-  const likes_client = useSelector((state) => state.likes_client);
   const visit = useSelector((state) => state.visit);
+  const [countLikes, setcountLikes] = useState(0);
+  const [like_client, setlike_client] = useState(false);
+  const likes_artisan = useSelector((state) => state.likes_artisan);
+  //To count the number of likes of the post
+  useEffect(() => {
+    if (likes_artisan.likes.length) {
+      let likes = 0;
+      likes_artisan.likes.forEach((like) => {
+        if (like.id_post === post._id) {
+          likes += 1;
+        }
+      });
+      setcountLikes(likes);
+    }
+  }, [likes_artisan.likes]);
+  //set the like of the client
+  useEffect(() => {
+    likes_artisan.likes.length &&
+      setlike_client(
+        likes_artisan.likes.find(
+          (like) =>
+            like.id_post === post._id && like.id_client === auth.user._id
+        )
+      );
+  }, [likes_artisan.likes]);
   const history = useHistory();
   const dispatch = useDispatch();
   const handleLike = (e) => {
     if (!auth.isAuth) {
       history.push("/login");
     } else {
-      if (likes_client.likes.find((like) => like.id_post === post._id))
+      if (like_client) {
         dispatch(deleteLikeAction(post._id));
-      else dispatch(addLikeAction(post._id, visit.artisan._id));
-      // To get all the likes to the visited artisan's posts
-      dispatch(clientLikesAction(visit.artisan._id));
+        setlike_client(false);
+        setcountLikes(countLikes - 1);
+      } else {
+        dispatch(addLikeAction(post._id, visit.artisan._id));
+        setlike_client(true);
+        setcountLikes(countLikes + 1);
+      }
     }
   };
   return (
@@ -212,12 +241,9 @@ const PostModal = ({ post }) => {
             <p>{upper(post.description)}</p>
           </div>
           <div class="card-action">
-            <div>
+            <div style={{ display: "flex", alignItems: "center" }}>
               <a onClick={handleLike}>
-                {likes_client.likes &&
-                !likes_client.likes.find(
-                  (like) => like.id_post === post._id
-                ) ? (
+                {!like_client ? (
                   <i class="small material-icons" style={{ color: "#ff3399" }}>
                     favorite_border
                   </i>
@@ -227,6 +253,9 @@ const PostModal = ({ post }) => {
                   </i>
                 )}
               </a>
+              <div style={{ fontSize: "1.2em" }}>
+                {countLikes && <span>{countLikes} </span>} person like this
+              </div>
             </div>
           </div>
         </div>

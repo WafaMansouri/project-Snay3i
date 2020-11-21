@@ -29,13 +29,13 @@ const NavBar = () => {
   };
   return (
     <div className="navBar">
-      <img src="/logo-vert.png" width="65px" height="65px" alt="logo" />
+      <img src="/logo.png" width="75px" height="75px" alt="logo" />
       <div style={{ display: "flex" }}>
-        <div class="dropdown">
-          <button class="dropbtn">
+        <div className="dropdown">
+          <button className="dropbtn">
             <i class="small material-icons">search</i>
           </button>
-          <div class="dropdown-content">
+          <div className="dropdown-content">
             <a onClick={(e) => setsearch("name")}>By Name</a>
             <a onClick={(e) => setsearch("category")}>By Category</a>
           </div>

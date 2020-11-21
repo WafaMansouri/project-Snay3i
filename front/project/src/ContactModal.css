@@ -4,6 +4,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 101;
 }
 
 .modal-backdrop {
@@ -13,7 +14,8 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 101;
 }
 
 .modal-box {
@@ -37,11 +39,11 @@
   left: 0;
   right: 0;
   z-index: 100;
-  /* background-color: rgba(0, 0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .modal-box.alert {
   position: relative;
-  top: 30%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 20% !important;
@@ -49,8 +51,8 @@
   background-color: white;
   z-index: 101;
   padding: 40px;
-  border-radius: 10px;
-  border: solid black 1px;
+  border-radius: 30px;
+  /* border: solid black 1px; */
   text-align: center;
 }
 /* styling contact modal  */

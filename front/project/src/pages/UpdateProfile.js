@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import updateAction from "../actions/updateAction";
-import { useHistory } from "react-router-dom";
 import { retrieveCategories } from "../actions/categoriesActions";
 import { useAlert } from "react-alert";
 
-const UpdateProfile = () => {
+const UpdateProfile = (props) => {
   const alert = useAlert();
-  const history = useHistory();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
@@ -39,7 +37,7 @@ const UpdateProfile = () => {
   useEffect(() => {
     if (first) {
       if (!update.errors) {
-        history.goBack();
+        props.setupdateInfo(false);
         alert.success("Update Success!");
       }
     }
@@ -52,7 +50,7 @@ const UpdateProfile = () => {
           className={"modal-backdrop"}
           onClick={() => {
             setdisplay(false);
-            history.goBack();
+            props.setupdateInfo(false);
           }}
         />
         <div className={"modal-box"}>
@@ -163,9 +161,9 @@ const UpdateProfile = () => {
                 </div>
               </div>
             )}
-            <h5 style={{ color: "red", marginTop: 20 }}>
+            <h6 style={{ color: "red", marginTop: 20 }}>
               {update.errors && update.errors}
-            </h5>
+            </h6>
             <button className="waves-effect waves-light btn" type="submit">
               UPDATE
             </button>

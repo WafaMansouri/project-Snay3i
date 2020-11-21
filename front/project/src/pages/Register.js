@@ -33,7 +33,7 @@ const Register = ({ history }) => {
     if (auth.errors) {
       seterrors(auth.errors);
     }
-  }, [auth.isAuth, auth.errors, history]);
+  }, [auth.isAuth, auth.errors]);
   //to retrieve categories from database and update state category
   useEffect(() => {
     dispatch(retrieveCategories());

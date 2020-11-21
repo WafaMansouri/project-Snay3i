@@ -67,10 +67,12 @@ const RequestModal = ({ request }) => {
   };
   const handleIgnore = () => {
     dispatch(ignore_artisanAction(request._id));
+    dispatch(checkRequest_artisan());
     alert.success("Ignored with Success!");
   };
   const handleAccept = () => {
     dispatch(accept_artisanAction(request._id));
+    dispatch(checkRequest_artisan());
   };
 
   return (
@@ -120,9 +122,7 @@ const RequestModal = ({ request }) => {
           <li>
             <span>Sent at:</span> {new Date(request.created_at).toUTCString()}
           </li>
-          <li>
-            <span>Date required:</span> {request.date_client}
-          </li>
+          <li>{/* <span>Date required:</span> {request.date_client} */}</li>
           {request.msg_artisan && (
             <li>
               <span> Your Response:</span> {upper(request.msg_artisan)}

@@ -203,21 +203,3 @@ export const deleteLikeAction = (id_post) => (dispatch) => {
       })
     );
 };
-// To get all the likes of the client to the visited artisan
-export const clientLikesAction = (id_artisan) => (dispatch) => {
-  setToken();
-  axios
-    .get(`/client/like/${id_artisan}`) //bind front and back
-    .then((res) =>
-      dispatch({
-        type: GET_LIKES_CLIENT_SUCCESS,
-        payload: res.data,
-      })
-    )
-    .catch((err) =>
-      dispatch({
-        type: GET_LIKES_CLIENT_FAIL,
-        payload: err.response.data.errors[0].msg,
-      })
-    );
-};

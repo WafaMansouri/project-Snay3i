@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { deletePostAction } from "../actions/artisanActions";
 import { useAlert } from "react-alert";
 
-const Alert = ({ match }) => {
+const AlertDelete = (props) => {
   const alert = useAlert();
   const [display, setdisplay] = useState(true);
-  const history = useHistory();
   const dispatch = useDispatch();
   return (
     display && (
@@ -16,7 +14,7 @@ const Alert = ({ match }) => {
           className="modal-backdrop alert"
           onClick={() => {
             setdisplay(false);
-            history.goBack();
+            props.setalertDelete(false);
           }}
         />
         <div className={"modal-box alert"}>
@@ -24,7 +22,7 @@ const Alert = ({ match }) => {
           <button
             onClick={(e) => {
               setdisplay(false);
-              history.goBack();
+              props.setalertDelete(false);
             }}
             className="waves-effect waves-light btn"
             type="submit"
@@ -33,10 +31,10 @@ const Alert = ({ match }) => {
           </button>
           <button
             onClick={(e) => {
-              console.log(match.params.id_post);
-              dispatch(deletePostAction(match.params.id_post));
+              // dispatch(deletePostAction(match.params.id_post));
+              dispatch(deletePostAction(props.post_id));
               setdisplay(false);
-              history.goBack();
+              props.setalertDelete(false);
               alert.success(
                 <div style={{ fontSize: "1.3em", textAlign: "center" }}>
                   Post Deleted with success
@@ -54,4 +52,4 @@ const Alert = ({ match }) => {
   );
 };
 
-export default Alert;
+export default AlertDelete;

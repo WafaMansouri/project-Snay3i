@@ -16,20 +16,22 @@ import {
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
+import { loadClient } from "./authActions";
 // To make a post
-export const addPostAction = (info, file) => (dispatch) => {
+export const addPostAction = (info, file, config) => (dispatch) => {
   setToken(); //to set the token in the header
   let formData = new FormData();
   formData.append("avatar", file);
   formData.append("info", JSON.stringify(info));
   axios
-    .post("/post", formData) //bind front and back
-    .then((res) =>
+    .post("/post", formData, config) //bind front and back
+    .then((res) => {
       dispatch({
         type: ADD_POST_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      dispatch(loadClient());
+    })
     .catch((err) =>
       dispatch({
         type: ADD_POST_FAIL,
@@ -48,24 +50,25 @@ export const checkRequest_artisan = () => (dispatch) => {
         payload: res.data,
       })
     )
-    .catch((err) =>
+    .catch((err) => {
+      console.log(err);
       dispatch({
         type: CHECK_REQUESTS_ARTISAN_FAIL,
         payload: err.response.data.errors[0].msg,
-      })
-    );
+      });
+    });
 };
 // To respond to request
 export const respondAction = (response) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
     .post("/artisan/response", response) //bind front and back
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: RESPONSE_ARTISAN_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+    })
     .catch((err) =>
       dispatch({
         type: RESPONSE_ARTISAN_FAIL,
@@ -115,12 +118,13 @@ export const deletePostAction = (id_post) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
     .delete(`/artisan/deletePost/${id_post}`) //bind front and back
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: DELETE_POST_SUCCESS,
         // payload: res.data,
-      })
-    )
+      });
+      dispatch(artisanPostsAction(res.data.id_owner));
+    })
     .catch((err) =>
       dispatch({
         type: DELETE_POST_FAIL,

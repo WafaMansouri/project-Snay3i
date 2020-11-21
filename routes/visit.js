@@ -23,7 +23,8 @@ router.post(
   authMiddleware,
   [
     body("msg_client", "Your message shouldn't be empty").notEmpty(),
-    body("date_client", "You should pick a date").notEmpty(),
+    body("start_date", "You should pick a date").notEmpty(),
+    body("end_date", "You should pick a date").notEmpty(),
   ],
   (req, res) => {
     const errors = validationResult(req);
@@ -42,7 +43,8 @@ router.post(
               id_client: req.user_Id,
               id_artisan: req.body.id_artisan,
               msg_client: req.body.msg_client,
-              date_client: req.body.date_client,
+              start_date: req.body.start_date,
+              end_date: req.body.end_date,
               state: "Send Request",
             });
             newIntervention.save();

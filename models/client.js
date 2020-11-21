@@ -9,5 +9,6 @@ const clientSchema = mongoose.Schema({
   avatar: String,
   age: Number,
   state: { type: String, default: "Client" },
+  created_at: { type: Date, default: Date.now },
 });
 module.exports = mongoose.model("Client", clientSchema);

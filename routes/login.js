@@ -21,7 +21,7 @@ router.get("/", authMiddleware, (req, res) => {
           return res
             .status(404)
             .send({ errors: [{ msg: "Client not found!" }] });
-        } else return res.status(200).send(client);
+        } else return res.status(201).send(client);
       })
       .catch((err) => {
         console.log(err);

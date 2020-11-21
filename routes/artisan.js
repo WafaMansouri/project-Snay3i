@@ -42,7 +42,8 @@ router.post(
         },
         {
           msg_artisan: req.body.msg_artisan,
-          date_artisan: req.body.date_artisan,
+          start_date_artisan: req.body.start_date_artisan,
+          end_date_artisan: req.body.end_date_artisan,
           state: "Respond Artisan",
         },
         { new: true, useFindAndModify: false }
@@ -118,12 +119,13 @@ router.get("/rates/:id_artisan", (req, res) => {
     .exec()
     .then((rates) => {
       if (rates.length) {
+        let nbr_rate = rates.length;
         let countRate = 0;
         rates.forEach((rate) => {
           countRate += rate.value;
         });
         let rate = countRate / rates.length;
-        res.status(201).send({ rate });
+        res.status(201).send({ rate, nbr_rate });
       } else {
         res.status(201).send(null);
       }

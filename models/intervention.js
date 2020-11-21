@@ -6,7 +6,10 @@ const interventionSchema = mongoose.Schema({
   msg_client: { type: String, required: true },
   msg_artisan: String,
   state: { type: String, required: true },
-  date_client: String,
+  start_date: Date,
+  end_date: Date,
+  start_date_artisan: Date,
+  end_date_artisan: Date,
   date_artisan: String,
 });
 module.exports = mongoose.model("Intervention", interventionSchema);
