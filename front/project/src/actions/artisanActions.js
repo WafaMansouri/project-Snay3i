@@ -68,6 +68,7 @@ export const respondAction = (response) => (dispatch) => {
         type: RESPONSE_ARTISAN_SUCCESS,
         payload: res.data,
       });
+      dispatch(checkRequest_artisan());
     })
     .catch((err) =>
       dispatch({

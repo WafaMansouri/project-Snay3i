@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { loadClient } from "../actions/authActions";
 import AddPostModel from "./AddPostModel";
 import AlertDelete from "./AlertDelete";
@@ -64,13 +63,14 @@ const Profile = () => {
                         : "/images/profile_photo.png"
                     }
                     alt="profile photo"
-                  />
+                  ></img>
+                  <a
+                    style={{ transform: "translate(-91%, 0px)" }}
+                    onClick={(e) => setaddPhoto(true)}
+                  >
+                    <i class="small material-icons">add_a_photo</i>
+                  </a>
                 </div>
-                {/* <Link to="addPhoto"> */}
-                <a onClick={(e) => setaddPhoto(true)}>
-                  <i class="small material-icons">add_a_photo</i>
-                </a>
-                {/* </Link> */}
               </div>
               {rate_artisan.rate && (
                 <div className="rate">
@@ -196,6 +196,9 @@ const PostModal = ({ post }) => {
               <span className="card-title">{upper(post.title)}</span>
               <p>{upper(post.description)}</p>
             </div>
+            <div style={{ textAlign: "left", fontWeight: "700" }}>
+              Created at: {new Date(post.created_at).toLocaleString("en-GB")}
+            </div>
             <div className="card-action">
               <div style={{ display: "flex", alignItems: "center" }}>
                 <i
@@ -204,7 +207,7 @@ const PostModal = ({ post }) => {
                 >
                   favorite
                 </i>
-                <div style={{ fontSize: "1em" }}>
+                <div style={{ fontSize: "1em", fontWeight: "700" }}>
                   {countLikes && <span>{countLikes} </span>} person like this
                 </div>
               </div>
@@ -212,7 +215,6 @@ const PostModal = ({ post }) => {
                 <a
                   onClick={(e) => {
                     setalertDelete(true);
-                    // history.push(`/alert/${post._id}`);
                   }}
                 >
                   <i

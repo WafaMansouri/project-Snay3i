@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const artisanSchema = mongoose.Schema({
+  _id: mongoose.Types.ObjectId,
   f_name: { type: String, required: true },
   l_name: { type: String, required: true },
   email: {
@@ -16,6 +17,7 @@ const artisanSchema = mongoose.Schema({
   avatar: String,
   age: Number,
   description: String,
+  rates: [{ type: mongoose.Types.ObjectId, ref: "Rate" }],
   created_at: { type: Date, default: Date.now },
 });
 

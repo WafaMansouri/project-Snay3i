@@ -31,13 +31,15 @@ const RequestsClient = () => {
   };
   return (
     <div className="requests">
-      <button
-        style={{ width: 90 }}
-        className="waves-effect waves-light btn"
-        onClick={handleReturn}
-      >
-        <i class="large material-icons">arrow_back</i>
-      </button>
+      <div style={{ width: "100%", textAlign: "left" }}>
+        <button
+          style={{ width: 90 }}
+          className="waves-effect waves-light btn return"
+          onClick={handleReturn}
+        >
+          <i class="large material-icons">arrow_back</i>
+        </button>
+      </div>
       {!request_client.errors ? (
         request_client.requests && request_client.requests.length ? (
           <div>
@@ -46,7 +48,7 @@ const RequestsClient = () => {
             })}
           </div>
         ) : (
-          <h3 style={{ marginTop: 50 }}>NO REQUESTS</h3>
+          <h3>No Requests</h3>
         )
       ) : (
         <h2>{request_client.errors}</h2>
@@ -129,11 +131,33 @@ const RequestModal = ({ request }) => {
               </li>
             )}
             <li>
-              <span>Date required:</span> {request.date_client}
+              <span>Date required:</span> From{" "}
+              {
+                new Date(request.start_date)
+                  .toLocaleString("en-GB")
+                  .split(", ")[0]
+              }{" "}
+              To{" "}
+              {
+                new Date(request.end_date)
+                  .toLocaleString("en-GB")
+                  .split(", ")[0]
+              }
             </li>
-            {request.date_artisan && (
+            {request.start_date_artisan && request.end_date_artisan && (
               <li>
-                <span>Date Offers:</span> {upper(request.date_artisan)}
+                <span>Date Offers:</span> From{" "}
+                {
+                  new Date(request.start_date_artisan)
+                    .toLocaleString("en-GB")
+                    .split(", ")[0]
+                }{" "}
+                To{" "}
+                {
+                  new Date(request.end_date_artisan)
+                    .toLocaleString("en-GB")
+                    .split(", ")[0]
+                }
               </li>
             )}
           </ul>

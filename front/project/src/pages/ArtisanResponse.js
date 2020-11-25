@@ -7,15 +7,14 @@ import { Calendar } from "antd";
 import { useAlert } from "react-alert";
 import DatePickerCalendarExample from "./DatePickerCaledarExample";
 
-function ArtisanResponse({ match }) {
+function ArtisanResponse({ settestRespond, id_client }) {
   const alert = useAlert();
 
   const [display, setdisplay] = useState(true);
-  const history = useHistory();
   const dispatch = useDispatch();
   const [newDates, setnewDates] = useState({});
   const [response, setresponse] = useState({
-    id_client: match.params.id_client,
+    id_client: id_client,
     msg_artisan: "",
     start_date_artisan: "",
     end_date_artisan: "",
@@ -41,7 +40,8 @@ function ArtisanResponse({ match }) {
   useEffect(() => {
     if (first) {
       if (!response_artisan.errors) {
-        history.goBack();
+        // history.goBack();
+        settestRespond(false);
         alert.success("Response Success!");
       }
     }
@@ -54,7 +54,7 @@ function ArtisanResponse({ match }) {
           className={"modal-backdrop"}
           onClick={() => {
             setdisplay(false);
-            history.goBack();
+            settestRespond(false);
           }}
         />
         <div className={"modal-box contact"}>
@@ -74,7 +74,8 @@ function ArtisanResponse({ match }) {
                 }}
               /> */}
               <DatePickerCalendarExample
-                id_client={match.params.id_client}
+                // id_client={match.params.id_client}
+                id_client={id_client}
                 setnewDates={setnewDates}
               />
             </div>

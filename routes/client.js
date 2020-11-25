@@ -5,6 +5,7 @@ const Rate = require("../models/rate");
 const Like = require("../models/like");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
+const Artisan = require("../models/artisan");
 
 //get client requests
 router.get("/requests", authMiddleware, (req, res) => {
@@ -94,6 +95,19 @@ router.post("/rating", authMiddleware, (req, res) => {
           value: req.body.rate,
         });
         rate.save();
+        Artisan.findByIdAndUpdate(
+          req.body.id_artisan,
+          { $push: { rates: rate._id } },
+          { new: true, useFindAndModify: false }
+        )
+          .then((artisan) => {
+            artisan.save();
+            res.send(rate);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+          });
       }
     })
     .catch((err) => {

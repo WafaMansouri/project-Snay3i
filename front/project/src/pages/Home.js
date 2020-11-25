@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { loadClient } from "../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
 import Footer from "./Footer";
+import sendMessageAction from "../actions/sendMessageAction";
 
 const Home = () => {
   const auth = useSelector((state) => state.auth);
@@ -15,63 +16,28 @@ const Home = () => {
       history.push("/profile");
     }
   });
+  const [info, setinfo] = useState({});
+  const handleChange = (e) => {
+    setinfo({ ...info, [e.target.name]: e.target.value });
+  };
+  const sendMessage = (e) => {
+    e.preventDefault();
+    dispatch(sendMessageAction(info));
+    setinfo({ f_name: "", l_name: "", email: "", mobile: "", message: "" });
+  };
   return (
     <div>
       <div className="home_container">
         <div className="home_header">
           <div className="home1">
-            {/* We are all workers, all artisans, each in his field, we all complete each other
-        Good worker uses all tools */}
-            <span style={{ width: "70%" }}>
+            <span style={{ width: "20%", textAlign: "left" }}>
               IT IS THE WORK WHICH GIVES THE MEASURE OF THE WORKER
             </span>
           </div>
         </div>
-        {/* <div className="why_snai3i">
-            <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
+        {/* <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
               <h1 style={{ color: "rgb(60,118,96)" }}>Why SNAY3I ?</h1>
-            </ScrollAnimation>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div style={{ marginRight: 80 }} className="oval">
-                Want to fix something
-              </div>
-              <div className="oval">
-                Want to put artistic touch in your home?
-              </div>
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-around",
-                }}
-              >
-                <div className="oval">You need an artist?</div>
-                <div className="oval">You need a spesialist?</div>
-              </div>
-              <div>
-                <img src="/images/search2.jpg" alt="" width="250px" />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-around",
-                }}
-              >
-                <div className="oval">you deserve the best</div>
-                <div className="oval">We are all artists</div>
-              </div>
-            </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <div style={{ marginRight: 80 }} className="oval">
-                Make your life easier and join us to reach artists or to be the
-                artist
-              </div>
-              <div className="oval">You need a good worker?</div>
-            </div>
-          </div> */}
+            </ScrollAnimation> */}
         <div
           style={{
             display: "flex",
@@ -83,6 +49,28 @@ const Home = () => {
           }}
         >
           <div className="container1">
+            <div className="card1">
+              <div className="imgBx" data-text="Why Snai3i?">
+                <img src="/images/team.png" alt="img" />
+              </div>
+              <div className="content1">
+                <div>
+                  <h3>Why Snai3i ?</h3>
+                  <ul>
+                    <li>Want to put artistic touch in your home?</li>
+                    <li>You need an artist?</li>
+                    <li>You need a spesialist?</li>
+                    <li>You need a good worker?</li>
+                    <li>
+                      Make your life easier and join us to reach artists or to
+                      be the artist
+                    </li>
+                    <li>you deserve the best</li>
+                    <li>We are all artists</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             <div className="card1">
               <div className="imgBx" data-text="How it works?">
                 <img src="/images/customer-support.png" alt="img" />
@@ -110,70 +98,104 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div className="card1">
-              <div className="imgBx" data-text="Why Snai3i?">
-                <img src="/images/team.png" alt="img" />
-              </div>
-              <div className="content1">
-                <div>
-                  <h3>Why Snai3i?</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At
-                    quam provident deserunt incidunt consequatur a
-                    exercitationem ab dolor aliquid quae, reprehenderit beatae
-                    est illum repudiandae tenetur laborum quod! Ullam,
-                    molestias?
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-      {/* <div className="container_how_it_work">
-            <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
-              <h1 style={{ color: "rgb(60,118,96)" }}>How does it work ?</h1>
-            </ScrollAnimation>
-            <div className="how_it_work">
-              <div className="cadreNumber">1</div>
-              <div>Create an account Artisan or Client</div>
-            </div>
-            <div className="how_it_work">
-              <div className="cadreNumber">2</div>
-              <div>Artisans can share posts exposing their works</div>
-            </div>
-            <div className="how_it_work">
-              <div className="cadreNumber">3</div>
-              <div>
-                Client send request to artisan in which set message and date{" "}
+      <div className="container_contact">
+        <div>
+          <h2>Contact Us</h2>
+          <form onSubmit={sendMessage}>
+            <div className="row100">
+              <div className="col">
+                <div className="inputBox">
+                  <input
+                    onChange={handleChange}
+                    className="browser-default"
+                    type="text"
+                    name="f_name"
+                    value={info.f_name}
+                    required
+                  />
+                  <span className="text">First Name</span>
+                  <span className="line"></span>
+                </div>
+              </div>
+              <div className="col">
+                <div className="inputBox">
+                  <input
+                    onChange={handleChange}
+                    className="browser-default"
+                    type="text"
+                    name="l_name"
+                    value={info.l_name}
+                    required
+                  />
+                  <span className="text">Last Name</span>
+                  <span className="line"></span>
+                </div>
+              </div>
+              <div className="col">
+                <div className="inputBox">
+                  <input
+                    onChange={handleChange}
+                    className="browser-default"
+                    type="email"
+                    name="email"
+                    value={info.email}
+                    required
+                  />
+                  <span className="text">Email</span>
+                  <span className="line"></span>
+                </div>
+              </div>
+              <div className="col">
+                <div className="inputBox">
+                  <input
+                    onChange={handleChange}
+                    className="browser-default"
+                    type="number"
+                    name="mobile"
+                    value={info.mobile}
+                    required
+                  />
+                  <span className="text">Mobile</span>
+                  <span className="line"></span>
+                </div>
               </div>
             </div>
-            <div className="how_it_work">
-              <div className="cadreNumber">4</div>
-              <div>
-                Artisan respond by accepting or by send message to change the
-                date or by ignoring the request
+            <div className="row100">
+              <div className="col">
+                <div className="inputBox textArea">
+                  <textarea
+                    onChange={handleChange}
+                    type="text"
+                    name="message"
+                    value={info.message}
+                    required
+                  />
+                  <span className="text">Type Your Message Here...</span>
+                  <span className="line"></span>
+                </div>
               </div>
             </div>
-            <div className="how_it_work">
-              <div className="cadreNumber">5</div>
-              <div>Clients can rate artisans</div>
-            </div>
-            <div className="how_it_work">
-              <div className="cadreNumber">6</div>
-              <div>
-                Client can select his artisan by category and rate or by name
+            <div className="row100">
+              <div className="col">
+                <div className="inputBox">
+                  <input type="submit" value="Send" />
+                </div>
               </div>
             </div>
-          </div> */}
-      <div className="photos_home">
+          </form>
+        </div>
+      </div>
+      {/* <div className="photos_home">
         <img src="/images/home4.jpg" />
         <img src="/images/home5.jpg" />
         <img src="/images/home6.jpg" />
         <img src="/images/home7.jpg" />
         <img src="/images/home8.jpg" />
         <img src="/images/home2.jpg" />
-      </div>
+      </div> */}
 
       <Footer />
     </div>

@@ -12,7 +12,7 @@ import { ignore_clientAction } from "../actions/ignore_clientAction";
 import { DatePicker, Space } from "antd";
 import DateRangePickerExample from "./DateRangePickerExample";
 
-function ContactModal() {
+function ContactModal(props) {
   const { RangePicker } = DatePicker;
   const alert = useAlert();
   const visit = useSelector((state) => state.visit);
@@ -37,14 +37,12 @@ function ContactModal() {
   const sendRequest = (e) => {
     e.preventDefault();
     dispatch(sendRequestAction(requestInfo));
-    dispatch(checkRequest_client());
-    console.log(requestInfo.start_date);
   };
   const send_request = useSelector((state) => state.send_request);
   useEffect(() => {
     if (first) {
       if (!send_request.errors) {
-        history.goBack();
+        props.settestContact(false);
         alert.success("send_request Success!");
       }
     }
@@ -78,7 +76,7 @@ function ContactModal() {
           className={"modal-backdrop"}
           onClick={() => {
             setdisplay(false);
-            history.goBack();
+            props.settestContact(false);
           }}
         />
         {/* if there is already a request */}
@@ -88,7 +86,7 @@ function ContactModal() {
               action=""
               onSubmit={(e) => {
                 setdisplay(false);
-                history.goBack();
+                props.settestContact(false);
               }}
             >
               <ul className="view_request">
@@ -100,17 +98,38 @@ function ContactModal() {
                   <span>Your message:</span> {testRequest.msg_client}
                 </li>
                 <li>
-                  <span>Date required: from</span> {testRequest.start_date} to{" "}
-                  {testRequest.end_date}
+                  <span>Date required: From</span>{" "}
+                  {
+                    new Date(testRequest.start_date)
+                      .toLocaleString("en-GB", {})
+                      .split(", ")[0]
+                  }{" "}
+                  <span>To</span>{" "}
+                  {
+                    new Date(testRequest.end_date)
+                      .toLocaleString("en-GB", {})
+                      .split(", ")[0]
+                  }
                 </li>
                 {testRequest.msg_artisan && (
                   <li>
                     <span>Response:</span> {testRequest.msg_artisan}
                   </li>
                 )}
-                {testRequest.dat_artisan && (
+                {testRequest.start_date_artisan && (
                   <li>
-                    <span>Date offers:</span> {testRequest.date_artisan}
+                    <span>Date offers: From</span>{" "}
+                    {
+                      new Date(testRequest.start_date_artisan)
+                        .toLocaleString("en-GB", {})
+                        .split(", ")[0]
+                    }{" "}
+                    <span>To </span>{" "}
+                    {
+                      new Date(testRequest.end_date_artisan)
+                        .toLocaleString("en-GB", {})
+                        .split(", ")[0]
+                    }
                   </li>
                 )}
               </ul>

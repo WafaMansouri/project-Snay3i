@@ -12,6 +12,7 @@ import { addLikeAction } from "../actions/clientActions";
 import { deleteLikeAction } from "../actions/clientActions";
 import StarRating from "./StarRating";
 import { Rate } from "antd";
+import ContactModal from "./ContactModal";
 //function that convert the first letter of a string to uppercase
 const upper = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1, str.length);
@@ -53,7 +54,7 @@ const VisitProfile = () => {
   };
 
   const handleContact = () => {
-    auth.isAuth ? history.push("/contact") : history.push("/login");
+    auth.isAuth ? settestContact(true) : history.push("/login");
   };
 
   // To get all the rate of the visited artisan
@@ -64,9 +65,19 @@ const VisitProfile = () => {
   }, [visit.artisan]);
   const posts = useSelector((state) => state.posts);
   const [testRequest, settestRequest] = useState(false);
+  const [testContact, settestContact] = useState(false);
   const rate_artisan = useSelector((state) => state.rate_artisan);
   return (
     <div>
+      {testContact && <ContactModal settestContact={settestContact} />}
+      <div style={{ textAlign: "left" }}>
+        <button
+          className="waves-effect waves-light btn return"
+          onClick={handleReturn}
+        >
+          <i class="large material-icons">arrow_back</i>
+        </button>
+      </div>
       {visit.artisan && (
         <div className="profile">
           <div
@@ -84,12 +95,6 @@ const VisitProfile = () => {
                   justifyContent: "space-evenly",
                 }}
               >
-                <button
-                  className="waves-effect waves-light btn visit"
-                  onClick={handleReturn}
-                >
-                  <i class="large material-icons">arrow_back</i> Return
-                </button>
                 {testRequest ? (
                   <button
                     className="waves-effect waves-light btn visit"
@@ -124,17 +129,31 @@ const VisitProfile = () => {
 
               {/* The artisan's rate */}
               {rate_artisan.rate && (
-                <Rate
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    color: "gray",
-                    fontSize: 12,
-                  }}
-                  allowHalf
-                  disabled
-                  defaultValue={rate_artisan.rate.rate}
-                />
+                <div className="rate">
+                  <Rate
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      color: "gray",
+                      fontSize: 12,
+                    }}
+                    allowHalf
+                    disabled
+                    defaultValue={rate_artisan.rate.rate}
+                  />
+                  <span
+                    style={{
+                      textAlign: "center",
+                      fontSize: "1.5em",
+                      marginLeft: 5,
+                    }}
+                  >
+                    {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
+                  </span>
+                  <span style={{ paddingTop: 5 }}>
+                    <i class="material-icons">person</i>
+                  </span>
+                </div>
               )}
               <ul>
                 <li>
@@ -205,6 +224,7 @@ const PostModal = ({ post }) => {
   //set the like of the client
   useEffect(() => {
     likes_artisan.likes.length &&
+      auth.user &&
       setlike_client(
         likes_artisan.likes.find(
           (like) =>
@@ -240,9 +260,17 @@ const PostModal = ({ post }) => {
             <span class="card-title">{upper(post.title)}</span>
             <p>{upper(post.description)}</p>
           </div>
+          <div style={{ textAlign: "left" }}>
+            Created at: {new Date(post.created_at).toLocaleString("en-GB")}
+          </div>
           <div class="card-action">
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <a onClick={handleLike}>
+            <div
+              style={{
+                fontSize: "1em",
+                display: "flex",
+              }}
+            >
+              <a style={{ margin: 0, padding: 0 }} onClick={handleLike}>
                 {!like_client ? (
                   <i class="small material-icons" style={{ color: "#ff3399" }}>
                     favorite_border
@@ -253,9 +281,7 @@ const PostModal = ({ post }) => {
                   </i>
                 )}
               </a>
-              <div style={{ fontSize: "1.2em" }}>
-                {countLikes && <span>{countLikes} </span>} person like this
-              </div>
+              {countLikes && <span>{countLikes} </span>} person like this
             </div>
           </div>
         </div>

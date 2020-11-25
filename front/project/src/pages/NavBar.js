@@ -29,7 +29,7 @@ const NavBar = () => {
   };
   return (
     <div className="navBar">
-      <img src="/logo.png" width="75px" height="75px" alt="logo" />
+      <img src="/logo2.png" width="90px" height="90px" alt="logo" />
       <div style={{ display: "flex" }}>
         <div className="dropdown">
           <button className="dropbtn">
@@ -92,6 +92,9 @@ const NavBar = () => {
         ) : (
           <>
             <Link to="/">Home</Link>
+            <Link style={{ width: 170 }} to="">
+              Contact Us
+            </Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
           </>

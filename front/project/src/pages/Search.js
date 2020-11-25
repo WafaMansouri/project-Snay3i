@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { visitByIdAction } from "../actions/clientActions";
 import { useHistory } from "react-router-dom";
@@ -17,31 +17,45 @@ const Search = () => {
   };
   return (
     <div style={{ height: "100%", textAlign: "left" }}>
-      <button
-        className="waves-effect waves-light btn return"
-        onClick={handleReturn}
-      >
-        <i class="large material-icons">arrow_back</i>
-      </button>
+      <div style={{ display: "grid", gridTemplateColumns: "50px auto" }}>
+        <button
+          className="waves-effect waves-light btn return"
+          onClick={handleReturn}
+        >
+          <i class="large material-icons">arrow_back</i>
+        </button>
+        {search.artisans.length !== 0 &&
+          (search.artisans.length === 1 ? (
+            <h1 className="search_result">1 Result</h1>
+          ) : (
+            <h1 className="search_result">{search.artisans.length} Results</h1>
+          ))}
+      </div>
       {!search.artisans.errors ? (
         search.artisans.length ? (
           <div className="search">
-            {search.artisans.length === 1 ? (
-              <h1>1 Result</h1>
-            ) : (
-              <h1>{search.artisans.length} Results</h1>
-            )}
-
             <div className="container_search">
               {search.artisans.map((artisan, index) => {
-                if (artisan)
-                  return <SearchCard key={artisan._id} artisan={artisan} />;
+                if (artisan) {
+                  console.log(artisan.rates);
+                  let count = 0;
+                  artisan.rates.map((rate) => {
+                    count += rate.value;
+                  });
+                  return (
+                    <SearchCard
+                      key={artisan._id}
+                      artisan={artisan}
+                      rate={count / artisan.rates.length}
+                    />
+                  );
+                }
               })}
             </div>
           </div>
         ) : (
           <div className="search">
-            <h1>Not Found</h1>
+            <h1 className="search_result">Not Found</h1>
           </div>
         )
       ) : (
@@ -53,50 +67,50 @@ const Search = () => {
 export default Search;
 
 //Search Card
-const SearchCard = ({ artisan }) => {
+const SearchCard = ({ artisan, rate }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const handleVist = () => {
     dispatch(visitByIdAction(artisan._id));
     history.push("/visit");
   };
-  useEffect(() => {
-    dispatch(artisanRatesAction(artisan._id));
-  }, [artisan._id]);
   const rate_artisan = useSelector((state) => state.rate_artisan);
   return (
     <div className="search_member">
-      <div className="search_image">
-        <img
-          src={artisan.avatar ? artisan.avatar : "/images/profile_photo.png"}
-          alt="profile photo"
-        />
-      </div>
-      <h4>{upper(artisan.f_name) + " " + upper(artisan.l_name)}</h4>
-      {rate_artisan.rate && (
-        <div style={{ textAlign: "center" }}>
-          <Rate
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              color: "gray",
-              fontSize: 12,
-            }}
-            allowHalf
-            disabled
-            defaultValue={rate_artisan.rate.rate}
+      <div className="search_member_info">
+        <div className="search_image">
+          <img
+            src={artisan.avatar ? artisan.avatar : "/images/profile_photo.png"}
+            alt="profile photo"
           />
         </div>
-      )}
-      <p className="work">{artisan.category}</p>
-      <ul>
-        <li>
-          <i className="small material-icons">add_location</i>&nbsp;
-          {artisan.address && upper(artisan.address)}
-        </li>
-        <li>{artisan.description && upper(artisan.description)}</li>
-      </ul>
+        <h4>{upper(artisan.f_name) + " " + upper(artisan.l_name)}</h4>
+        {rate && (
+          <div style={{ textAlign: "center" }}>
+            <Rate
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                color: "gray",
+                fontSize: 12,
+              }}
+              allowHalf
+              disabled
+              defaultValue={rate}
+            />
+          </div>
+        )}
+        <p className="work">{artisan.category}</p>
+        <ul>
+          <li style={{ marginBottom: 13 }}>
+            <i className="small material-icons">add_location</i>&nbsp;
+            {artisan.address && upper(artisan.address)}
+          </li>
+          <li style={{ fontWeight: "400", lineHeight: "1.2em" }}>
+            {artisan.description && upper(artisan.description)}
+          </li>
+        </ul>
+      </div>
       <button className="waves-effect waves-light btn" onClick={handleVist}>
         Visit Profile
       </button>

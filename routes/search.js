@@ -2,6 +2,7 @@ const express = require("express");
 const authMiddleware = require("../helpers/authMiddleware");
 const router = express.Router();
 const Artisan = require("../models/artisan");
+const Rate = require("../models/rate");
 
 // Search list artisans by name
 router.get("/name/:name", (req, res) => {
@@ -16,6 +17,7 @@ router.get("/name/:name", (req, res) => {
         { l_name: { $regex: l_name, $options: "i" } },
       ],
     })
+      .populate("rates")
       .exec()
       .then((artisans) => {
         res.status(201).send(artisans);
@@ -31,6 +33,7 @@ router.get("/name/:name", (req, res) => {
         { l_name: { $regex: req.params.name, $options: "i" } },
       ],
     })
+      .populate("rates")
       .exec()
       .then((artisans) => {
         res.status(201).send(artisans);
@@ -44,6 +47,7 @@ router.get("/name/:name", (req, res) => {
 // Search list artisans by category
 router.get("/category/:category", (req, res) => {
   Artisan.find({ category: { $regex: req.params.category, $options: "i" } })
+    .populate("rates")
     .exec()
     .then((artisans) => {
       res.status(201).send(artisans);

@@ -67,16 +67,33 @@ const AddPostModel = (props) => {
               />
             </div>
             <div>
+              <label
+                className="btn btn-primary btn-block btn-outlined"
+                for="mypost"
+              >
+                Choose Photo
+              </label>
               <input
+                style={{ display: "none" }}
                 className="browser-default"
+                id="mypost"
                 type="file"
                 name="avatar"
+                accept="image/png, image/jpeg"
                 onChange={selectImageToUpload}
+                required
               />
             </div>
+            <Progress
+              strokeColor={{
+                "0%": "#108ee9",
+                "100%": "#87d068",
+              }}
+              percent={percent}
+            />
+            {/* <Progress percent={percent} /> */}
             <button className="waves-effect waves-light btn">ADD</button>
           </form>
-          <Progress type="circle" percent={percent} />
         </div>
       </div>
     )

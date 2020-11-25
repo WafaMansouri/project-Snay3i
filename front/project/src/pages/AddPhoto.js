@@ -46,14 +46,30 @@ const AddPhoto = (props) => {
         />
         <div className={"modal-box"} style={{ minHeight: 300, width: "30%" }}>
           <form>
+            <label
+              className="btn btn-primary btn-block btn-outlined"
+              for="myphoto"
+            >
+              Choose Photo
+            </label>
             <input
+              style={{ display: "none" }}
+              className="browser-default"
+              id="myphoto"
               onChange={(e) => {
                 setfile(e.target.files[0]);
               }}
               type="file"
               name="photo"
             />
-            <Progress type="circle" percent={percent} />
+            <Progress
+              strokeColor={{
+                "0%": "#108ee9",
+                "100%": "#87d068",
+              }}
+              percent={percent}
+            />
+            {/* <Progress type="circle" percent={percent} /> */}
             {error && <h6 style={{ color: "red" }}>Please choose a photo</h6>}
             <button
               style={{ width: 200, marginTop: 50 }}

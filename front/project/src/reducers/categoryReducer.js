@@ -5,7 +5,7 @@ import {
   ALL_CATEGORIES_FAIL,
 } from "../actions/types";
 const initState = {
-  newCategory: "",
+  newCategory: {},
   errors: null,
   categories: [],
 };
@@ -15,7 +15,7 @@ const CategoryReducer = (state = initState, action) => {
     case ADD_CATEGORY_SUCCESS:
       return { ...state, newCategory: action.payload, errors: null };
     case ADD_CATEGORY_FAIL:
-      return { ...state, newCategory: "", errors: action.payload };
+      return { ...state, newCategory: {}, errors: action.payload };
     case ALL_CATEGORIES_SUCCESS:
       return { ...state, categories: action.payload };
     case ALL_CATEGORIES_FAIL:

@@ -112,7 +112,7 @@ button {
   flex-direction: column;
   /* flex-wrap: wrap; */
   justify-content: space-evenly;
-  background-color: white;
+  background-color: #ffeadb;
   width: 98.7vw;
   padding: 40px 40px 40px 40px;
   margin: 0;
@@ -153,6 +153,8 @@ button {
   margin-bottom: 50px !important;
   text-decoration: underline;
   /* text-align: right; */
+  color: #679b9b;
+  font-weight: 700;
 }
 .container-posts {
   margin-top: 50px;
@@ -171,6 +173,8 @@ button {
   border-top-right-radius: 49.9%;
   border-bottom-right-radius: 49.9%;
   border-bottom-left-radius: 49.9%;
+  display: flex;
+  justify-content: stretch;
 }
 /* request modal */
 .request_modal {
@@ -209,6 +213,12 @@ button {
   justify-content: center;
   width: 100%;
 }
+.requests h3 {
+  margin-top: 50;
+  font-family: "Allura", cursive !important;
+  font-weight: 600;
+  font-size: 52px;
+}
 /* styling post modal */
 .card,
 .card-action,
@@ -241,7 +251,7 @@ button {
 /* styling Nav Bar */
 .navBar {
   /* background-color: rgb(38, 166, 154); */
-  background-color: rgb(102, 104, 102);
+  background-color: rgb(99, 115, 115);
   /* background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)); */
   color: white;
   min-height: 80px;
@@ -255,11 +265,6 @@ button {
   z-index: 2;
 }
 
-.navBar a {
-  color: white !important;
-  font-size: 2em;
-  margin: 15px;
-}
 .navBar .medium.material-icons {
   font-size: 2.5rem;
   vertical-align: middle;
@@ -275,9 +280,24 @@ button {
   flex-direction: row;
   justify-content: space-between;
 }
+.navBar a {
+  color: white !important;
+  font-size: 2em;
+  /* margin: 15px; */
+}
+.navBar .links a {
+  /* width: 150px; */
+  padding: 15px;
+  padding-top: 10px !important;
+  margin: 0;
+  border-radius: 20px;
+}
+.navBar .links a:hover {
+  background-color: rgb(103, 141, 141);
+}
 /* styling dropdown search  in navbar */
 .dropbtn {
-  background-color: rgb(102, 104, 102);
+  background-color: #678d8d;
   /* background: black; */
   color: white;
   padding: 16px;
@@ -295,7 +315,7 @@ button {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #332d2d;
+  background-color: #637373;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   opacity: 1;
@@ -313,14 +333,14 @@ button {
   display: block;
   overflow: visible;
   height: 50px;
-  background-color: #26a69a;
+  background-color: #637373;
   text-align: center;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #e7e9e7;
-  color: #26a69a !important;
+  color: #637373 !important;
   font-size: 2.2em;
 }
 .dropdown-content a:active {
@@ -333,7 +353,7 @@ button {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #26a69a;
+  background-color: #637373;
 }
 
 /* styling alert message*/
@@ -348,26 +368,28 @@ button {
 }
 /* styling home page */
 .home_header {
-  background-color: #ebf3eb;
+  /* background-color: #ebf3eb; */
   display: flex;
   flex-wrap: wrap;
 }
 .home_header .home1 {
+  position: relative;
   margin: 0px;
   width: 100%;
-  background-image: url("/images/home3.jpg");
+  background-image:
+   /* linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), */ url("/images/home3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: calc(100vh - 100px) !important;
-  font-family: "Indie Flower", cursive;
-  /* font-family: "Gochi Hand", cursive; */
-  font-size: 76px;
-  line-height: 85px;
+  /* font-family: "Indie Flower", cursive; */
+  font-family: "Gochi Hand", cursive;
+  font-size: 48px;
+  line-height: 70px;
   padding-bottom: 7vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
-  color: rgb(6, 120, 183);
+  color: #ffeadb;
 }
 .photos_home {
   margin: 10px;
@@ -417,33 +439,6 @@ button {
   width: 30%;
   text-align: justify;
 }
-/* .how_it_work {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  margin: 0px 0px 30px 80px;
-} */
-/* .oval {
-  width: 250px;
-  height: 130px;
-  background: pink;
-  border-radius: 70px / 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
-  margin: 20px;
-  padding: 5px;
-} */
-/* .why_snai3i {
-  margin-top: 60px;
-  margin-bottom: 60px;
-} */
-/* .container_how_it_work {
-  background-color: #ebf3eb;
-  padding-top: 60px;
-  padding-bottom: 60px;
-} */
 .container1 {
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
@@ -458,6 +453,9 @@ button {
 .content1 li,
 .content1 ol {
   text-align: justify !important;
+}
+.content1 ul li {
+  list-style-type: circle;
 }
 .container1 .card1 {
   position: relative;
@@ -475,14 +473,14 @@ button {
   width: 100%;
   height: 100%;
   /* background: rgb(20, 114, 131); */
-  background: rgb(218, 188, 20);
+  background: #ffeadb;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   transition: 0.5s ease-in-out;
-  /* border-radius: 90px; */
+  border-radius: 65px;
   border: none;
 }
 .container1 .card1:hover .imgBx {
@@ -491,7 +489,7 @@ button {
   left: -75px;
   top: calc(50% - 75px);
   transition: 0.5s ease-in-out;
-  background-color: #ff0057;
+  background-color: #ff9a76;
 }
 .container1 .card1 .imgBx:before {
   content: attr(data-text);
@@ -501,10 +499,12 @@ button {
   height: 100%;
   width: 100%;
   text-align: center;
-  font-size: 4em;
-  color: rgba(255, 255, 255, 0.2);
+  font-size: 3.5em;
+  padding: 15px;
+  color: #ff9a76;
   font-weight: 700;
   line-height: 1.1em;
+  font-family: "Poppins", sans-serif;
 }
 .container1 .card1 .imgBx img {
   max-width: 150px;
@@ -563,10 +563,14 @@ button {
     height: 200px;
     left: 0;
   }
-  .container1 .card1 .imgBx img,
-  .container1 .card1:hover .imgBx img {
+  .container1 .card1 .imgBx img {
     max-width: 100px;
   }
+
+  /* .container1:hover img {
+    width: 75px !important;
+    height: 75px !important;
+  } */
   .container1 .card1 .content1 {
     position: relative;
     width: 100%;
@@ -575,7 +579,7 @@ button {
 /* styling the footer */
 #footer {
   height: 300px;
-  background-color: rgb(38, 166, 154);
+  background-color: #637373;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -639,12 +643,14 @@ button {
   flex-wrap: wrap;
   width: auto;
   justify-content: center;
+  font-family: "Poppins", sans-serif;
 }
-.search h1 {
+.search_result {
   font-family: "Allura", cursive;
   font-weight: 600;
   font-size: 52px;
   margin-bottom: 100px;
+  margin-top: 20px;
   text-align: center;
 }
 /* .search {
@@ -654,16 +660,34 @@ button {
   justify-content: center;
 } */
 .search .search_member {
-  background-color: rgb(10, 27, 25);
-  opacity: 0.8;
+  background-color: rgb(38, 166, 154);
+  opacity: 1;
   margin: 5px;
   margin-bottom: 50px;
   width: 350px;
-  min-height: 450px;
+  height: 450px;
   padding: 20px;
   line-height: 20px;
   position: relative;
   border-radius: 20px;
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto 60px;
+  grid-gap: 5px;
+}
+.search_member_info {
+  overflow-y: scroll;
+}
+.search_member_info::-webkit-scrollbar {
+  width: 7px;
+  background-color: #121c25 !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #555;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #678d8d;
 }
 .search .search_member:hover,
 .search .search_member:hover .search_image {
@@ -671,26 +695,37 @@ button {
   opacity: 1 !important;
 }
 .search .search_member h4 {
-  color: white;
-  font-weight: 26px;
+  color: black;
   margin-top: 50px;
+  margin-bottom: 5px;
   /* text-transform: uppercase; */
   font-family: "Gochi+Hand";
+  font-weight: 600;
 }
 .search .search_member p.work {
-  color: white;
-  font-size: 14px;
+  color: black;
+  font-size: 20px;
   text-transform: uppercase;
   margin: 20px;
+  margin-top: 5px;
+  font-weight: 700;
 }
 .search .search_member ul {
-  color: #fff;
+  color: black;
   font-size: 1.5em;
-  /* text-align: left; */
+  font-weight: 600;
+  text-align: left;
 }
 .search_member .waves-effect.waves-light.btn {
-  border-radius: 20px;
-  background: rgb(38, 166, 154);
+  border-radius: 22px;
+  background: white;
+  color: #fd7442;
+  font-weight: bold;
+}
+.search_member .waves-effect.waves-light.btn:hover {
+  background: #ff9a76;
+  color: white;
+  transition: 0.3s;
 }
 .search .search_member .search_image {
   width: 120px;
@@ -700,7 +735,8 @@ button {
   top: -50px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgb(10, 27, 25);
+  background-color: rgb(38, 166, 154);
+  opacity: 1 !important;
 }
 .search .search_member .search_image img {
   width: 120px;
@@ -720,11 +756,136 @@ button {
   border-radius: 7px !important;
   width: 65px !important;
   height: 61px;
-  background-color: rgb(235, 227, 227);
-  color: rgb(60, 68, 63);
-  border: 3px solid gray;
+  /* background-color: #ffeadb; */
+  background-color: white;
+  color: #ff9a76;
+  border: 2px solid white;
   text-align: auto;
   padding: 7px;
+}
+.waves-effect.waves-light.btn.return:active {
+  background-color: #ff9a76;
+}
+/* Styling Contact us */
+.container_contact {
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  padding: 60px;
+  background: #323a3a;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+.container_contact > div {
+  width: 90%;
+}
+.container_contact h2 {
+  width: 100%;
+  color: #679b9b;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.container_contact .row100 {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 4fr));
+}
+.container_contact .row100 .col {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  margin: 30px 0 10px;
+  transition: 0.5s;
+}
+.container_contact .row100 .inputBox {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  color: white;
+}
+.container_contact .row100 .inputBox input,
+.container_contact .row100 .inputBox.textArea textarea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: none;
+  outline: none !important;
+  font-size: 18px;
+  padding: 0 10px;
+  z-index: 1;
+  left: 0px;
+  border: none;
+}
+.container_contact .row100 .inputBox .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  display: block;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.container_contact .row100 .inputBox input:focus + .text,
+.container_contact .row100 .inputBox input:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+.container_contact .row100 .inputBox .line {
+  position: absolute;
+  bottom: 0;
+  line-height: 40px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #679b9b;
+  transition: 0.5s;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.container_contact .row100 .inputBox input:focus ~ .line,
+.container_contact .row100 .inputBox input:valid ~ .line {
+  height: 100%;
+}
+.container_contact .row100 .inputBox.textArea {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  padding: 10px 0;
+}
+.container_contact .row100 .inputBox.textArea textarea {
+  height: 100%;
+  resize: none;
+}
+.container_contact .row100 .inputBox textarea:focus + .text,
+.container_contact .row100 .inputBox textarea:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+.container_contact .row100 .inputBox textarea:focus ~ .line,
+.container_contact .row100 .inputBox textarea:valid ~ .line {
+  height: 100%;
+}
+.container_contact .row100 .inputBox input[type="submit"] {
+  border: none;
+  padding: 7px 35px;
+  cursor: pointer;
+  outline: none;
+  background: #679b9b;
+  font-style: 18px;
+  border-radius: 2px;
+}
+.container_contact .row100 .inputBox input:hover {
+  background: #498d8d;
+}
+.container_contact .row100 .inputBox input:active {
+  background: #b6c9c9;
+  color: #498d8d;
+  transition: 0.1s;
 }
 @keyframes App-logo-spin {
   from {

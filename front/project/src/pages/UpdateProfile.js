@@ -13,7 +13,6 @@ const UpdateProfile = (props) => {
   useEffect(() => {
     dispatch(retrieveCategories());
   }, [dispatch]);
-  const category = useSelector((state) => state.category);
   const [info, setinfo] = useState({
     f_name: auth.user.f_name,
     l_name: auth.user.l_name,
@@ -147,9 +146,11 @@ const UpdateProfile = (props) => {
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <input
                     type="text"
-                    name="category"
+                    name="description"
                     placeholder="describe your job"
-                    defaultValue={auth.user.description && auth.user.category}
+                    defaultValue={
+                      auth.user.description && auth.user.description
+                    }
                     onChange={handleChange}
                   />
                   <i

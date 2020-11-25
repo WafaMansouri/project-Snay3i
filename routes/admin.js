@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Admin = require("../models/admin");
 const Category = require("../models/category");
+const ContactUs = require("../models/contactUs");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -87,4 +88,16 @@ router.post(
     }
   }
 );
+// Retrieve messages
+router.get("/messages", (req, res) => {
+  ContactUs.find()
+    .exec()
+    .then((messages) => {
+      res.status(201).send(messages);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
 module.exports = router;

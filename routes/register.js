@@ -6,6 +6,8 @@ const Artisan = require("../models/artisan");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const mongoose = require("mongoose");
+
 router.post(
   "/",
   [
@@ -72,7 +74,10 @@ router.post(
                 .send({ errors: [{ msg: "Email already exists" }] });
             }
             //if not exist create artisan
-            let newArtisan = new Artisan(req.body);
+            let newArtisan = new Artisan({
+              ...req.body,
+              _id: new mongoose.Types.ObjectId(),
+            });
             //bcrypt password
             bcrypt.genSalt(10, function (err, salt) {
               if (err) throw err;

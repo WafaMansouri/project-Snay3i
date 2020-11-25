@@ -10,14 +10,10 @@ import NavBar from "./pages/NavBar";
 import Admin from "./pages/Admin";
 import Search from "./pages/Search";
 import VisitProfile from "./pages/VisitProfile";
-import ContactModal from "./pages/ContactModal";
-import ArtisanResponse from "./pages/ArtisanResponse";
 import Requests from "./pages/Requests";
 import RequestsClient from "./pages/RequestsClient";
-import AddPhoto from "./pages/AddPhoto";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "antd/dist/antd.css";
-// import UpdateProfile from "./pages/UpdateProfile";
 function App() {
   const auth = useSelector((state) => state.auth);
 
@@ -34,16 +30,8 @@ function App() {
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/search" render={() => <Search />} />
           <Route exact path="/visit" component={VisitProfile} />
-          <Route exact path="/contact" component={ContactModal} />
           <Route exact path="/requests" component={Requests} />
           <Route exact path="/requests-client" component={RequestsClient} />
-          {/* <Route exact path="/addPhoto" component={AddPhoto} /> */}
-          {/* <Route exact path="/update-profile" component={UpdateProfile} /> */}
-          <Route
-            exact
-            path="/artisanResponse/:id_client"
-            component={ArtisanResponse}
-          />
         </Switch>
       </Router>
     </div>

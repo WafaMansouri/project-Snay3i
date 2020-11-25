@@ -22,6 +22,7 @@ import {
 } from "./types";
 import axios from "axios";
 import setToken from "../setToken";
+import { artisanRatesAction } from "./artisanRatesAction";
 
 export const searchByNameAction = (name) => (dispatch) => {
   //   setToken(); //to set the token in the header
@@ -81,12 +82,13 @@ export const sendRequestAction = (requestInfo) => (dispatch) => {
   setToken();
   axios
     .post("/visit/request", requestInfo) //bind front and back
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: SEND_REQUEST_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      dispatch(checkRequest_client());
+    })
     .catch((err) =>
       dispatch({
         type: SEND_REQUEST_FAIL,
@@ -117,12 +119,13 @@ export const confirm_clientAction = (id_request) => (dispatch) => {
   setToken();
   axios
     .post("/client/confirm", { id_request }) //bind front and back
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: ACCEPT_REQUEST_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      dispatch(checkRequest_client());
+    })
     .catch((err) =>
       dispatch({
         type: ACCEPT_REQUEST_FAIL,
@@ -130,17 +133,18 @@ export const confirm_clientAction = (id_request) => (dispatch) => {
       })
     );
 };
-// Rating Artisna
+// Rating Artisan
 export const ratingAction = (rateInfo) => (dispatch) => {
   setToken();
   axios
     .post("/client/rating", rateInfo) //bind front and back
-    .then((res) =>
+    .then((res) => {
       dispatch({
         type: RATING_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      dispatch(artisanRatesAction(rateInfo.id_artisan));
+    })
     .catch((err) =>
       dispatch({
         type: RATING_FAIL,

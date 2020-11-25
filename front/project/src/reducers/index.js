@@ -16,6 +16,7 @@ import RateArtisanReducer from "./rateArtisanReducer";
 import PostsReducer from "./postsReducer";
 import UpdateReducer from "./updateReducer";
 import LikesArtisanReducer from "./likesArtisanReducer";
+import MessagesAdminReducer from "./messagesAdminReducer";
 
 export default combineReducers({
   auth: AuthReducer,
@@ -35,4 +36,5 @@ export default combineReducers({
   posts: PostsReducer,
   update: UpdateReducer,
   likes_artisan: LikesArtisanReducer,
+  messages_admin: MessagesAdminReducer,
 });
