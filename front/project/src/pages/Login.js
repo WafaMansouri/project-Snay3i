@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { login } from "../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { loadClient } from "../actions/authActions";
-
 const Login = ({ history, match }) => {
-  const [userState, setuserState] = useState("Client");
   const [info, setInfo] = useState({
     email: "",
     password: "",
@@ -20,18 +18,21 @@ const Login = ({ history, match }) => {
       setInfo({ ...info, state: "Admin" });
     }
     if (auth.isAuth === true && info.state !== "Admin") {
+      console.log(window.location);
+      // dispatch(loadClient());
       history.push("/profile");
+      // history.goBack();
     } else if (auth.isAuth === true && info.state === "Admin") {
       history.push("/admin");
     }
     if (auth.errors) {
       seterrors(auth.errors);
     }
-  }, [auth.isAuth, auth.errors, match.path]);
+  }, [auth.isAuth, auth, match.path]);
   useEffect(() => {
     if (!auth.isAuth && localStorage.getItem("token")) {
-      // dispatch(loadClient());
       auth.isAuth = true;
+      // dispatch(loadClient());
       history.push("/profile");
     }
   }, [auth.isAuth]);
@@ -44,16 +45,6 @@ const Login = ({ history, match }) => {
     dispatch(login(info));
   };
 
-  // Change the state of the user
-  const handleUserState = () => {
-    if (userState === "Client") {
-      setuserState("Artisan");
-      setInfo({ ...info, state: "Artisan" });
-    } else {
-      setuserState("Client");
-      setInfo({ ...info, state: "Client" });
-    }
-  };
   return (
     <div className="container_login">
       <form
@@ -61,54 +52,65 @@ const Login = ({ history, match }) => {
         onSubmit={handleLogin}
         onFocus={() => seterrors(null)}
       >
-        {match.path !== "/loginAdmin" && (
-          <button type="button" onClick={handleUserState}>
-            {userState}
+        <div className="grid_item_login">
+          {match.path !== "/loginAdmin" && (
+            <div className="login_radioGroup">
+              <input
+                onChange={handleChange}
+                className="login_radio"
+                // className="browser-default"
+                type="radio"
+                id="client"
+                name="state"
+                value="Client"
+                defaultChecked
+              />
+              <label for="client" className="login_radioLabel">
+                Client
+              </label>
+              <input
+                onChange={handleChange}
+                className="login_radio"
+                type="radio"
+                id="artisan"
+                name="state"
+                value="Artisan"
+              />
+              <label for="artisan" className="login_radioLabel">
+                Artisan
+              </label>
+            </div>
+          )}
+          <div>
+            <input
+              className="browser-default"
+              type="email"
+              name="email"
+              onChange={handleChange}
+              placeholder="  &#xF0E0; Email "
+              style={{ fontFamily: "Arial, FontAwesome" }}
+            />
+          </div>
+          <div>
+            <input
+              className="browser-default"
+              type="password"
+              name="password"
+              onChange={handleChange}
+              placeholder="  &#xF023; Password"
+              style={{ fontFamily: "Arial, FontAwesome" }}
+            />
+          </div>
+          <div className="container_link_login">
+            <a href="/register">New to Snay3i? Register here</a>
+          </div>
+          {errors && <h6 className="errorLogin">{errors}</h6>}
+        </div>
+        <div className="grid_item_login">
+          <button className="waves-effect waves-light btn" type="submit">
+            Login
           </button>
-        )}
-        <div>
-          <input
-            className="browser-default"
-            type="email"
-            name="email"
-            onChange={handleChange}
-            required
-            placeholder="  &#xF0E0; Email "
-            style={{ fontFamily: "Arial, FontAwesome" }}
-          />
         </div>
-        <div>
-          <input
-            className="browser-default"
-            type="password"
-            name="password"
-            onChange={handleChange}
-            placeholder="  &#xF023; Password"
-            style={{ fontFamily: "Arial, FontAwesome" }}
-          />
-        </div>
-        <div
-          style={{
-            width: "80%",
-            textAlign: "left",
-            margin: "0px 0px 15px 0px",
-          }}
-        >
-          <a
-            href="/register"
-            style={{ fontSize: "1.2em", textDecoration: "underline" }}
-          >
-            New to Snay3i? Register here
-          </a>
-        </div>
-        <button
-          className="waves-effect waves-light btn"
-          style={{ borderRadius: 8 }}
-          type="submit"
-        >
-          Login
-        </button>
-        {errors && <h6 style={{ color: "red", marginTop: 20 }}>{errors}</h6>}
       </form>
     </div>
   );

@@ -32,7 +32,7 @@ const VisitProfile = () => {
   }, [auth]);
   // To get all likes and posts of the visited artisan
   useEffect(() => {
-    if (visit.artisan) {
+    if (visit.artisan && visit.artisan._id) {
       dispatch(artisanPostsAction(visit.artisan._id));
       dispatch(likesArtisanAction(visit.artisan._id));
     }
@@ -70,32 +70,55 @@ const VisitProfile = () => {
   return (
     <div>
       {testContact && <ContactModal settestContact={settestContact} />}
-      <div style={{ textAlign: "left" }}>
-        <button
-          className="waves-effect waves-light btn return"
-          onClick={handleReturn}
-        >
-          <i class="large material-icons">arrow_back</i>
-        </button>
-      </div>
-      {visit.artisan && (
-        <div className="profile">
+      <div className="profile">
+        {visit.artisan && (
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               justifyContent: "space-evenly",
             }}
           >
-            <div className="containerInfo" style={{ paddingTop: 10 }}>
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  justifyContent: "space-evenly",
-                }}
-              >
-                {testRequest ? (
+            <div className="containerInfo">
+              <div>
+                <div className="cadrePhoto">
+                  <img
+                    className="cadrePhoto"
+                    src={
+                      visit.artisan.avatar
+                        ? visit.artisan.avatar
+                        : "/images/profile_photo.png"
+                    }
+                    alt="profile photo"
+                  ></img>
+                </div>
+                <div className="rate">
+                  <Rate
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      color: "#218838wxx",
+                      fontSize: 15,
+                    }}
+                    allowHalf
+                    disabled
+                    value={rate_artisan.rate ? rate_artisan.rate.rate : 0}
+                  />
+                  <span
+                    style={{
+                      textAlign: "center",
+                      fontSize: "1.5em",
+                      marginLeft: 15,
+                      color: "#232f3e",
+                    }}
+                  >
+                    {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
+                  </span>
+                  <span style={{ paddingTop: 5, color: "#232f3e" }}>
+                    <i class="material-icons">person</i>
+                  </span>
+                </div>
+                {auth.user && auth.user.state === "Client" && testRequest ? (
                   <button
                     className="waves-effect waves-light btn visit"
                     onClick={handleContact}
@@ -103,86 +126,70 @@ const VisitProfile = () => {
                     View Request
                   </button>
                 ) : (
-                  <button
-                    className="waves-effect waves-light btn visit"
-                    onClick={handleContact}
-                  >
-                    Contact {visit.artisan && visit.artisan.f_name}
-                  </button>
+                  ((auth.user && auth.user.state === "Client") ||
+                    !auth.user) && (
+                    <button
+                      className="waves-effect waves-light btn visit"
+                      onClick={handleContact}
+                    >
+                      Contact {visit.artisan && visit.artisan.f_name}
+                    </button>
+                  )
                 )}
               </div>
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <div className="cadrePhoto">
-                  <img
-                    className="cadrePhoto"
-                    src={
-                      visit.artisan && visit.artisan.avatar
-                        ? visit.artisan.avatar
-                        : "/images/profile_photo.png"
-                    }
-                    alt="profile photo"
-                  />
-                </div>
-              </div>
-              {/* your rating */}
-              {auth.isAuth && <StarRating />}
+              <div className="info">
+                {/* {auth.isAuth && auth.user.state === "Client" && <StarRating />} */}
+                <ul>
+                  <li>
+                    <i class="small material-icons">account_circle</i>&nbsp;
+                    {upper(visit.artisan.f_name) +
+                      " " +
+                      upper(visit.artisan.l_name)}
+                  </li>
+                  <li>
+                    <i class="small material-icons">email</i>&nbsp;
+                    {visit.artisan.email}
+                  </li>
+                  {visit.artisan.category && (
+                    <li>
+                      <i class="small material-icons">work</i>&nbsp;
+                      {upper(visit.artisan.category)}
+                    </li>
+                  )}
+                  {visit.artisan.tel && (
+                    <li>
+                      <i class="small material-icons">phone</i>&nbsp;{" "}
+                      {visit.artisan.tel}
+                    </li>
+                  )}
+                  {visit.artisan.address && (
+                    <li>
+                      <i class="small material-icons">add_location</i>&nbsp;{" "}
+                      {visit.artisan.address}
+                    </li>
+                  )}
+                  {visit.artisan.description && (
+                    <li>
+                      <i class="small material-icons">description</i>&nbsp;{" "}
+                      {upper(visit.artisan.description)}
+                    </li>
+                  )}
+                  <li>
+                    <i class="small material-icons">access_time</i>&nbsp; member
+                    since{" "}
+                    {new Date(visit.artisan.created_at).toLocaleString(
+                      "default",
+                      {
+                        month: "long",
+                      }
+                    ) +
+                      " " +
+                      new Date(visit.artisan.created_at).getFullYear()}
+                  </li>
 
-              {/* The artisan's rate */}
-              {rate_artisan.rate && (
-                <div className="rate">
-                  <Rate
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      color: "gray",
-                      fontSize: 12,
-                    }}
-                    allowHalf
-                    disabled
-                    defaultValue={rate_artisan.rate.rate}
-                  />
-                  <span
-                    style={{
-                      textAlign: "center",
-                      fontSize: "1.5em",
-                      marginLeft: 5,
-                    }}
-                  >
-                    {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
-                  </span>
-                  <span style={{ paddingTop: 5 }}>
-                    <i class="material-icons">person</i>
-                  </span>
-                </div>
-              )}
-              <ul>
-                <li>
-                  <i class="small material-icons">account_circle</i>&nbsp;
-                  {upper(visit.artisan.f_name) +
-                    " " +
-                    upper(visit.artisan.l_name)}
-                </li>
-                <li>
-                  <i class="small material-icons">email</i>&nbsp;
-                  {visit.artisan.email}
-                </li>
-                {visit.artisan.category && (
-                  <li>
-                    <i class="small material-icons">work</i>&nbsp;
-                    {upper(visit.artisan.category)}
-                  </li>
-                )}
-                {visit.artisan.address && (
-                  <li>
-                    <i class="small material-icons">add_location</i>&nbsp;{" "}
-                    {upper(visit.artisan.address)}
-                  </li>
-                )}
-                {visit.artisan.description && (
-                  <li> {upper(visit.artisan.description)}</li>
-                )}
-                {visit.artisan.age && <li>Age: {visit.artisan.age}</li>}
-              </ul>
+                  {visit.artisan.age && <li>Age: {visit.artisan.age}</li>}
+                </ul>
+              </div>
             </div>
             <div className="containerPosts">
               {posts.posts && (
@@ -194,8 +201,8 @@ const VisitProfile = () => {
               )}
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
@@ -250,38 +257,33 @@ const PostModal = ({ post }) => {
     }
   };
   return (
-    <div class="row">
-      <div class="col s12 m7">
-        <div class="card">
-          <div class="card-image">
-            <img src={post.photo ? post.photo : "image/profileBack.png"} />
-          </div>
-          <div class="card-content">
-            <span class="card-title">{upper(post.title)}</span>
-            <p>{upper(post.description)}</p>
-          </div>
-          <div style={{ textAlign: "left" }}>
-            Created at: {new Date(post.created_at).toLocaleString("en-GB")}
-          </div>
-          <div class="card-action">
-            <div
-              style={{
-                fontSize: "1em",
-                display: "flex",
-              }}
-            >
-              <a style={{ margin: 0, padding: 0 }} onClick={handleLike}>
-                {!like_client ? (
-                  <i class="small material-icons" style={{ color: "#ff3399" }}>
-                    favorite_border
-                  </i>
-                ) : (
-                  <i class="small material-icons" style={{ color: "#ff3399" }}>
-                    favorite
-                  </i>
-                )}
-              </a>
-              {countLikes && <span>{countLikes} </span>} person like this
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div class="rowPost">
+        <div class="col s12 m7">
+          <div class="cardPost">
+            <div class="cardPost-image">
+              <img src={post.photo} />
+            </div>
+            <div class="cardPost-content">
+              <span class="cardPost-title">{upper(post.title)}</span>
+              <p>{upper(post.description)}</p>
+            </div>
+            <div className="created_at">
+              Created at: {new Date(post.created_at).toLocaleString("en-GB")}
+            </div>
+            <div class="cardPost-action">
+              <div style={{ display: "flex" }}>
+                <a style={{ margin: 0, padding: 0 }} onClick={handleLike}>
+                  {!like_client ? (
+                    <i class="small material-icons">favorite_border</i>
+                  ) : (
+                    <i class="small material-icons">favorite</i>
+                  )}
+                </a>
+                <div style={{ fontSize: "1em", fontWeight: "700" }}>
+                  {countLikes && <span>{countLikes} </span>} person like this
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -289,3 +291,14 @@ const PostModal = ({ post }) => {
     </div>
   );
 };
+
+// <div>
+
+//     <div style={{ textAlign: "left" }}>
+//       <button
+//         className="waves-effect waves-light btn return"
+//         onClick={handleReturn}
+//       >
+//         <i class="large material-icons">arrow_back</i>
+//       </button>
+//     </div>

@@ -65,7 +65,11 @@ router.get("/", authMiddleware, (req, res) => {
 router.post(
   "/",
   [
-    body("email", "please enter a valid email").isEmail(),
+    body("email")
+      .notEmpty()
+      .withMessage("Please enter your email")
+      .isEmail()
+      .withMessage("please enter a valid email"),
     body("password", "Please enter your password!").notEmpty(),
   ],
   (req, res) => {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../ContactModal.css";
 import { useDispatch, useSelector } from "react-redux";
 import { respondAction } from "../actions/artisanActions";
 import { useHistory } from "react-router-dom";
@@ -55,24 +54,39 @@ function ArtisanResponse({ settestRespond, id_client }) {
           onClick={() => {
             setdisplay(false);
             settestRespond(false);
+            response_artisan.errors = null;
           }}
         />
         <div className={"modal-box contact"}>
-          <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              height: "fit-content",
+            }}
+          >
+            <div
+              onClick={(e) => {
+                setdisplay(false);
+                settestRespond(false);
+                response_artisan.errors = null;
+              }}
+              className="container_close_icon"
+            >
+              <i class="small material-icons">close</i>
+            </div>
+          </div>
+          <div className="form_contact">
             <textarea
               onChange={handleChange}
               name="msg_artisan"
               placeholder="Write your response here"
             ></textarea>
             <div className="calendar">
-              {/* <Calendar
-                onSelect={(e) => {
-                  setresponse({
-                    ...response,
-                    date_artisan: e._d.toDateString(),
-                  });
-                }}
-              /> */}
+              <span className="spanContact">
+                {" "}
+                Please select a date interval:
+              </span>
               <DatePickerCalendarExample
                 // id_client={match.params.id_client}
                 id_client={id_client}
@@ -80,16 +94,18 @@ function ArtisanResponse({ settestRespond, id_client }) {
               />
             </div>
           </div>
-          <h6 style={{ color: "red", marginTop: 20 }}>
-            {response_artisan.errors && response_artisan.errors}
-          </h6>
-          <button
-            type="submit"
-            className="waves-effect waves-light btn"
-            onClick={handleRespond}
-          >
-            SEND
-          </button>
+          <div style={{ height: 90 }}>
+            <h6 style={{ color: "red", height: 25 }}>
+              {response_artisan.errors && response_artisan.errors}
+            </h6>
+            <button
+              type="submit"
+              className="waves-effect waves-light btn contact"
+              onClick={handleRespond}
+            >
+              SEND
+            </button>
+          </div>
         </div>
       </div>
     )

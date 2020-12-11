@@ -35,9 +35,8 @@ const Search = () => {
         search.artisans.length ? (
           <div className="search">
             <div className="container_search">
-              {search.artisans.map((artisan, index) => {
+              {search.artisans.map((artisan) => {
                 if (artisan) {
-                  console.log(artisan.rates);
                   let count = 0;
                   artisan.rates.map((rate) => {
                     count += rate.value;
@@ -46,7 +45,11 @@ const Search = () => {
                     <SearchCard
                       key={artisan._id}
                       artisan={artisan}
-                      rate={count / artisan.rates.length}
+                      rate={
+                        artisan.rates.length > 0
+                          ? count / artisan.rates.length
+                          : 0
+                      }
                     />
                   );
                 }
@@ -70,11 +73,15 @@ export default Search;
 const SearchCard = ({ artisan, rate }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const auth = useSelector((state) => state.auth);
   const handleVist = () => {
-    dispatch(visitByIdAction(artisan._id));
-    history.push("/visit");
+    if (auth.user && auth.user._id === artisan._id) {
+      history.push("/profile");
+    } else {
+      dispatch(visitByIdAction(artisan._id));
+      history.push(`/visit`);
+    }
   };
-  const rate_artisan = useSelector((state) => state.rate_artisan);
   return (
     <div className="search_member">
       <div className="search_member_info">
@@ -85,21 +92,18 @@ const SearchCard = ({ artisan, rate }) => {
           />
         </div>
         <h4>{upper(artisan.f_name) + " " + upper(artisan.l_name)}</h4>
-        {rate && (
-          <div style={{ textAlign: "center" }}>
-            <Rate
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                color: "gray",
-                fontSize: 12,
-              }}
-              allowHalf
-              disabled
-              defaultValue={rate}
-            />
-          </div>
-        )}
+        <div style={{ textAlign: "center" }}>
+          <Rate
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              fontSize: 18,
+            }}
+            allowHalf
+            disabled
+            value={rate}
+          />
+        </div>
         <p className="work">{artisan.category}</p>
         <ul>
           <li style={{ marginBottom: 13 }}>

@@ -1,0 +1,335 @@
+.home_header {
+  /* background-color: #ebf3eb; */
+  display: flex;
+  flex-wrap: wrap;
+}
+.home_header .home1 {
+  position: relative;
+  margin: 0px;
+  width: 100%;
+  background-image: url("/images/home3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 90px) !important;
+  /* font-family: "Indie Flower", cursive; */
+  font-family: "Gochi Hand", cursive;
+  padding-bottom: 6vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.home1 span {
+  background-color: rgb(15, 15, 15);
+  font-size: 3.8em;
+  color: #ffe75e;
+  line-height: 50px;
+}
+.photos_home {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  height: 34% !important;
+  /* background-color: #ebf3eb; */
+  margin: 0;
+}
+.photos_home img {
+  margin: 10px;
+  width: 12%;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 70px;
+}
+.home_header .home1 img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  /* border-radius: 20px; */
+}
+/* styling cards */
+.container1 {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  position: relative;
+  width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px;
+  font-size: 1.5em;
+}
+.content1 li,
+.content1 ul,
+.content1 ol {
+  text-align: justify !important;
+  padding-left: 7px;
+}
+.content1 ul li {
+  list-style-type: circle;
+}
+.container1 .card1 {
+  position: relative;
+  height: 73vh;
+  background: #fff;
+  display: flex;
+  width: 45%;
+  margin: 30px 0;
+  border-radius: 70px;
+}
+.container1 .card1 .imgBx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(#3282b8, #3282b8); */
+
+  background-image: url("/back-carte-blue.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+  border-radius: 65px;
+  border: none;
+}
+.container1 .card1:hover .imgBx {
+  width: 150px;
+  height: 150px;
+  left: -75px;
+  top: calc(50% - 75px);
+  transition: 0.6s ease-in-out;
+  background-color: #2b2627;
+}
+.container1 .card1 .imgBx:before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 3.4em;
+  padding: 15px;
+  /* color: #ff9a76; */
+  color: #ffeadb;
+  font-weight: 700;
+  line-height: 1.1em;
+  font-family: "Poppins", sans-serif;
+}
+.container1 .card1 .imgBx img {
+  max-width: 150px;
+}
+.container1:hover .card1 .imgBx:before {
+  /* max-width: 75px; */
+  content: none !important;
+}
+.container1 .card1 .content1 {
+  position: absolute;
+  right: 0;
+  width: calc(100% - 75px);
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.container1 .card1 .content1 h3 {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-size: 30px;
+  margin-right: 70px;
+}
+.container1 .card1 .content1 a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #333;
+  text-decoration: none;
+  color: #fff;
+}
+.container1:hover .card1 .imgBx img {
+  max-width: 125px !important;
+  max-height: 125px !important;
+  transition: 0.5s ease-in-out;
+}
+@media (max-width: 992px) {
+  .container1 {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.4em;
+  }
+  .container1 .card1 {
+    width: 400px;
+  }
+  .home1 span {
+    font-size: 3em;
+    line-height: 40px;
+  }
+}
+@media (max-width: 768px) {
+  .container1 .card1 {
+    max-width: 310px;
+    flex-direction: column;
+    height: auto;
+    font-size: 0.75em;
+    line-height: 20px;
+  }
+  .container1 .card1 .imgBx {
+    position: relative;
+  }
+  .container1 .card1 .imgBx,
+  .container1 .card1:hover .imgBx {
+    width: 100%;
+    height: 200px;
+    left: 0;
+  }
+  .container1 .card1 .imgBx img {
+    max-width: 100px;
+  }
+  .container1 .card1 .content1 {
+    position: relative;
+    width: 100%;
+  }
+  .container1 .card1 .imgBx:before {
+    content: none !important;
+  }
+  .home1 span {
+    font-size: 2.2em;
+    line-height: 30px;
+  }
+}
+/* Styling Contact us */
+.container_contact {
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  padding: 60px;
+  background: #465858;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+.container_contact > div {
+  width: 90%;
+}
+.container_contact h2 {
+  width: 100%;
+  color: #679b9b;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.container_contact .row100 {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 4fr));
+}
+.container_contact .row100 .col {
+  position: relative;
+  width: 100%;
+  padding: 0 10px;
+  margin: 30px 0 10px;
+  transition: 0.5s;
+}
+.container_contact .row100 .inputBox {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  color: white;
+}
+.container_contact .row100 .inputBox input,
+.container_contact .row100 .inputBox.textArea textarea {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: none;
+  outline: none !important;
+  font-size: 18px;
+  padding: 0 10px;
+  z-index: 1;
+  left: 0px;
+  border: none;
+}
+.container_contact .row100 .inputBox .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  display: block;
+  transition: 0.5s;
+  pointer-events: none;
+}
+.container_contact .row100 .inputBox input:focus + .text,
+.container_contact .row100 .inputBox input:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+.container_contact .row100 .inputBox .line {
+  position: absolute;
+  bottom: 0;
+  line-height: 40px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #679b9b;
+  transition: 0.5s;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.container_contact .row100 .inputBox input:focus ~ .line,
+.container_contact .row100 .inputBox input:valid ~ .line {
+  height: 100%;
+}
+.container_contact .row100 .inputBox.textArea {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  padding: 10px 0;
+}
+.container_contact .row100 .inputBox.textArea textarea {
+  height: 100%;
+  resize: none;
+}
+.container_contact .row100 .inputBox textarea:focus + .text,
+.container_contact .row100 .inputBox textarea:valid + .text {
+  top: -35px;
+  left: -10px;
+}
+.container_contact .row100 .inputBox textarea:focus ~ .line,
+.container_contact .row100 .inputBox textarea:valid ~ .line {
+  height: 100%;
+}
+.container_contact .row100 .inputBox input[type="submit"] {
+  border: none;
+  padding: 7px 35px;
+  cursor: pointer;
+  outline: none;
+  background: #679b9b;
+  font-style: 18px;
+  border-radius: 2px;
+}
+.container_contact .row100 .inputBox input:hover {
+  background: #498d8d;
+}
+.container_contact .row100 .inputBox input:active {
+  background: #b6c9c9;
+  color: #498d8d;
+  transition: 0.1s;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

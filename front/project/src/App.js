@@ -1,5 +1,13 @@
 import React from "react";
 import "./App.css";
+import "./css/ContactModal.css";
+import "./css/Login.css";
+import "./css/Requests.css";
+import "./css/Home.css";
+import "./css/Footer.css";
+import "./css/NavBar.css";
+import "./css/Search.css";
+import "./css/Profile.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Home from "./pages/Home";
@@ -29,9 +37,13 @@ function App() {
           <PrivateRoute exact path="/admin" component={Admin} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/search" render={() => <Search />} />
-          <Route exact path="/visit" component={VisitProfile} />
-          <Route exact path="/requests" component={Requests} />
-          <Route exact path="/requests-client" component={RequestsClient} />
+          <Route exact path="/visit" render={() => <VisitProfile />} />
+          <PrivateRoute exact path="/requests" component={Requests} />
+          <PrivateRoute
+            exact
+            path="/requests-client"
+            component={RequestsClient}
+          />
         </Switch>
       </Router>
     </div>

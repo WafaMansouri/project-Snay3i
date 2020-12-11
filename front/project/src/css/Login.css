@@ -1,0 +1,109 @@
+/* styling login and register */
+.container_login {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0px !important;
+}
+.container_login.register {
+  min-height: 600px;
+}
+.container_login.register .form_login {
+  grid-template-rows: auto 150px;
+}
+.form_login {
+  width: 500px;
+  border: solid #232f3e 2.5px;
+  display: grid;
+  grid-template-rows: auto 100px;
+  padding: 30px 0px 0px 0px;
+  border-radius: 8px;
+  background-color: white;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  max-height: 93%;
+}
+.grid_item_login {
+  align-items: center;
+}
+.form_login.login {
+  max-height: 70%;
+}
+.container_login input:not(.login_radio),
+.container_login label:not(.login_radioLabel),
+.container_login select {
+  color: black;
+  font-size: 1.5em;
+  height: 55px;
+  width: 400px !important;
+  margin: 9px;
+  border: solid #232f3e 2.3px;
+  border-radius: 8px;
+}
+.container_link_login {
+  width: 80%;
+  text-align: left;
+  margin-left: 50px;
+  font-size: 1.2em;
+  text-decoration: underline;
+}
+/* styling the button of login and register */
+.container_login .waves-effect.waves-light.btn {
+  margin-top: 15px;
+  width: 400px;
+  height: 50px;
+  border-radius: 8px;
+}
+.login_radio {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  position: static !important;
+  height: 25px !important;
+  width: 25px !important;
+  margin: 0 !important;
+  transition: 5s;
+}
+
+.login_radioGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.login_radioLabel {
+  font-size: 1.5em !important;
+  color: black !important;
+  padding: 30px 25px 30px 5px;
+}
+.errorLogin {
+  color: red;
+  margin-top: 33px;
+}
+.errorRegister {
+  color: red;
+  margin-top: 0px;
+}
+
+@media (max-width: 576px) {
+  .form_login {
+    width: 350px;
+  }
+  .container_login input:not(.login_radio),
+  .container_login label:not(.login_radioLabel),
+  .container_login .waves-effect.waves-light.btn,
+  .container_login select {
+    width: 300px !important;
+    font-size: 1.3em !important;
+  }
+  .container_link_login {
+    margin-left: 25px;
+    font-size: 1em;
+  }
+  .login_radioLabel {
+    font-size: 1.2em !important;
+  }
+  .errorLogin .errorRegister {
+    font-size: 0.95em;
+  }
+}

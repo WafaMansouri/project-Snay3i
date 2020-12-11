@@ -9,7 +9,7 @@ import {
 import { useHistory } from "react-router-dom";
 const NavBar = () => {
   const auth = useSelector((state) => state.auth);
-
+  const [classResponsive, setclassResponsive] = useState(false);
   const [name, setname] = useState("");
   const [category, setcategory] = useState("");
   const [search, setsearch] = useState("");
@@ -28,12 +28,14 @@ const NavBar = () => {
     setcategory("");
   };
   return (
-    <div className="navBar">
+    <div className={classResponsive ? "navBar responsiveNav" : "navBar"}>
       <img src="/logo2.png" width="90px" height="90px" alt="logo" />
-      <div style={{ display: "flex" }}>
+      <div className="container_searchBar">
         <div className="dropdown">
           <button className="dropbtn">
-            <i class="small material-icons">search</i>
+            <i class="small material-icons" style={{ fontSize: "2em" }}>
+              search
+            </i>
           </button>
           <div className="dropdown-content">
             <a onClick={(e) => setsearch("name")}>By Name</a>
@@ -66,37 +68,98 @@ const NavBar = () => {
           )
         )}
       </div>
-      <div style={{ width: 800 }}></div>
+      {/* <div style={{ width: 800 }}></div> */}
       <div className="links">
         {auth.isAuth ? (
           <>
-            <Link to="/profile">Profile</Link>
+            <Link
+              onClick={(e) => setclassResponsive(!classResponsive)}
+              to="/profile"
+            >
+              Profile
+            </Link>
             {/* if the user is admin */}
             {auth.user && auth.user.state === "Admin" && (
-              <Link to="/admin">Admin</Link>
+              <Link
+                to="/admin"
+                onClick={(e) => setclassResponsive(!classResponsive)}
+              >
+                Admin
+              </Link>
             )}
-            <Link to="" onClick={() => dispatch(logOut())}>
+            <Link
+              to=""
+              onClick={(e) => {
+                setclassResponsive(!classResponsive);
+                dispatch(logOut());
+              }}
+            >
               Logout
             </Link>
             {/* icon notification */}
             {auth.user && auth.user.state === "Client" ? (
-              <Link to="/requests-client">
+              <Link
+                to="/requests-client"
+                onClick={(e) => setclassResponsive(!classResponsive)}
+              >
                 <i class="medium material-icons">drafts</i>
               </Link>
             ) : (
-              <Link to="/requests">
-                <i class="medium material-icons">drafts</i>
-              </Link>
+              auth.user &&
+              auth.user.state !== "Admin" && (
+                <Link
+                  to="/requests"
+                  onClick={(e) => setclassResponsive(!classResponsive)}
+                >
+                  <i class="medium material-icons">drafts</i>
+                </Link>
+              )
             )}
+            <a
+              // href="javascript:void(0);"
+              className="icon_navbar"
+              onClick={(e) => {
+                e.preventDefault();
+                setclassResponsive(!classResponsive);
+              }}
+            >
+              <i class="fa fa-bars"></i>
+            </a>
           </>
         ) : (
           <>
-            <Link to="/">Home</Link>
-            <Link style={{ width: 170 }} to="">
+            <Link to="/" onClick={(e) => setclassResponsive(!classResponsive)}>
+              Home
+            </Link>
+            <Link
+              style={{ width: 170 }}
+              to=""
+              onClick={(e) => setclassResponsive(!classResponsive)}
+            >
               Contact Us
             </Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link
+              to="/login"
+              onClick={(e) => setclassResponsive(!classResponsive)}
+            >
+              Login
+            </Link>
+            <Link
+              to="/register"
+              onClick={(e) => setclassResponsive(!classResponsive)}
+            >
+              Register
+            </Link>
+            <a
+              // href="javascript:void(0);"
+              className="icon_navbar"
+              onClick={(e) => {
+                e.preventDefault();
+                setclassResponsive(!classResponsive);
+              }}
+            >
+              <i class="fa fa-bars"></i>
+            </a>
           </>
         )}
       </div>

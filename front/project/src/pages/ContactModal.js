@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkRequest_client,
   confirm_clientAction,
   sendRequestAction,
 } from "../actions/clientActions";
@@ -43,7 +42,7 @@ function ContactModal(props) {
     if (first) {
       if (!send_request.errors) {
         props.settestContact(false);
-        alert.success("send_request Success!");
+        alert.success("send Request Success!");
       }
     }
     setFirst(true);
@@ -64,10 +63,15 @@ function ContactModal(props) {
   }, [visit.artisan]);
   const handleIgnore = () => {
     dispatch(ignore_clientAction(testRequest._id));
+    setdisplay(false);
+    props.settestContact(false);
     alert.success("Ignored with Success!");
   };
   const handleConfirm = () => {
     dispatch(confirm_clientAction(testRequest._id));
+    setdisplay(false);
+    props.settestContact(false);
+    alert.success("Confirmed with Success!");
   };
   return (
     display && (
@@ -77,62 +81,75 @@ function ContactModal(props) {
           onClick={() => {
             setdisplay(false);
             props.settestContact(false);
+            send_request.errors = null;
           }}
         />
         {/* if there is already a request */}
         {testRequest ? (
-          <div className={"modal-box"}>
+          <div className={"modal-box view_request"}>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <div
+                onClick={(e) => {
+                  setdisplay(false);
+                  props.settestContact(false);
+                }}
+                className="container_close_icon"
+              >
+                <i class="small material-icons">close</i>
+              </div>
+            </div>
             <form
-              action=""
               onSubmit={(e) => {
                 setdisplay(false);
                 props.settestContact(false);
               }}
             >
-              <ul className="view_request">
-                <li>
-                  <span>Request sent at:</span>{" "}
-                  {new Date(testRequest.created_at).toUTCString()}
-                </li>
-                <li>
-                  <span>Your message:</span> {testRequest.msg_client}
-                </li>
-                <li>
-                  <span>Date required: From</span>{" "}
+              <dl>
+                <dt>Request sent at</dt>
+                <dd>{new Date(testRequest.created_at).toUTCString()}</dd>
+                <dt>Your message</dt>
+                <dd>{testRequest.msg_client}</dd>
+                <dt>Date required</dt>
+                <dd>
                   {
                     new Date(testRequest.start_date)
                       .toLocaleString("en-GB", {})
                       .split(", ")[0]
                   }{" "}
-                  <span>To</span>{" "}
+                  <i class="material-icons">arrow_forward</i>{" "}
                   {
                     new Date(testRequest.end_date)
                       .toLocaleString("en-GB", {})
                       .split(", ")[0]
                   }
-                </li>
+                </dd>
                 {testRequest.msg_artisan && (
-                  <li>
-                    <span>Response:</span> {testRequest.msg_artisan}
-                  </li>
+                  <div>
+                    <dt>Response</dt>
+                    <dd>{testRequest.msg_artisan}</dd>
+                  </div>
                 )}
                 {testRequest.start_date_artisan && (
-                  <li>
-                    <span>Date offers: From</span>{" "}
-                    {
-                      new Date(testRequest.start_date_artisan)
-                        .toLocaleString("en-GB", {})
-                        .split(", ")[0]
-                    }{" "}
-                    <span>To </span>{" "}
-                    {
-                      new Date(testRequest.end_date_artisan)
-                        .toLocaleString("en-GB", {})
-                        .split(", ")[0]
-                    }
-                  </li>
+                  <div>
+                    <dt>Date offers: From</dt>{" "}
+                    <dd>
+                      {
+                        new Date(testRequest.start_date_artisan)
+                          .toLocaleString("en-GB", {})
+                          .split(", ")[0]
+                      }{" "}
+                      To{" "}
+                      {
+                        new Date(testRequest.end_date_artisan)
+                          .toLocaleString("en-GB", {})
+                          .split(", ")[0]
+                      }
+                    </dd>
+                  </div>
                 )}
-              </ul>
+              </dl>
+            </form>
+            <div style={{ textAlign: "center" }}>
               {testRequest.state === "Accepted By Artisan" ? (
                 <i className="fas fa-check"></i>
               ) : (
@@ -152,53 +169,58 @@ function ContactModal(props) {
                     CONFIRM
                   </button>
                 )}
-              <button className="waves-effect waves-light btn" type="submit">
-                OK
-              </button>
-            </form>
+              {/* <button className="waves-effect waves-light btn">OK</button> */}
+            </div>
           </div>
         ) : (
           <div className={"modal-box contact"}>
-            <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                height: "fit-content",
+              }}
+            >
+              <div
+                onClick={(e) => {
+                  setdisplay(false);
+                  props.settestContact(false);
+                  send_request.errors = null;
+                }}
+                className="container_close_icon"
+              >
+                <i class="small material-icons">close</i>
+              </div>
+            </div>
+            <div className="form_contact">
               <textarea
                 name="msg_client"
                 placeholder="describe your request"
                 onChange={handleChange}
               ></textarea>
               <div className="calendar">
-                {/* <Calendar
-                  onSelect={(e) => {
-                    setrequestInfo({
-                      ...requestInfo,
-                      date_client: e._d.toDateString(),
-                    });
-                  }}
-                /> */}
-                {/* <Space direction="vertical" size={12}>
-                  <RangePicker
-                    bordered={false}
-                    onCalendarChange={(e) => {
-                      console.log(e);
-                    }}
-                  />
-                </Space> */}
+                <span className="spanContact">
+                  {" "}
+                  Please select a date interval:
+                </span>
                 <DateRangePickerExample
                   retrieve_dates={setrequestInfo}
                   requestInfo={requestInfo}
                 />
-                ,
               </div>
             </div>
-            <h6 style={{ color: "red", marginTop: 20 }}>
-              {send_request.errors && send_request.errors}
-            </h6>
-            <button
-              type="submit"
-              className="waves-effect waves-light btn"
-              onClick={sendRequest}
-            >
-              SEND
-            </button>
+            <div style={{ height: 90 }}>
+              <h6 style={{ color: "red", height: 25 }}>
+                {send_request.errors && send_request.errors}
+              </h6>
+              <button
+                type="submit"
+                className="waves-effect waves-light btn contact"
+                onClick={sendRequest}
+              >
+                SEND
+              </button>
+            </div>
           </div>
         )}
       </div>

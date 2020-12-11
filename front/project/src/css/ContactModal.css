@@ -1,0 +1,212 @@
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 101;
+}
+
+.modal-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 60%;
+  width: 50%;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 101;
+  padding: 40px;
+  border-radius: 25px;
+  background-color: #f3f3f3;
+}
+/* styling alert */
+.modal-backdrop.alert {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-box.alert {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 20% !important;
+  width: 35%;
+  background-color: white;
+  z-index: 101;
+  padding: 30px;
+  border-radius: 20px;
+  /* border: solid black 1px; */
+  text-align: center;
+}
+/* styling contact modal  */
+.modal-box.contact {
+  width: 800px;
+  display: grid;
+  grid-template-rows: 40px auto 90px;
+  height: 350px !important;
+  padding: 10px;
+  padding-bottom: 30px;
+}
+.modal-box.contact button {
+  width: 95%;
+}
+.modal-box.contact textarea {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  resize: none;
+  border-radius: 15px;
+  border: 2px solid #679b9b;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.modal-box.contact textarea:focus {
+  outline: none;
+  cursor: auto;
+}
+.modal-box.contact > div.form_contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  height: 300px;
+}
+.spanContact {
+  font-size: 1.5em;
+  font-weight: 1000;
+  color: #2d3c4e;
+}
+.modal-box.contact .calendar {
+  margin-top: 60px;
+  margin-left: 20px;
+}
+
+@media (max-width: 992px) {
+  .modal-box.contact {
+    height: 500px !important;
+    width: 400px !important;
+  }
+  .modal-box.contact .form_contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .modal-box.contact textarea {
+    height: 150px;
+  }
+  .modal-box.contact .calendar {
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .modal-box.contact {
+    height: 800px;
+    width: 250px;
+  }
+  .modal-box.contact div.form_contact {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .modal-box.contact textarea {
+    width: 250px;
+  }
+  .modal-box.contact > div {
+    flex-wrap: wrap;
+  }
+  .spanContact {
+    font-size: 1.3em !important;
+  }
+  .view_request {
+    height: 60% !important;
+  }
+}
+
+/* styling view request */
+.modal-box.view_request {
+  width: 420px;
+  max-height: 75%;
+  height: fit-content;
+  padding: 10px;
+  padding-bottom: 30px;
+  display: grid;
+  grid-template-rows: 40px auto 70px;
+}
+.view_request dd {
+  margin-left: 25px;
+}
+.view_request dt {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #2d3c4e;
+}
+.modal-box.view_request .container_close_icon,
+.modal-box.contact .container_close_icon {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(216, 212, 212, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.modal-box.view_request i {
+  font-size: 1.7em;
+}
+.modal-box.view_request dd i {
+  transform: translate(0px, 13px);
+}
+.modal-box.view_request form {
+  overflow: scroll;
+  margin: 30px;
+  margin-right: 7px;
+}
+.modal-box.view_request form {
+  height: 90%;
+  max-height: 350px;
+  font-family: "Poppins", sans-serif;
+}
+
+.modal-box.view_request button {
+  font-size: 1em;
+  width: 150px;
+  height: 40px;
+}
+/* styling view request */
+.view_request {
+  font-size: 1.5em;
+  text-align: left;
+}
+
+.view_request ::-webkit-scrollbar-thumb {
+  background: #5c8d66 !important;
+  border-radius: 100px;
+}
+.view_request ::-webkit-scrollbar-thumb:hover {
+  background: #64a571 !important;
+}
+
+/* styling picker date */
+.nice-dates-popover {
+  width: 300px !important;
+}
+.nice-dates-day:after {
+}
+.nice-dates-day:before {
+  background-color: #218838 !important;
+}

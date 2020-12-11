@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import addPhotoAction from "../actions/addPhotoAction";
 import { Progress } from "antd";
+import { useAlert } from "react-alert";
 
 const AddPhoto = (props) => {
+  const alert = useAlert();
   const [display, setdisplay] = useState(true);
   const [percent, setpercent] = useState(0);
   const [file, setfile] = useState(null);
@@ -31,6 +33,7 @@ const AddPhoto = (props) => {
       setTimeout(() => {
         setdisplay(false);
         props.setaddPhoto(false);
+        alert.success("Add Photo Success!");
       }, 1000);
     }
   }, [percent]);

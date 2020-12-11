@@ -44,11 +44,11 @@ const Requests = () => {
         request_artisan.requests && request_artisan.requests.length ? (
           <div style={{ width: "50%" }}>
             {request_artisan.requests.map((request, index) => {
-              return <RequestModal key={index} request={request} />;
+              return <RequestModal key={request._id} request={request} />;
             })}
           </div>
         ) : (
-          <h3 style={{ marginTop: 50 }}>NO REQUESTS</h3>
+          <h3>No Requests</h3>
         )
       ) : (
         <h2>{request_artisan.errors}</h2>
@@ -77,132 +77,176 @@ const RequestModal = ({ request }) => {
     dispatch(accept_artisanAction(request._id));
     dispatch(checkRequest_artisan());
   };
-
+  let styleCard;
+  request.state === "Confirmed By Client" ||
+  request.state === "Accepted By Artisan" ||
+  request.state === "Ignored By Client"
+    ? (styleCard = {
+        width: "100%",
+      })
+    : (styleCard = {});
   return (
     <div>
-      {" "}
       {testRespond && (
         <ArtisanResponse
           settestRespond={settestRespond}
           id_client={request.id_client._id}
         />
       )}
-      {request.state !== "Rejected" &&
-        (request.state === "Ignored By Client" ? (
-          <div className="request_modal">
-            <div className="title_request">
-              Request from &nbsp;
-              <a href="">
+      <div className="card">
+        <div style={styleCard} className="additional">
+          <div className="user-card">
+            {/* <div className="level center">Level 13</div>
+            <div className="points center">hhhh</div> */}
+            <div width="110" height="110" viewBox="0 0 250 250" role="img">
+              <img
+                className="photo_request"
+                src={
+                  request.id_client.avatar
+                    ? request.id_client.avatar
+                    : "/images/profile_photo.png"
+                }
+                alt="photo"
+              />
+            </div>
+          </div>
+          <div className="more-info">
+            <h3>
+              <a style={{ color: "white" }}>
+                {" "}
                 {upper(request.id_client.f_name) +
                   " " +
-                  upper(request.id_client.l_name)}
+                  upper(request.id_client.l_name)}{" "}
               </a>
-            </div>
-            <ul>
-              <li style={{ fontWeight: "bold", marginTop: 20 }}>
-                Ignored By The Client
-              </li>
-            </ul>
-            <div style={{ textAlign: "center" }}>
-              <button
-                className="waves-effect waves-light btn"
-                onClick={rejectRequest}
-              >
-                OK
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="request_modal">
-            {request.id_client && (
-              <div className="title_request">
-                <span> Request from:</span>{" "}
-                <a>
+            </h3>
+            {request.state !== "Rejected" && (
+              // (request.state === "Ignored By Client" ? (
+              //   <div className="request_modal">
+              //     <ul>
+              //       <li style={{ fontWeight: "bold", marginTop: 20 }}>
+              //         Ignored By The Client
+              //       </li>
+              //     </ul>
+              //     <div style={{ textAlign: "center" }}>
+              //       <button
+              //         className="waves-effect waves-light btn"
+              //         onClick={rejectRequest}
+              //       >
+              //         OK
+              //       </button>
+              //     </div>
+              //   </div>
+              // ) :
+
+              <div className="infoRequest">
+                <div>
+                  <span>Message:</span> <div>{upper(request.msg_client)}</div>
+                </div>
+                <div>
+                  <span>Sent at:</span>{" "}
+                  <div>{new Date(request.created_at).toUTCString()}</div>
+                </div>
+                <div>
+                  <span>Date required:</span>{" "}
+                  <div>
+                    {
+                      new Date(request.start_date)
+                        .toLocaleString("en-GB", {})
+                        .split(", ")[0]
+                    }{" "}
+                    <i class="material-icons">arrow_forward</i>{" "}
+                    {
+                      new Date(request.end_date)
+                        .toLocaleString("en-GB", {})
+                        .split(", ")[0]
+                    }
+                  </div>
+                </div>
+                {request.msg_artisan && (
+                  <div>
+                    <span> Your Response:</span>
+                    <div>{upper(request.msg_artisan)}</div>
+                  </div>
+                )}
+                {request.start_date_artisan && request.end_date_artisan && (
+                  <div>
+                    <span> Your Date Offers:</span>{" "}
+                    <div>
+                      {
+                        new Date(request.start_date_artisan)
+                          .toLocaleString("en-GB")
+                          .split(", ")[0]
+                      }{" "}
+                      <i class="material-icons">arrow_forward</i>{" "}
+                      {
+                        new Date(request.end_date_artisan)
+                          .toLocaleString("en-GB", {})
+                          .split(", ")[0]
+                      }
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="stats">
+              {request.state === "Accepted By Artisan" ||
+              request.state === "Confirmed By Client" ? (
+                <div style={{ textAlign: "center" }}>
                   {" "}
-                  {`${upper(request.id_client.f_name)} ${upper(
-                    request.id_client.l_name
-                  )}`}
-                </a>
-              </div>
-            )}
-            <ul>
-              <li>
-                {" "}
-                <span>Message:</span> {upper(request.msg_client)}
-              </li>
-              <li>
-                <span>Sent at:</span>{" "}
-                {new Date(request.created_at).toUTCString()}
-              </li>
-              <li>
-                <span>Date required:</span> From{" "}
-                {
-                  new Date(request.start_date)
-                    .toLocaleString("en-GB", {})
-                    .split(", ")[0]
-                }{" "}
-                To{" "}
-                {
-                  new Date(request.end_date)
-                    .toLocaleString("en-GB", {})
-                    .split(", ")[0]
-                }
-              </li>
-              {request.msg_artisan && (
-                <li>
-                  <span> Your Response:</span> {upper(request.msg_artisan)}
-                </li>
+                  <i class="fas fa-check"></i>
+                </div>
+              ) : request.state === "Ignored By Client" ? (
+                <div style={{ textAlign: "center" }}>
+                  <i className="large material-icons">close</i>
+                </div>
+              ) : (
+                <div style={{ textAlign: "center" }}>
+                  <button
+                    className="waves-effect waves-light btn"
+                    onClick={handleIgnore}
+                  >
+                    IGNORE
+                  </button>
+                  <button
+                    className="waves-effect waves-light btn"
+                    onClick={
+                      (e) => settestRespond(true)
+                      // request.id_client &&
+                      // history.push(`/artisanResponse/${request.id_client._id}`)
+                    }
+                  >
+                    {request.state === "Respond Artisan" ? "Update" : "Respond"}
+                  </button>
+                  <button
+                    className="waves-effect waves-light btn"
+                    onClick={handleAccept}
+                  >
+                    ACCEPT
+                  </button>
+                </div>
               )}
-              {request.start_date_artisan && request.end_date_artisan && (
-                <li>
-                  <span> Your Date Offers:</span> From{" "}
-                  {
-                    new Date(request.start_date_artisan)
-                      .toLocaleString("en-GB")
-                      .split(", ")[0]
-                  }{" "}
-                  To{" "}
-                  {
-                    new Date(request.end_date_artisan)
-                      .toLocaleString("en-GB", {})
-                      .split(", ")[0]
-                  }
-                </li>
-              )}
-            </ul>
-            {request.state === "Accepted By Artisan" ? (
-              <div style={{ textAlign: "center" }}>
-                {" "}
-                <i class="fas fa-check"></i>
-              </div>
-            ) : (
-              <div style={{ textAlign: "center" }}>
-                <button
-                  className="waves-effect waves-light btn"
-                  onClick={handleIgnore}
-                >
-                  IGNORE
-                </button>
-                <button
-                  className="waves-effect waves-light btn"
-                  onClick={
-                    (e) => settestRespond(true)
-                    // request.id_client &&
-                    // history.push(`/artisanResponse/${request.id_client._id}`)
-                  }
-                >
-                  {request.state === "Respond Artisan" ? "Update" : "Respond"}
-                </button>
-                <button
-                  className="waves-effect waves-light btn"
-                  onClick={handleAccept}
-                >
-                  ACCEPT
-                </button>
+            </div>
+            {request.state === "Ignored By Client" && (
+              <div className="general" style={{ color: "#c41717" }}>
+                <span className="more">Ignored by the client</span>
               </div>
             )}
           </div>
-        ))}
+        </div>
+        <div className="general">
+          <h3>
+            {" "}
+            {upper(request.id_client.f_name) +
+              " " +
+              upper(request.id_client.l_name)}
+          </h3>
+          <h5>{request.id_client.address && request.id_client.address}</h5>
+          {/* <p>
+            {request.id_artisan.description && request.id_artisan.description}
+          </p> */}
+          <span className="more">Mouse over the card for more info</span>
+        </div>
+      </div>
     </div>
   );
 };

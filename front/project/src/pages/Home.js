@@ -12,7 +12,7 @@ const Home = () => {
   const history = useHistory();
   useEffect(() => {
     if (auth.isAuth || localStorage.getItem("token")) {
-      dispatch(loadClient());
+      // dispatch(loadClient());
       history.push("/profile");
     }
   });
@@ -30,9 +30,7 @@ const Home = () => {
       <div className="home_container">
         <div className="home_header">
           <div className="home1">
-            <span style={{ width: "20%", textAlign: "left" }}>
-              IT IS THE WORK WHICH GIVES THE MEASURE OF THE WORKER
-            </span>
+            <span>IT IS THE WORK WHICH GIVES THE MEASURE OF THE WORKER</span>
           </div>
         </div>
         {/* <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
@@ -43,8 +41,6 @@ const Home = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "white",
-            // backgroundColor: "#222",
             minHeight: "100vh",
           }}
         >

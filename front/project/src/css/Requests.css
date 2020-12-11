@@ -1,0 +1,228 @@
+/* styling requests */
+@import url("https://fonts.googleapis.com/css?family=Abel");
+
+.requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  /* height: 100%; */
+  /* background-color: #ffeadb; */
+}
+.requests h3 {
+  margin-top: 20px;
+  font-weight: 550;
+  font-size: 40px;
+}
+.card {
+  width: 700px;
+  height: 400px;
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin: 1.5rem;
+}
+
+.card h1 {
+  text-align: center;
+}
+
+.card .additional {
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  /* background: linear-gradient(#de685e, #ee786e); */
+  background: rgba(35, 47, 62);
+  /* background: linear-gradient(#92bca6, #a2ccb6); */
+  /* background-color: white; */
+  transition: width 0.4s;
+  overflow: hidden;
+  z-index: 2;
+  color: white;
+}
+
+.card:hover .additional {
+  width: 100%;
+  border-radius: 0 5px 5px 0;
+}
+
+.card .additional .user-card {
+  width: 150px;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+.card .additional .user-card::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10%;
+  right: -2px;
+  height: 80%;
+  border-left: 2px solid rgba(0, 0, 0, 0.025);
+}
+
+.card .additional .user-card .level,
+.card .additional .user-card .points {
+  position: absolute;
+  top: 15%;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.125rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  left: 25%;
+}
+
+.card .additional .user-card .points {
+  top: 85% !important;
+}
+
+.card .additional .user-card svg {
+  top: 50%;
+}
+
+.card .additional .more-info {
+  width: 550px;
+  float: left;
+  position: absolute;
+  left: 150px;
+  height: 100%;
+}
+.card .additional .more-info h1 {
+  color: #fff;
+  margin-bottom: 0;
+}
+.card .additional .more-info span {
+  text-decoration: underline;
+  font-size: 1.1em;
+}
+.infoRequest {
+  text-align: left;
+  font-size: 1.5em;
+  padding-left: 10px;
+  height: 60%;
+  overflow: scroll;
+  overflow-x: hidden !important;
+}
+.infoRequest span {
+  font-weight: 300;
+  color: #ffe75e;
+}
+.infoRequest span + div {
+  margin-left: 20px;
+}
+
+.card .additional .coords {
+  margin: 0 1rem;
+  color: #fff;
+  font-size: 1rem;
+}
+.card h3 a:hover {
+  /* background-color: #6da77a; */
+  color: #218838 !important;
+}
+
+.card .additional .coords span + span {
+  float: right;
+}
+
+.card .additional .stats {
+  font-size: 2rem;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  top: auto;
+  color: #fff;
+}
+.stats .waves-effect.waves-light.btn {
+  font-size: 0.7em !important;
+  margin-right: 100px;
+  margin: 0px 10px !important;
+  width: 127px;
+}
+
+.card .additional .stats > div {
+  flex: 1;
+  text-align: center;
+}
+
+.card .additional .stats i {
+  display: block;
+  font-size: 2.5em !important;
+  margin-right: 100px;
+}
+.card .additional .stats i.large.material-icons {
+  color: #c41717;
+  font-size: 3.1em !important;
+  font-weight: 1000;
+}
+
+.card .additional .stats div.title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.card .additional .stats div.value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+.card .additional .stats div.value.infinity {
+  font-size: 2.5rem;
+}
+
+.card .general {
+  width: 550px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.card .general .more {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+.photo_request {
+  width: 120px;
+  height: 120px;
+  /* box-sizing: border-box;
+  background-clip: content-box;
+  border: solid black 0px; */
+  border-radius: 49.9%;
+  display: flex;
+  justify-content: stretch;
+  position: absolute;
+  top: 30%;
+  left: 14px;
+}
+/* styling scrollbar */
+.requests ::-webkit-scrollbar:hover {
+  background-color: #324150 !important;
+}
+.requests ::-webkit-scrollbar-thumb {
+  background: #5c8d66 !important;
+  border-radius: 100px;
+}
+.requests ::-webkit-scrollbar-thumb:hover {
+  background: #64a571 !important;
+}

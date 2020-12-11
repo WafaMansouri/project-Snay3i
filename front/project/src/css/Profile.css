@@ -1,0 +1,175 @@
+/* styling Profile */
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0px;
+}
+.profile li {
+  font-size: 1.5em;
+  display: flex;
+  font-weight: 600;
+}
+.info ul {
+  text-align: justify;
+  width: 95%;
+}
+.info ul i {
+  transform: translate(0px, 7px);
+}
+.profile li:not(.ant-rate-star) {
+  line-height: 45px;
+}
+.containerInfo,
+.containerPosts {
+  position: relative;
+  background-color: white;
+}
+.containerPosts {
+  padding: 60px;
+}
+.containerInfo {
+  /* height: fit-content !important; */
+  min-height: calc(100vh - 150px) !important;
+  margin: 30px;
+  z-index: 1;
+  background-color: #eaeded;
+  display: flex;
+}
+.containerInfo > div:not(.info) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 130px 40px 0px 40px;
+  background-image: url("/back-carte-blue.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: #ffe75e; */
+  margin-right: 30px;
+}
+.containerInfo .rate {
+  display: flex;
+}
+.containerInfo .info {
+  width: 100%;
+  padding: 30px;
+  padding-top: 60px;
+}
+.containerInfo .info > div,
+.containerPosts > div:not(.container-posts) {
+  width: 95%;
+  text-align: right;
+  padding-bottom: 15px;
+}
+.containerPosts > div {
+  margin-right: 20px;
+}
+.containerInfo .info > div a {
+  padding-right: 10px;
+}
+.containerInfo a,
+.containerPosts a {
+  font-size: 1.7em;
+  margin-bottom: 50px !important;
+  text-decoration: underline;
+  color: #218838;
+  font-weight: 1000 !important;
+}
+.containerInfo a + i,
+.containerPosts a + i {
+  font-size: 1.7em;
+  color: #218838;
+}
+.container-posts {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+.cadrePhoto {
+  width: 220px;
+  height: 220px;
+  box-sizing: border-box;
+  background-clip: content-box;
+  background-image: url("/images/profileBack.png");
+  border: solid black 0px;
+  border-radius: 49.9%;
+  border-top-left-radius: 49.9%;
+  border-top-right-radius: 49.9%;
+  border-bottom-right-radius: 49.9%;
+  border-bottom-left-radius: 49.9%;
+  display: flex;
+  justify-content: stretch;
+  margin-bottom: 10px;
+}
+.container_icon_add_photo {
+  width: 42px;
+  height: 42px;
+  border-radius: 49.9%;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: translate(-7px, 39px);
+  text-decoration: none;
+}
+.container_icon_add_photo i {
+  transform: translate(-1px, 4px);
+  color: #232f3e;
+}
+/* styling post modal */
+.cardPost,
+.cardPost-action,
+.cardPost-image {
+  width: 100%;
+}
+.cardPost-image img {
+  width: 100%;
+}
+.cardPost-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 7px;
+}
+.cardPost-action a i {
+  /* in visit profile */
+  transform: translate(0px, -3px);
+  margin-right: 6px;
+  color: #c41717;
+}
+.cardPost-title {
+  color: #c41717 !important;
+  padding-bottom: 0px !important;
+  font-weight: bold !important;
+  font-size: 1.9em;
+}
+.cardPost-content p {
+  font-size: 1.3em;
+  padding-top: 30px;
+}
+.cardPost-content {
+  padding-bottom: 20px;
+}
+.colPost.s12.m7 {
+  min-width: 100% !important;
+}
+.rowPost {
+  padding: 20px 0px 40px 0px;
+  margin-bottom: 100px;
+  width: 80%;
+}
+.created_at {
+  text-align: left;
+  font-weight: 700;
+  padding-top: 6px;
+  padding-left: 10px;
+  border-bottom: 0.5px solid #c41717;
+}
+/* styling rate */
+.profile .ant-rate-star.ant-rate-star-zero .anticon {
+  color: #232f3e !important;
+}
+/*buttons in visitProfile*/
+.waves-effect.waves-light.btn.visit {
+  width: 100%;
+  font-size: 1.5em;
+  height: 40px;
+  transform: translate(0px, 34px);
+}

@@ -47,13 +47,12 @@ const Profile = () => {
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               justifyContent: "space-evenly",
             }}
           >
             <div className="containerInfo">
-              <a onClick={(e) => setupdateInfo(true)}>UPDATE YOUR PROFILE</a>
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div>
                 <div className="cadrePhoto">
                   <img
                     className="cadrePhoto"
@@ -65,95 +64,110 @@ const Profile = () => {
                     alt="profile photo"
                   ></img>
                   <a
-                    style={{ transform: "translate(-91%, 0px)" }}
+                    style={{ transform: "translate(-98%, 120px)" }}
                     onClick={(e) => setaddPhoto(true)}
                   >
-                    <i class="small material-icons">add_a_photo</i>
+                    <div className="container_icon_add_photo">
+                      <i class="small material-icons">add_a_photo</i>
+                    </div>
                   </a>
                 </div>
+                {auth.user.state === "Artisan" && (
+                  <div className="rate">
+                    <Rate
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        color: "#232f3e",
+                        fontSize: 15,
+                      }}
+                      allowHalf
+                      disabled
+                      value={rate_artisan.rate ? rate_artisan.rate.rate : 0}
+                    />
+                    <span
+                      style={{
+                        textAlign: "center",
+                        fontSize: "1.5em",
+                        marginLeft: 15,
+                        color: "#232f3e",
+                      }}
+                    >
+                      {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
+                    </span>
+                    <span style={{ paddingTop: 5, color: "#232f3e" }}>
+                      <i class="material-icons">person</i>
+                    </span>
+                  </div>
+                )}
               </div>
-              {rate_artisan.rate && (
-                <div className="rate">
-                  <Rate
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      color: "gray",
-                      fontSize: 12,
-                    }}
-                    allowHalf
-                    disabled
-                    defaultValue={rate_artisan.rate.rate}
-                  />
-                  <span
-                    style={{
-                      textAlign: "center",
-                      fontSize: "1.5em",
-                      marginLeft: 5,
-                    }}
-                  >
-                    {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
-                  </span>
-                  <span style={{ paddingTop: 5 }}>
-                    <i class="material-icons">person</i>
-                  </span>
+              <div className="info">
+                <div>
+                  <a onClick={(e) => setupdateInfo(true)}>
+                    Update your profile
+                  </a>
+                  <i class="fas fa-user-edit"></i>
                 </div>
-              )}
-              <ul>
-                <li>
-                  <i class="small material-icons">account_circle</i>&nbsp;
-                  {upper(auth.user.f_name) + " " + upper(auth.user.l_name)}
-                </li>
-                <li>
-                  <i class="small material-icons">email</i>&nbsp;
-                  {auth.user.email}
-                </li>
-                {auth.user.category && (
+                <ul>
                   <li>
-                    <i class="small material-icons">work</i>&nbsp;
-                    {upper(auth.user.category)}
+                    <i class="small material-icons">account_circle</i>&nbsp;
+                    {upper(auth.user.f_name) + " " + upper(auth.user.l_name)}
                   </li>
-                )}
-                {auth.user.address && (
                   <li>
-                    <i class="small material-icons">phone</i>&nbsp;{" "}
-                    {auth.user.tel}
+                    <i class="small material-icons">email</i>&nbsp;
+                    {auth.user.email}
                   </li>
-                )}
-                {auth.user.address && (
+                  {auth.user.category && (
+                    <li>
+                      <i class="small material-icons">work</i>&nbsp;
+                      {upper(auth.user.category)}
+                    </li>
+                  )}
+                  {auth.user.tel && (
+                    <li>
+                      <i class="small material-icons">phone</i>&nbsp;{" "}
+                      {auth.user.tel}
+                    </li>
+                  )}
+                  {auth.user.address && (
+                    <li>
+                      <i class="small material-icons">add_location</i>&nbsp;{" "}
+                      {auth.user.address}
+                    </li>
+                  )}
+                  {auth.user.description && (
+                    <li>
+                      <i class="small material-icons">description</i>&nbsp;{" "}
+                      {upper(auth.user.description)}
+                    </li>
+                  )}
                   <li>
-                    <i class="small material-icons">add_location</i>&nbsp;{" "}
-                    {auth.user.address}
+                    <i class="small material-icons">access_time</i>&nbsp; member
+                    since{" "}
+                    {new Date(auth.user.created_at).toLocaleString("default", {
+                      month: "long",
+                    }) +
+                      " " +
+                      new Date(auth.user.created_at).getFullYear()}
                   </li>
-                )}
-                {auth.user.description && (
-                  <li>
-                    <i class="small material-icons">description</i>&nbsp;{" "}
-                    {upper(auth.user.description)}
-                  </li>
-                )}
-                <li>
-                  <i class="small material-icons">access_time</i>&nbsp; member
-                  since{" "}
-                  {new Date(auth.user.created_at).toLocaleString("default", {
-                    month: "long",
-                  }) +
-                    " " +
-                    new Date(auth.user.created_at).getFullYear()}
-                </li>
 
-                {auth.user.age && <li>Age: {auth.user.age}</li>}
-              </ul>
+                  {auth.user.age && <li>Age: {auth.user.age}</li>}
+                </ul>
+              </div>
             </div>
             {auth.user.state === "Artisan" && (
               <div className="containerPosts">
                 {auth.user && auth.user.state === "Artisan" && (
-                  <a onClick={(e) => setaddPostTest(true)}>ADD NEW POST</a>
+                  <div>
+                    <a onClick={(e) => setaddPostTest(true)}>Add new post</a>
+                    &nbsp;
+                    <i class="fas fa-plus"></i>
+                  </div>
                 )}
                 {posts.posts && (
                   <div className="container-posts">
                     {posts.posts.map((post, index) => {
-                      return <PostModal key={index} post={post} />;
+                      return <PostModal key={post._id} post={post} />;
                     })}
                   </div>
                 )}
@@ -185,25 +199,25 @@ const PostModal = ({ post }) => {
   const [alertDelete, setalertDelete] = useState(false);
 
   return (
-    <div>
-      <div className="row">
-        <div className="col s12 m7">
-          <div className="card">
-            <div className="card-image">
-              <img src={post.photo ? post.photo : "image/profileBack.png"} />
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="rowPost">
+        <div className="colPost s12 m7">
+          <div className="cardPost">
+            <div className="cardPost-image">
+              <img src={post.photo} />
             </div>
-            <div className="card-content">
-              <span className="card-title">{upper(post.title)}</span>
+            <div className="cardPost-content">
+              <span className="cardPost-title">{upper(post.title)}</span>
               <p>{upper(post.description)}</p>
             </div>
-            <div style={{ textAlign: "left", fontWeight: "700" }}>
+            <div className="created_at">
               Created at: {new Date(post.created_at).toLocaleString("en-GB")}
             </div>
-            <div className="card-action">
+            <div className="cardPost-action">
               <div style={{ display: "flex", alignItems: "center" }}>
                 <i
                   className="small material-icons"
-                  style={{ color: "#ff3399" }}
+                  style={{ color: "#c41717" }}
                 >
                   favorite
                 </i>
@@ -219,7 +233,7 @@ const PostModal = ({ post }) => {
                 >
                   <i
                     className="small material-icons"
-                    style={{ color: "#ff3399" }}
+                    style={{ color: "#c41717" }}
                   >
                     delete
                   </i>

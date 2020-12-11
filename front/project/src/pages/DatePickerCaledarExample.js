@@ -49,11 +49,6 @@ function DatePickerCalendarExample({ id_client, setnewDates }) {
 
   return (
     <div>
-      <p>
-        {/* {request && request.start_date} */}
-        Selected date:{" "}
-        {/* {date ? format(date, "dd MMM yyyy", { locale: enGB }) : "none"}. */}
-      </p>
       {/* <DatePickerCalendar date={date} onDateChange={setDate} locale={enGB} /> */}
       <DateRangePicker
         startDate={

@@ -12,7 +12,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
             <Component {...props} />
           ) : (
             <Redirect
-              to={rest.path === "/profile" ? "/login" : "/loginAdmin"}
+              to={
+                rest.path === "/profile" || "/requests" || "/requests-client"
+                  ? "/login"
+                  : "/loginAdmin"
+              }
             />
           )
         }

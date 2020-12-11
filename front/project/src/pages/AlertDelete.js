@@ -35,11 +35,7 @@ const AlertDelete = (props) => {
               dispatch(deletePostAction(props.post_id));
               setdisplay(false);
               props.setalertDelete(false);
-              alert.success(
-                <div style={{ fontSize: "1.3em", textAlign: "center" }}>
-                  Post Deleted with success
-                </div>
-              );
+              alert.success(<div>Post Deleted with success</div>);
             }}
             className="waves-effect waves-light btn"
             type="submit"

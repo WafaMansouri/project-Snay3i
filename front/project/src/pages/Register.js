@@ -33,103 +33,133 @@ const Register = ({ history }) => {
     if (auth.errors) {
       seterrors(auth.errors);
     }
-  }, [auth.isAuth, auth.errors]);
+  }, [auth.isAuth, auth]);
   //to retrieve categories from database and update state category
   useEffect(() => {
     dispatch(retrieveCategories());
   }, [dispatch]);
-  // Change the state of the user
-  const handleUserState = () => {
-    if (info.state === "Client") {
-      setInfo({ ...info, state: "Artisan" });
-    } else {
-      setInfo({ ...info, state: "Client" });
-    }
-  };
+
   return (
-    <div className="container_login">
-      <form className="form_login" onSubmit={registerNow}>
-        <button type="button" onClick={handleUserState}>
-          {info.state}
-        </button>
-        <div>
-          <input
-            className="browser-default"
-            type="text"
-            name="f_name"
-            placeholder="  &#xF007; First Name"
-            style={{ fontFamily: "Arial, FontAwesome" }}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <input
-            className="browser-default"
-            type="text"
-            name="l_name"
-            placeholder="  &#xF007; Last Name"
-            style={{ fontFamily: "Arial, FontAwesome" }}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <input
-            className="browser-default"
-            type="email"
-            name="email"
-            placeholder="  &#xF0E0; Email"
-            style={{ fontFamily: "Arial, FontAwesome" }}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <input
-            className="browser-default"
-            type="password"
-            name="password"
-            placeholder="  &#xF023; Password"
-            style={{ fontFamily: "Arial, FontAwesome" }}
-            onChange={handleChange}
-          />
-        </div>
-        {info.state === "Artisan" && (
-          // Add Category
-          <div>
-            <select
-              className="browser-default"
-              name="category"
+    <div className="container_login register">
+      <form
+        className="form_login"
+        onSubmit={registerNow}
+        onFocus={() => seterrors(null)}
+      >
+        <div className="grid_item_login">
+          <div className="login_radioGroup">
+            <input
               onChange={handleChange}
-              required
-            >
-              {/* {handleCategory()} */}
-              <option value="" disabled selected>
-                "--Select Category--"
-              </option>
-              {category.categories.map((el, index) => (
-                <option key={index} value={el.name}>
-                  {el.name}
-                </option>
-              ))}
-            </select>
-            {/* Add Address */}
-            <select
-              className="browser-default"
-              name="address"
+              className="login_radio"
+              // className="browser-default"
+              type="radio"
+              id="client"
+              name="state"
+              value="Client"
+              defaultChecked
+            />
+            <label for="client" className="login_radioLabel">
+              Client
+            </label>
+            <input
               onChange={handleChange}
-              required
-            >
-              <Governorate />
-            </select>
+              className="login_radio"
+              type="radio"
+              id="artisan"
+              name="state"
+              value="Artisan"
+            />
+            <label for="artisan" className="login_radioLabel">
+              Artisan
+            </label>
           </div>
-        )}
-        <button
-          className="waves-effect waves-light btn"
-          style={{ borderRadius: 8 }}
-          type="submit"
-        >
-          Register {info.state}
-        </button>
-        {errors && <h6 style={{ color: "red", marginTop: 10 }}>{errors}</h6>}
+          <div>
+            <input
+              className="browser-default"
+              type="text"
+              name="f_name"
+              placeholder="  &#xF007; First Name"
+              style={{ fontFamily: "Arial, FontAwesome" }}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <input
+              className="browser-default"
+              type="text"
+              name="l_name"
+              placeholder="  &#xF007; Last Name"
+              style={{ fontFamily: "Arial, FontAwesome" }}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <input
+              className="browser-default"
+              type="email"
+              name="email"
+              placeholder="  &#xF0E0; Email"
+              style={{ fontFamily: "Arial, FontAwesome" }}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <input
+              className="browser-default"
+              type="password"
+              name="password"
+              placeholder="  &#xF023; Password"
+              style={{ fontFamily: "Arial, FontAwesome" }}
+              onChange={handleChange}
+            />
+          </div>
+          {info.state === "Artisan" && (
+            // Add Category
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <select
+                className="browser-default"
+                name="category"
+                onChange={handleChange}
+              >
+                {/* {handleCategory()} */}
+                <option value="" disabled selected>
+                  "--Select Category--"
+                </option>
+                {category.categories.map((el, index) => (
+                  <option key={index} value={el.name}>
+                    {el.name}
+                  </option>
+                ))}
+              </select>
+              {/* Add Address */}
+              <select
+                className="browser-default"
+                name="address"
+                onChange={handleChange}
+              >
+                <Governorate />
+              </select>
+            </div>
+          )}
+        </div>
+        <div className="grid_item_login">
+          <div style={{ height: 30 }}>
+            {errors && <h6 className="errorRegister">{errors}</h6>}
+          </div>
+          <button
+            className="waves-effect waves-light btn"
+            style={{ borderRadius: 8 }}
+            type="submit"
+          >
+            Register {info.state}
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -137,7 +167,7 @@ const Register = ({ history }) => {
 const Governorate = () => {
   return (
     <>
-      <option disabled selected>
+      <option className="r" disabled selected>
         "--Select Your Governorate--"
       </option>
       <option>Ariana</option>

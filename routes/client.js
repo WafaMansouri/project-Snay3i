@@ -62,7 +62,7 @@ router.post(
     } else {
       Intervention.findByIdAndUpdate(
         req.body.id_request,
-        { state: "Confirmed By Artisan" },
+        { state: "Confirmed By Client" },
         { new: true, useFindAndModify: false }
       )
         .exec()
