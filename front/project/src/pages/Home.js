@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { loadClient } from "../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import ScrollAnimation from "react-animate-on-scroll";
 import Footer from "./Footer";
 import sendMessageAction from "../actions/sendMessageAction";
+import { useAlert } from "react-alert";
 
 const Home = () => {
+  const alert = useAlert();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,6 +24,7 @@ const Home = () => {
   const sendMessage = (e) => {
     e.preventDefault();
     dispatch(sendMessageAction(info));
+    alert.success("Message Sent Successfully!");
     setinfo({ f_name: "", l_name: "", email: "", mobile: "", message: "" });
   };
   return (
@@ -33,9 +35,6 @@ const Home = () => {
             <span>IT IS THE WORK WHICH GIVES THE MEASURE OF THE WORKER</span>
           </div>
         </div>
-        {/* <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
-              <h1 style={{ color: "rgb(60,118,96)" }}>Why SNAY3I ?</h1>
-            </ScrollAnimation> */}
         <div
           style={{
             display: "flex",

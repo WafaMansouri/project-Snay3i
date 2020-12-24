@@ -17,38 +17,63 @@ const StarRating = () => {
     if (rate_client.rate) setrating(rate_client.rate.value);
   }, [rate_client.rate]);
   return (
-    <div style={{ textAlign: "left" }}>
-      {[...Array(5)].map((star, i) => {
-        let ratingValue = i + 1;
-        return (
-          <label key={i}>
-            <input type="radio" name="rating" value={ratingValue} />
-            <i
-              className="fas fa-star"
-              style={{
-                fontSize: 27,
-                color:
-                  ratingValue <= rating
-                    ? "#ffcc00"
-                    : ratingValue <= hover
-                    ? "#ffe680"
-                    : "gray",
-              }}
-              onMouseEnter={(e) => sethover(ratingValue)}
-              onMouseLeave={(e) => sethover(null)}
-              onClick={(e) => {
-                setrating(ratingValue);
-                dispatch(
-                  ratingAction({
-                    rate: ratingValue,
-                    id_artisan: visit.artisan._id,
-                  })
-                );
-              }}
-            ></i>
-          </label>
-        );
-      })}
+    <div>
+      <div style={{ textAlign: "left" }}>
+        {[...Array(5)].map((star, i) => {
+          let ratingValue = i + 1;
+          return (
+            <label key={i}>
+              <input type="radio" name="rating" value={ratingValue} />
+              <i
+                className="fas fa-star"
+                style={{
+                  color:
+                    ratingValue <= rating
+                      ? "rgb(241, 241, 9)"
+                      : ratingValue <= hover
+                      ? "rgb(241, 241, 9)"
+                      : "gray",
+                }}
+                onMouseEnter={(e) => sethover(ratingValue)}
+                onMouseLeave={(e) => sethover(null)}
+                onClick={(e) => {
+                  setrating(ratingValue);
+                  dispatch(
+                    ratingAction({
+                      rate: ratingValue,
+                      id_artisan: visit.artisan._id,
+                    })
+                  );
+                }}
+              ></i>
+            </label>
+          );
+        })}
+      </div>
+      <h5 className="message_rate">
+        {rating === 1
+          ? " Not at all satisfied"
+          : rating === 2
+          ? "Slightly satisfied"
+          : rating === 3
+          ? "Neutral"
+          : rating === 4
+          ? "Satisfied"
+          : rating === 5
+          ? "Very satisfied"
+          : "You can make a rate"}
+      </h5>
+      <i class="material-icons" style={{ fontSize: "4em", color: "#232F3E" }}>
+        {rating === 1
+          ? " sentiment_very_dissatisfied"
+          : rating === 2
+          ? "sentiment_dissatisfied"
+          : rating === 3
+          ? "sentiment_neutral"
+          : rating === 4
+          ? "sentiment_satisfied"
+          : rating === 5 && "sentiment_very_satisfied"}
+      </i>
     </div>
   );
 };

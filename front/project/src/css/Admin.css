@@ -1,0 +1,91 @@
+td {
+  text-align: center;
+}
+.links_sections {
+  height: 60px;
+  background-color: white;
+}
+.links_sections > ul {
+  display: grid;
+  grid-template-columns: 33.33% 33.33% 33.34%;
+  font-size: 2em;
+  height: 100%;
+  line-height: 2.1;
+  letter-spacing: 0.07em;
+}
+.table-dark,
+/*user section*/ thead[data-test="datatable-head"],
+/*user section*/ thead[data-test="table-foot"] {
+  background-color: black;
+  color: white;
+  font-size: 1.7em;
+}
+.table {
+  text-align: center;
+}
+.categories_section form {
+  margin: 20px;
+  margin-top: 50px;
+}
+.categories_section form input {
+  transform: translate(0px, -9px);
+}
+.categories_section form button {
+  width: 70px;
+  height: 38.48px;
+  margin: 0px;
+  margin-left: 10px;
+  transform: translate(-8px, -9px);
+  font-size: 1.5em;
+}
+.categories_section tbody td,
+.messages_section tbody td,
+tbody[data-test="table-body"] td {
+  font-size: 1.5em;
+  padding: 5px 5px;
+}
+.categories_section tbody td button {
+  margin: 10px;
+}
+tbody button:active,
+tbody button:focus,
+.categories_section form button:active,
+.categories_section form button:focus {
+  background-color: rgb(34, 25, 25);
+  color: white;
+}
+.categories_section tbody td button:visited {
+  background-color: black;
+  color: white;
+}
+.messages_section tr,
+tbody[data-test="table-body"] tr {
+  line-height: 2;
+}
+th {
+  font-weight: 500;
+}
+div[data-test="datatable-search"] {
+  height: 0px !important;
+}
+div[data-test="datatable-search"] input {
+  transform: translate(-38px, -20px) !important;
+  border: 1px solid black !important;
+}
+div[data-test="datatable-search"] input::placeholder {
+  padding-left: 20px;
+}
+.pagination li.active {
+  background-color: #1890ff;
+}
+/* styling show entities */
+div.dataTables_length.bs-select > label {
+  color: black;
+}
+select.custom-select.custom-select-sm.form-control.form-control-sm {
+  border: 1px solid black;
+  font-size: 1.8em;
+}
+thead[data-test="datatable-head"] th {
+  cursor: pointer;
+}

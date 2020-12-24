@@ -18,12 +18,12 @@ const Login = ({ history, match }) => {
       setInfo({ ...info, state: "Admin" });
     }
     if (auth.isAuth === true && info.state !== "Admin") {
-      console.log(window.location);
+      // console.log(window.location);
       // dispatch(loadClient());
       history.push("/profile");
       // history.goBack();
     } else if (auth.isAuth === true && info.state === "Admin") {
-      history.push("/admin");
+      history.push("/admin/messages");
     }
     if (auth.errors) {
       seterrors(auth.errors);

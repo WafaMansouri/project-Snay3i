@@ -10,13 +10,8 @@ const AddPostModel = (props) => {
   const [file, setfile] = useState(null);
   const [info, setinfo] = useState({ title: "", description: "" });
   const [percent, setpercent] = useState(0);
-  let config = {
-    headers: { "Content-Type": "multipart/form-data" },
-    onUploadProgress: (progressEvent) =>
-      setpercent(
-        parseInt(Math.floor((progressEvent.loaded * 100) / progressEvent.total))
-      ),
-  };
+  const [error, seterror] = useState(false);
+
   const handleChange = (e) => {
     setinfo({ ...info, [e.target.name]: e.target.value });
   };
@@ -25,7 +20,22 @@ const AddPostModel = (props) => {
   };
   const addPost = (e) => {
     e.preventDefault();
-    dispatch(addPostAction(info, file, config));
+    if (info.description.length < 15)
+      seterror("Your description  must have 15 characters at least");
+    else if (!file) {
+      seterror("Please choose a photo");
+    } else {
+      let config = {
+        headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress: (progressEvent) =>
+          setpercent(
+            parseInt(
+              Math.floor((progressEvent.loaded * 100) / progressEvent.total)
+            )
+          ),
+      };
+      dispatch(addPostAction(info, file, config));
+    }
   };
   const [display, setdisplay] = useState(true);
   useEffect(() => {
@@ -47,43 +57,49 @@ const AddPostModel = (props) => {
             props.setaddPostTest(false);
           }}
         />
-        <div className={"modal-box"}>
-          <form onSubmit={addPost}>
-            <div>
-              <input
-                type="text"
-                name="title"
-                placeholder="TITLE"
-                onChange={handleChange}
-              />
+        <div className={"modal-box add_post"}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              className="container_close_icon"
+              onClick={(e) => {
+                setdisplay(false);
+                props.setaddPostTest(false);
+              }}
+            >
+              <i class="small material-icons">close</i>
             </div>
-            <div>
-              <input
-                type="text"
-                name="description"
-                placeholder="DESCRIPTION"
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
-              <label
-                className="btn btn-primary btn-block btn-outlined"
-                for="mypost"
-              >
-                Choose Photo
-              </label>
-              <input
-                style={{ display: "none" }}
-                className="browser-default"
-                id="mypost"
-                type="file"
-                name="avatar"
-                accept="image/png, image/jpeg"
-                onChange={selectImageToUpload}
-                required
-              />
-            </div>
+          </div>
+          <h4>Add new post</h4>
+          <form>
+            <input
+              type="text"
+              name="title"
+              placeholder="TITLE"
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="DESCRIPTION"
+              onChange={handleChange}
+              // required
+            />
+            <label
+              className="btn btn-primary btn-block btn-outlined"
+              for="mypost"
+            >
+              Choose Photo
+            </label>
+            <input
+              style={{ display: "none" }}
+              className="browser-default"
+              id="mypost"
+              type="file"
+              name="avatar"
+              accept="image/png, image/jpeg"
+              onChange={selectImageToUpload}
+              // required
+            />
             <Progress
               strokeColor={{
                 "0%": "#108ee9",
@@ -92,7 +108,12 @@ const AddPostModel = (props) => {
               percent={percent}
             />
             {/* <Progress percent={percent} /> */}
-            <button className="waves-effect waves-light btn">ADD</button>
+            <h6 style={{ color: "red", height: 50, paddingTop: 20 }}>
+              {error && error}
+            </h6>
+            <button className="waves-effect waves-light btn" onClick={addPost}>
+              ADD
+            </button>
           </form>
         </div>
       </div>

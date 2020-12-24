@@ -1,0 +1,24 @@
+/* styling update_profile */
+.modal-box.update_profile {
+  display: grid;
+  grid-template-rows: 50px auto;
+  padding: 0px;
+}
+.modal-box.update_profile form {
+  margin: 40px;
+}
+.modal-box.update_profile .container_close_icon {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(216, 212, 212, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 15px;
+}
+.modal-box.update_profile form i {
+  font-size: 1.7rem;
+  color: #218838;
+}

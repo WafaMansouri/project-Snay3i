@@ -17,35 +17,23 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 // Create post
-router.post(
-  "/",
-  authMiddleware,
-  [
-    [
-      body("description", "You should write a description").isLength({
-        min: 10,
-      }),
-    ],
-    upload.single("avatar"),
-  ],
-  (req, res) => {
-    let myBody = JSON.parse(req.body.info);
-    let path = `${req.protocol}://${req.hostname}:4000/uploads/${req.file.filename}`;
-    let newPost = new Post({
-      ...myBody,
-      id_owner: req.user_Id,
-      photo: path,
-    });
+router.post("/", authMiddleware, [upload.single("avatar")], (req, res) => {
+  let myBody = JSON.parse(req.body.info);
+  let path = `${req.protocol}://${req.hostname}:4000/uploads/${req.file.filename}`;
+  let newPost = new Post({
+    ...myBody,
+    id_owner: req.user_Id,
+    photo: path,
+  });
 
-    newPost
-      .save()
-      .then((post) => res.status(201).send(post))
-      .catch((err) => {
-        console.log(err);
-        res.status(500).send({ errors: [{ msg: "Server Error!" }] });
-      });
-  }
-);
+  newPost
+    .save()
+    .then((post) => res.status(201).send(post))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
 
 // Get post by id_artisan
 router.get("/", authMiddleware, (req, res) => {

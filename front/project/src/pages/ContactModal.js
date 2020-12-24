@@ -16,6 +16,7 @@ function ContactModal(props) {
   const alert = useAlert();
   const visit = useSelector((state) => state.visit);
   const history = useHistory();
+  const dispatch = useDispatch();
   const [display, setdisplay] = useState(true);
   const [requestInfo, setrequestInfo] = useState({
     id_artisan: "",
@@ -32,7 +33,6 @@ function ContactModal(props) {
         id_artisan: visit.artisan._id,
       });
   };
-  const dispatch = useDispatch();
   const sendRequest = (e) => {
     e.preventDefault();
     dispatch(sendRequestAction(requestInfo));
@@ -62,13 +62,13 @@ function ContactModal(props) {
     }
   }, [visit.artisan]);
   const handleIgnore = () => {
-    dispatch(ignore_clientAction(testRequest._id));
+    dispatch(ignore_clientAction(testRequest));
     setdisplay(false);
     props.settestContact(false);
     alert.success("Ignored with Success!");
   };
   const handleConfirm = () => {
-    dispatch(confirm_clientAction(testRequest._id));
+    dispatch(confirm_clientAction(testRequest));
     setdisplay(false);
     props.settestContact(false);
     alert.success("Confirmed with Success!");
@@ -138,7 +138,7 @@ function ContactModal(props) {
                           .toLocaleString("en-GB", {})
                           .split(", ")[0]
                       }{" "}
-                      To{" "}
+                      <i class="material-icons">arrow_forward</i>{" "}
                       {
                         new Date(testRequest.end_date_artisan)
                           .toLocaleString("en-GB", {})

@@ -7,6 +7,8 @@ import {
   searchByCategoryAction,
 } from "../actions/clientActions";
 import { useHistory } from "react-router-dom";
+import { Badge } from "antd";
+import { resetNotificationAction } from "../actions/resetNotificationAction";
 const NavBar = () => {
   const auth = useSelector((state) => state.auth);
   const [classResponsive, setclassResponsive] = useState(false);
@@ -29,13 +31,11 @@ const NavBar = () => {
   };
   return (
     <div className={classResponsive ? "navBar responsiveNav" : "navBar"}>
-      <img src="/logo2.png" width="90px" height="90px" alt="logo" />
+      <img src="/logo3.png" alt="logo" />
       <div className="container_searchBar">
         <div className="dropdown">
           <button className="dropbtn">
-            <i class="small material-icons" style={{ fontSize: "2em" }}>
-              search
-            </i>
+            <i class="small material-icons">search</i>
           </button>
           <div className="dropdown-content">
             <a onClick={(e) => setsearch("name")}>By Name</a>
@@ -68,20 +68,21 @@ const NavBar = () => {
           )
         )}
       </div>
-      {/* <div style={{ width: 800 }}></div> */}
       <div className="links">
         {auth.isAuth ? (
           <>
-            <Link
-              onClick={(e) => setclassResponsive(!classResponsive)}
-              to="/profile"
-            >
-              Profile
-            </Link>
+            {auth.user && auth.user.state !== "Admin" && (
+              <Link
+                onClick={(e) => setclassResponsive(!classResponsive)}
+                to="/profile"
+              >
+                Profile
+              </Link>
+            )}
             {/* if the user is admin */}
             {auth.user && auth.user.state === "Admin" && (
               <Link
-                to="/admin"
+                to="/admin/messages"
                 onClick={(e) => setclassResponsive(!classResponsive)}
               >
                 Admin
@@ -97,26 +98,26 @@ const NavBar = () => {
               Logout
             </Link>
             {/* icon notification */}
-            {auth.user && auth.user.state === "Client" ? (
+            {auth.user && auth.user.state !== "Admin" && (
+              //  auth.user.state === "Client" ? (
               <Link
-                to="/requests-client"
-                onClick={(e) => setclassResponsive(!classResponsive)}
+                to={
+                  auth.user.state === "Client"
+                    ? "/requests-client"
+                    : "/requests"
+                }
+                onClick={(e) => {
+                  setclassResponsive(!classResponsive);
+                  dispatch(resetNotificationAction());
+                }}
               >
                 <i class="medium material-icons">drafts</i>
+                <Badge count={auth.user.notification}>
+                  <span className="head-example" />
+                </Badge>
               </Link>
-            ) : (
-              auth.user &&
-              auth.user.state !== "Admin" && (
-                <Link
-                  to="/requests"
-                  onClick={(e) => setclassResponsive(!classResponsive)}
-                >
-                  <i class="medium material-icons">drafts</i>
-                </Link>
-              )
             )}
             <a
-              // href="javascript:void(0);"
               className="icon_navbar"
               onClick={(e) => {
                 e.preventDefault();

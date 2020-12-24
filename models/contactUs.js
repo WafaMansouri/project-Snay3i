@@ -5,5 +5,6 @@ const contactUsSchema = mongoose.Schema({
   email: String,
   mobile: Number,
   message: String,
+  created_at: { type: Date, default: Date.now },
 });
 module.exports = mongoose.model("ContactUs", contactUsSchema);

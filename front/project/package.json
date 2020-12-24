@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.8.0",
     "axios": "^0.20.0",
+    "mdbreact": "^5.0.1",
     "react": "^17.0.0",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",

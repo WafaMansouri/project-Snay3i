@@ -13,6 +13,8 @@ import { deleteLikeAction } from "../actions/clientActions";
 import StarRating from "./StarRating";
 import { Rate } from "antd";
 import ContactModal from "./ContactModal";
+import { SmileTwoTone } from "@ant-design/icons";
+import ScrollAnimation from "react-animate-on-scroll";
 //function that convert the first letter of a string to uppercase
 const upper = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1, str.length);
@@ -66,6 +68,7 @@ const VisitProfile = () => {
   const posts = useSelector((state) => state.posts);
   const [testRequest, settestRequest] = useState(false);
   const [testContact, settestContact] = useState(false);
+  const [testRate, settestRate] = useState(false);
   const rate_artisan = useSelector((state) => state.rate_artisan);
   return (
     <div>
@@ -92,30 +95,23 @@ const VisitProfile = () => {
                     alt="profile photo"
                   ></img>
                 </div>
+                {/* the rate of the artisan */}
                 <div className="rate">
                   <Rate
                     style={{
                       display: "flex",
                       flexDirection: "row",
-                      color: "#218838wxx",
                       fontSize: 15,
                     }}
                     allowHalf
                     disabled
                     value={rate_artisan.rate ? rate_artisan.rate.rate : 0}
                   />
-                  <span
-                    style={{
-                      textAlign: "center",
-                      fontSize: "1.5em",
-                      marginLeft: 15,
-                      color: "#232f3e",
-                    }}
-                  >
+                  <span className="rate_nbr_person">
                     {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
                   </span>
-                  <span style={{ paddingTop: 5, color: "#232f3e" }}>
-                    <i class="material-icons">person</i>
+                  <span className="icon_person">
+                    <i className="material-icons">person</i>
                   </span>
                 </div>
                 {auth.user && auth.user.state === "Client" && testRequest ? (
@@ -138,7 +134,26 @@ const VisitProfile = () => {
                 )}
               </div>
               <div className="info">
-                {/* {auth.isAuth && auth.user.state === "Client" && <StarRating />} */}
+                {/* the rate of the client */}
+                {testRate && <RateModal settestRate={settestRate} />}
+                {((auth.isAuth && auth.user.state === "Client") ||
+                  !auth.isAuth) && (
+                  <div
+                    className="container_rate"
+                    onClick={(e) => {
+                      auth.isAuth
+                        ? settestRate(!testRate)
+                        : history.push("/login");
+                    }}
+                  >
+                    <h4>Rate me</h4>
+                    <ScrollAnimation animateIn="bounce" initiallyVisible={true}>
+                      <div className="icons-list">
+                        <SmileTwoTone twoToneColor="#1890ff" />
+                      </div>
+                    </ScrollAnimation>
+                  </div>
+                )}
                 <ul>
                   <li>
                     <i class="small material-icons">account_circle</i>&nbsp;
@@ -186,20 +201,25 @@ const VisitProfile = () => {
                       " " +
                       new Date(visit.artisan.created_at).getFullYear()}
                   </li>
-
-                  {visit.artisan.age && <li>Age: {visit.artisan.age}</li>}
+                  {visit.artisan.age && (
+                    <li>
+                      <i class="small material-icons">cake</i>&nbsp;{" "}
+                      {visit.artisan.age} years old
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
-            <div className="containerPosts">
-              {posts.posts && (
+
+            {posts.posts && posts.posts.length > 0 && (
+              <div className="containerPosts">
                 <div className="container-posts">
                   {posts.posts.map((post, index) => {
                     return <PostModal key={post._id} post={post} />;
                   })}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -292,6 +312,25 @@ const PostModal = ({ post }) => {
   );
 };
 
+//Rate Modal
+const RateModal = ({ settestRate }) => {
+  const auth = useSelector((state) => state.auth);
+  return (
+    <div className="rate_modal">
+      <StarRating />
+      <div style={{ display: "flex", justifyContent: "flex-start" }}>
+        <div
+          onClick={(e) => {
+            settestRate(false);
+          }}
+          className="container_close_icon"
+        >
+          <i class="small material-icons">close</i>
+        </div>
+      </div>
+    </div>
+  );
+};
 // <div>
 
 //     <div style={{ textAlign: "left" }}>

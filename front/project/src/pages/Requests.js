@@ -42,7 +42,7 @@ const Requests = () => {
       </div>
       {!request_artisan.errors ? (
         request_artisan.requests && request_artisan.requests.length ? (
-          <div style={{ width: "50%" }}>
+          <div className="container_requests">
             {request_artisan.requests.map((request, index) => {
               return <RequestModal key={request._id} request={request} />;
             })}
@@ -69,12 +69,11 @@ const RequestModal = ({ request }) => {
     dispatch(rejectAction(request._id));
   };
   const handleIgnore = () => {
-    dispatch(ignore_artisanAction(request._id));
-    dispatch(checkRequest_artisan());
+    dispatch(ignore_artisanAction(request));
     alert.success("Ignored with Success!");
   };
   const handleAccept = () => {
-    dispatch(accept_artisanAction(request._id));
+    dispatch(accept_artisanAction(request));
     dispatch(checkRequest_artisan());
   };
   let styleCard;
@@ -98,7 +97,7 @@ const RequestModal = ({ request }) => {
           <div className="user-card">
             {/* <div className="level center">Level 13</div>
             <div className="points center">hhhh</div> */}
-            <div width="110" height="110" viewBox="0 0 250 250" role="img">
+            <div>
               <img
                 className="photo_request"
                 src={
@@ -120,24 +119,6 @@ const RequestModal = ({ request }) => {
               </a>
             </h3>
             {request.state !== "Rejected" && (
-              // (request.state === "Ignored By Client" ? (
-              //   <div className="request_modal">
-              //     <ul>
-              //       <li style={{ fontWeight: "bold", marginTop: 20 }}>
-              //         Ignored By The Client
-              //       </li>
-              //     </ul>
-              //     <div style={{ textAlign: "center" }}>
-              //       <button
-              //         className="waves-effect waves-light btn"
-              //         onClick={rejectRequest}
-              //       >
-              //         OK
-              //       </button>
-              //     </div>
-              //   </div>
-              // ) :
-
               <div className="infoRequest">
                 <div>
                   <span>Message:</span> <div>{upper(request.msg_client)}</div>
@@ -196,8 +177,8 @@ const RequestModal = ({ request }) => {
                   <i class="fas fa-check"></i>
                 </div>
               ) : request.state === "Ignored By Client" ? (
-                <div style={{ textAlign: "center" }}>
-                  <i className="large material-icons">close</i>
+                <div>
+                  <span> Ignored by the client</span>
                 </div>
               ) : (
                 <div style={{ textAlign: "center" }}>
@@ -228,7 +209,12 @@ const RequestModal = ({ request }) => {
             </div>
             {request.state === "Ignored By Client" && (
               <div className="general" style={{ color: "#c41717" }}>
-                <span className="more">Ignored by the client</span>
+                <i
+                  className="large material-icons delete_forever"
+                  onClick={rejectRequest}
+                >
+                  delete_forever
+                </i>
               </div>
             )}
           </div>

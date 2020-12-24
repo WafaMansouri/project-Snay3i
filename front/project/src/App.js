@@ -8,6 +8,10 @@ import "./css/Footer.css";
 import "./css/NavBar.css";
 import "./css/Search.css";
 import "./css/Profile.css";
+import "./css/UpdateProfile.css";
+import "./css/AddPhoto.css";
+import "./css/AddDeletePost.css";
+import "./css/Admin.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Home from "./pages/Home";
@@ -34,7 +38,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/loginAdmin" component={Login} />
           <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/admin" component={Admin} />
+          <PrivateRoute path="/admin" component={Admin} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <Route exact path="/search" render={() => <Search />} />
           <Route exact path="/visit" render={() => <VisitProfile />} />

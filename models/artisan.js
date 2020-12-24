@@ -18,6 +18,7 @@ const artisanSchema = mongoose.Schema({
   age: Number,
   description: String,
   rates: [{ type: mongoose.Types.ObjectId, ref: "Rate" }],
+  notification: { type: Number, default: 0 },
   created_at: { type: Date, default: Date.now },
 });
 

@@ -1,6 +1,12 @@
 /* styling requests */
 @import url("https://fonts.googleapis.com/css?family=Abel");
 
+.container_requests {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .requests {
   display: flex;
   flex-direction: column;
@@ -14,6 +20,9 @@
   margin-top: 20px;
   font-weight: 550;
   font-size: 40px;
+}
+.requests h5 {
+  text-decoration: underline;
 }
 .card {
   width: 700px;
@@ -97,6 +106,10 @@
   left: 150px;
   height: 100%;
 }
+.card .additional .more-info i {
+  transform: translate(0px, 5px) !important;
+  font-size: 25px;
+}
 .card .additional .more-info h1 {
   color: #fff;
   margin-bottom: 0;
@@ -145,6 +158,16 @@
   top: auto;
   color: #fff;
 }
+.card .additional .more-info .stats span {
+  font-size: 0.8em !important;
+  color: #c41717;
+}
+.card .additional .more-info .general i.delete_forever {
+  /* Styling icon to delete request */
+  transform: translate(251px, 10px) !important;
+  font-size: 2.5em;
+  cursor: pointer;
+}
 .stats .waves-effect.waves-light.btn {
   font-size: 0.7em !important;
   margin-right: 100px;
@@ -162,11 +185,11 @@
   font-size: 2.5em !important;
   margin-right: 100px;
 }
-.card .additional .stats i.large.material-icons {
+/* .card .additional .stats i.large.material-icons {
   color: #c41717;
   font-size: 3.1em !important;
   font-weight: 1000;
-}
+} */
 
 .card .additional .stats div.title {
   font-size: 0.75rem;
@@ -200,7 +223,7 @@
   position: absolute;
   bottom: 1rem;
   right: 1rem;
-  font-size: 0.9em;
+  font-size: 1.2em !important;
 }
 .photo_request {
   width: 120px;
@@ -225,4 +248,111 @@
 }
 .requests ::-webkit-scrollbar-thumb:hover {
   background: #64a571 !important;
+}
+@media (max-width: 992px) {
+  .card {
+    width: 600px;
+    height: 350px;
+  }
+  .card .general {
+    width: 450px;
+  }
+  .requests h3 {
+    font-size: 2.4em;
+    margin: 15px;
+  }
+  .requests h5 {
+    font-size: 1.3em !important;
+  }
+  .card .additional .more-info {
+    width: 450px;
+  }
+  .card .additional .more-info span {
+    font-size: 1em;
+  }
+  .infoRequest span + div {
+    font-size: 0.9em;
+  }
+  .stats .waves-effect.waves-light.btn {
+    font-size: 0.55em !important;
+    width: 100px;
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    width: 540px;
+    height: 350px;
+  }
+  .card .general {
+    width: 390px;
+  }
+  .card .additional .more-info {
+    width: 390px;
+  }
+}
+@media (max-width: 576px) {
+  .card {
+    width: 400px;
+    height: 250px;
+    margin: 10px 0px;
+  }
+  .card .general {
+    width: 310px;
+  }
+  .card .additional {
+    width: 90px;
+  }
+  .card .additional .more-info {
+    width: 310px;
+    left: 90px;
+  }
+  .card .additional .more-info i {
+    font-size: 20px;
+  }
+  .card .additional .user-card {
+    width: 90px;
+  }
+  .photo_request {
+    width: 75px;
+    height: 75px;
+    left: 7px;
+    top: 90px;
+  }
+  .requests h3 {
+    font-size: 1.7em;
+    margin: 7px;
+  }
+  .card .additional .more-info span {
+    font-size: 0.76em !important;
+  }
+  .infoRequest span + div {
+    font-size: 0.62em;
+  }
+  .stats .waves-effect.waves-light.btn {
+    font-size: 0.43em !important;
+    width: 80px;
+    margin: 0px 5px !important;
+    height: 25px;
+    line-height: 1px;
+    padding: 0px;
+  }
+  .card .additional .stats {
+    bottom: 0.5rem;
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+  }
+  .infoRequest {
+    height: 165px;
+  }
+  .card .additional .stats i {
+    font-size: 1.8em !important;
+    margin-right: 62px;
+  }
+  .card .additional .stats i.large.material-icons {
+    font-size: 1.9em !important;
+  }
+  .requests ::-webkit-scrollbar {
+    width: 6px; /*scrollbar vertical */
+  }
 }

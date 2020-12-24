@@ -23,6 +23,7 @@ import {
 import axios from "axios";
 import setToken from "../setToken";
 import { artisanRatesAction } from "./artisanRatesAction";
+import { sendNotificationAction } from "./sendNotificationAction";
 
 export const searchByNameAction = (name) => (dispatch) => {
   //   setToken(); //to set the token in the header
@@ -88,6 +89,7 @@ export const sendRequestAction = (requestInfo) => (dispatch) => {
         payload: res.data,
       });
       dispatch(checkRequest_client());
+      dispatch(sendNotificationAction(requestInfo.id_artisan));
     })
     .catch((err) =>
       dispatch({
@@ -115,16 +117,17 @@ export const checkRequest_client = () => (dispatch) => {
     );
 };
 // Confirm the Request
-export const confirm_clientAction = (id_request) => (dispatch) => {
+export const confirm_clientAction = (request) => (dispatch) => {
   setToken();
   axios
-    .post("/client/confirm", { id_request }) //bind front and back
+    .post("/client/confirm", { id_request: request._id }) //bind front and back
     .then((res) => {
       dispatch({
         type: ACCEPT_REQUEST_SUCCESS,
         payload: res.data,
       });
       dispatch(checkRequest_client());
+      dispatch(sendNotificationAction(request.id_artisan._id));
     })
     .catch((err) =>
       dispatch({

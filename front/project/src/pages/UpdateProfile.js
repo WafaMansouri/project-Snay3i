@@ -50,9 +50,22 @@ const UpdateProfile = (props) => {
           onClick={() => {
             setdisplay(false);
             props.setupdateInfo(false);
+            update.errors = null;
           }}
         />
-        <div className={"modal-box"}>
+        <div className={"modal-box update_profile"}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              className="container_close_icon"
+              onClick={(e) => {
+                setdisplay(false);
+                props.setupdateInfo(false);
+                update.errors = null;
+              }}
+            >
+              <i class="small material-icons">close</i>
+            </div>
+          </div>
           <form onSubmit={updateInfo}>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
@@ -61,12 +74,7 @@ const UpdateProfile = (props) => {
                 defaultValue={auth.user.f_name}
                 onChange={handleChange}
               />
-              <i
-                class="material-icons"
-                style={{ fontSize: "1.7rem", color: "gray", color: "gray" }}
-              >
-                edit
-              </i>
+              <i class="material-icons">edit</i>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
@@ -75,12 +83,7 @@ const UpdateProfile = (props) => {
                 defaultValue={auth.user.l_name}
                 onChange={handleChange}
               />
-              <i
-                class="material-icons"
-                style={{ fontSize: "1.7rem", color: "gray" }}
-              >
-                edit
-              </i>
+              <i class="material-icons">edit</i>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
@@ -89,12 +92,7 @@ const UpdateProfile = (props) => {
                 defaultValue={auth.user.email}
                 onChange={handleChange}
               />
-              <i
-                class="material-icons"
-                style={{ fontSize: "1.7rem", color: "gray" }}
-              >
-                edit
-              </i>
+              <i class="material-icons">edit</i>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
@@ -104,12 +102,7 @@ const UpdateProfile = (props) => {
                 onChange={handleChange}
                 placeholder="address"
               />
-              <i
-                class="material-icons"
-                style={{ fontSize: "1.7rem", color: "gray" }}
-              >
-                edit
-              </i>
+              <i class="material-icons">edit</i>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
@@ -119,12 +112,7 @@ const UpdateProfile = (props) => {
                 onChange={handleChange}
                 placeholder="telephone number"
               />
-              <i
-                class="material-icons"
-                style={{ fontSize: "1.7rem", color: "gray" }}
-              >
-                edit
-              </i>
+              <i class="material-icons">edit</i>
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
               <input
@@ -134,12 +122,7 @@ const UpdateProfile = (props) => {
                 onChange={handleChange}
                 placeholder="age"
               />
-              <i
-                class="material-icons"
-                style={{ fontSize: "1.7rem", color: "gray" }}
-              >
-                edit
-              </i>
+              <i class="material-icons">edit</i>
             </div>
             {auth.user.state === "Artisan" && (
               <div>
@@ -153,16 +136,11 @@ const UpdateProfile = (props) => {
                     }
                     onChange={handleChange}
                   />
-                  <i
-                    class="material-icons"
-                    style={{ fontSize: "1.7rem", color: "gray" }}
-                  >
-                    edit
-                  </i>
+                  <i class="material-icons">edit</i>
                 </div>
               </div>
             )}
-            <h6 style={{ color: "red", marginTop: 20 }}>
+            <h6 style={{ color: "red", marginTop: 20, height: 40 }}>
               {update.errors && update.errors}
             </h6>
             <button className="waves-effect waves-light btn" type="submit">

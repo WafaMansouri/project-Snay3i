@@ -44,13 +44,7 @@ const Profile = () => {
       {addPhoto && <AddPhoto setaddPhoto={setaddPhoto} />}
       <div className="profile">
         {auth.user && (
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-evenly",
-            }}
-          >
+          <div>
             <div className="containerInfo">
               <div>
                 <div className="cadrePhoto">
@@ -78,25 +72,17 @@ const Profile = () => {
                       style={{
                         display: "flex",
                         flexDirection: "row",
-                        color: "#232f3e",
                         fontSize: 15,
                       }}
                       allowHalf
                       disabled
                       value={rate_artisan.rate ? rate_artisan.rate.rate : 0}
                     />
-                    <span
-                      style={{
-                        textAlign: "center",
-                        fontSize: "1.5em",
-                        marginLeft: 15,
-                        color: "#232f3e",
-                      }}
-                    >
+                    <span className="rate_nbr_person">
                       {rate_artisan.rate ? rate_artisan.rate.nbr_rate : 0}
                     </span>
-                    <span style={{ paddingTop: 5, color: "#232f3e" }}>
-                      <i class="material-icons">person</i>
+                    <span className="icon_person">
+                      <i className="material-icons">person</i>
                     </span>
                   </div>
                 )}
@@ -106,7 +92,7 @@ const Profile = () => {
                   <a onClick={(e) => setupdateInfo(true)}>
                     Update your profile
                   </a>
-                  <i class="fas fa-user-edit"></i>
+                  <i className="fas fa-user-edit"></i>
                 </div>
                 <ul>
                   <li>
@@ -151,7 +137,12 @@ const Profile = () => {
                       new Date(auth.user.created_at).getFullYear()}
                   </li>
 
-                  {auth.user.age && <li>Age: {auth.user.age}</li>}
+                  {auth.user.age && (
+                    <li>
+                      <i class="small material-icons">cake</i>&nbsp;{" "}
+                      {auth.user.age} years old
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>

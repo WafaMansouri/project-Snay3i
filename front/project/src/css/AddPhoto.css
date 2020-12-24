@@ -1,0 +1,62 @@
+/* styling add photo */
+.modal-box.add_photo {
+  display: grid;
+  grid-template-rows: 50px 50px auto;
+  padding: 0px;
+  min-height: 400px;
+}
+.modal-box.add_photo form {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+}
+.modal-box.add_photo form label.btn {
+  background: white !important;
+  color: black;
+  border-radius: 20px;
+  height: 40px;
+  text-align: center !important;
+  width: 80%;
+}
+.modal-box.add_photo form button.waves-effect.waves-light.btn {
+  margin-top: 0px !important;
+}
+.modal-box.add_photo .container_close_icon {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(216, 212, 212, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 15px;
+}
+.modal-box.add_photo .ant-progress-outer {
+  width: 90% !important;
+}
+@media (max-width: 992px) {
+  .modal-box.add_photo {
+    min-height: 300px;
+  }
+  .modal-box.add_photo form {
+    height: 150px;
+  }
+  .modal-box.add_photo form label.btn {
+    font-size: 1.1em !important;
+  }
+  .modal-box.add_photo form button.waves-effect.waves-light.btn {
+    padding-bottom: 30px;
+    font-size: 1.2em;
+  }
+  .modal-box.add_photo .container_close_icon {
+    width: 35px;
+    height: 35px;
+    margin: 7px;
+  }
+  .modal-box.add_photo h4 {
+    font-size: 1.9em;
+  }
+}

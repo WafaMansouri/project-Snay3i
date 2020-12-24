@@ -86,8 +86,18 @@ button {
 }
 .waves-effect.waves-light.btn.return:hover {
   background-color: rgba(228, 228, 228, 0.2) !important;
-  /* color: white; */
   transition: 0.3s;
+}
+@media (max-width: 768px) {
+  .waves-effect.waves-light.btn.return {
+    width: 50px !important;
+    height: 47px;
+    margin: 10px;
+  }
+  .waves-effect.waves-light.btn i {
+    font-size: 2rem;
+    line-height: 27px;
+  }
 }
 /* styling scrollbar */
 ::-webkit-scrollbar {

@@ -47,7 +47,19 @@ const AddPhoto = (props) => {
             props.setaddPhoto(false);
           }}
         />
-        <div className={"modal-box"} style={{ minHeight: 300, width: "30%" }}>
+        <div className="modal-box add_photo">
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              className="container_close_icon"
+              onClick={(e) => {
+                setdisplay(false);
+                props.setaddPhoto(false);
+              }}
+            >
+              <i class="small material-icons">close</i>
+            </div>
+          </div>
+          <h4>Update your profile photo</h4>
           <form>
             <label
               className="btn btn-primary btn-block btn-outlined"
@@ -56,6 +68,7 @@ const AddPhoto = (props) => {
               Choose Photo
             </label>
             <input
+              onClick={(e) => seterror(false)}
               style={{ display: "none" }}
               className="browser-default"
               id="myphoto"
@@ -64,6 +77,7 @@ const AddPhoto = (props) => {
               }}
               type="file"
               name="photo"
+              accept="image/png, image/jpeg"
             />
             <Progress
               strokeColor={{
@@ -72,8 +86,9 @@ const AddPhoto = (props) => {
               }}
               percent={percent}
             />
-            {/* <Progress type="circle" percent={percent} /> */}
-            {error && <h6 style={{ color: "red" }}>Please choose a photo</h6>}
+            <h6 style={{ color: "red", height: 50, paddingTop: 20 }}>
+              {error && "Please choose a photo"}
+            </h6>
             <button
               style={{ width: 200, marginTop: 50 }}
               onClick={addPhoto}

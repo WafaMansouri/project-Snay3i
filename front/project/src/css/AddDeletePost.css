@@ -1,0 +1,117 @@
+/* stylign add post  */
+.modal-box.add_post {
+  display: grid;
+  grid-template-rows: 50px 50px auto;
+  padding: 0px;
+  min-height: 400px;
+}
+.modal-box.add_post form {
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 350px;
+  width: 90%;
+}
+.modal-box.add_post form label.btn {
+  background: white !important;
+  color: black;
+  border-radius: 20px;
+  height: 40px;
+  text-align: center !important;
+  width: 100%;
+  margin-top: 20px;
+}
+.modal-box.add_post form button.waves-effect.waves-light.btn {
+  margin-top: 0px !important;
+  width: 200px;
+}
+.modal-box.add_post .container_close_icon {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(216, 212, 212, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 15px;
+}
+.modal-box.add_post .ant-progress-outer {
+  width: 100% !important;
+}
+@media (max-width: 992px) {
+  .modal-box.add_post form {
+    height: 150px;
+    width: 80%;
+  }
+  .modal-box.add_post form label.btn {
+    font-size: 1.1em !important;
+  }
+  .modal-box.add_post form button.waves-effect.waves-light.btn {
+    padding-bottom: 30px;
+    font-size: 1.2em;
+    width: 120px;
+    line-height: 30px;
+  }
+  .modal-box.add_post .container_close_icon {
+    width: 35px;
+    height: 35px;
+    margin: 7px;
+  }
+  .modal-box.add_post h4 {
+    font-size: 1.9em;
+  }
+}
+/* styling delete post */
+.modal-box.alert {
+  min-height: 20% !important;
+  width: 600px;
+  background-color: white;
+  z-index: 101;
+  padding: 0px;
+  border-radius: 20px;
+  text-align: center;
+}
+.modal-box.alert .container_close_icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(216, 212, 212, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 10px;
+}
+.modal-box.alert button.waves-effect.waves-light.btn {
+  font-size: 1.5em;
+  width: 130px;
+  margin-bottom: 35px;
+  height: 40px;
+}
+.modal-box.alert h4 {
+  font-size: 1.8em;
+  margin: 0px 10px 40px 10px;
+  padding: 0px 20px;
+}
+@media (max-width: 992px) {
+  .modal-box.alert {
+    width: 410px;
+  }
+  .modal-box.alert .container_close_icon {
+    width: 35px;
+    height: 35px;
+  }
+  .modal-box.alert button.waves-effect.waves-light.btn {
+    font-size: 1.2em;
+    width: 110px;
+    height: 30px;
+    line-height: 0px;
+  }
+  .modal-box.alert h4 {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    padding: 0px 20px;
+  }
+}

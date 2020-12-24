@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Admin = require("../models/admin");
+const Artisan = require("../models/artisan");
+const Client = require("../models/client");
 const Category = require("../models/category");
 const ContactUs = require("../models/contactUs");
 const { body, validationResult } = require("express-validator");
@@ -88,6 +90,39 @@ router.post(
     }
   }
 );
+// delete category
+router.delete("/delete_category/:name", (req, res) => {
+  Category.findOneAndDelete({ name: req.params.name })
+    // .exect()
+    .then((category) => {
+      res.status(200).send(category);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+// Remove User
+router.delete("/remove_user/:state/:id", (req, res) => {
+  if (req.params.state === "Artisan")
+    Artisan.findOneAndDelete({ _id: req.params.id })
+      .then((artisan) => {
+        res.status(200).send(artisan);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+      });
+  else if (req.params.state === "Client")
+    Client.findOneAndDelete({ _id: req.params.id })
+      .then((client) => {
+        res.status(200).send(client);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+      });
+});
 // Retrieve messages
 router.get("/messages", (req, res) => {
   ContactUs.find()
@@ -100,4 +135,35 @@ router.get("/messages", (req, res) => {
       res.status(500).send({ errors: [{ msg: "Server Error!" }] });
     });
 });
+// Retrieve list of users
+router.get("/users", (req, res) => {
+  Artisan.find()
+    .exec()
+    .then((artisans) => {
+      Client.find()
+        .then((clients) => res.status(201).send([...artisans, ...clients]))
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+
+// Delete message
+router.delete("/delete_message/:id", (req, res) => {
+  ContactUs.findOneAndDelete({ _id: req.params.id })
+    .then((message) => {
+      console.log(message);
+      res.status(200).send(message);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send({ errors: [{ msg: "Server Error!" }] });
+    });
+});
+
 module.exports = router;

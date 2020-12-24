@@ -42,8 +42,8 @@ const RequestsClient = () => {
       </div>
       {!request_client.errors ? (
         request_client.requests && request_client.requests.length ? (
-          <div>
-            {request_client.requests.map((request, index) => {
+          <div className="container_requests">
+            {request_client.requests.map((request) => {
               return <RequestModal key={request._id} request={request} />;
             })}
           </div>
@@ -65,14 +65,14 @@ const RequestModal = ({ request }) => {
   const history = useHistory();
   // to display or not the total message of the client
   const handleIgnore = () => {
-    dispatch(ignore_clientAction(request._id));
+    dispatch(ignore_clientAction(request));
     alert.success("Ignored with Success!");
   };
   const rejectRequest = () => {
     dispatch(rejectAction(request._id));
   };
   const handleConfirm = () => {
-    dispatch(confirm_clientAction(request._id));
+    dispatch(confirm_clientAction(request));
   };
   const visitArtisan = () => {
     dispatch(visitByIdAction(request.id_artisan._id));
@@ -80,7 +80,8 @@ const RequestModal = ({ request }) => {
   };
   let styleCard;
   request.state === "Confirmed By Client" ||
-  request.state === "Accepted By Artisan"
+  request.state === "Accepted By Artisan" ||
+  request.state === "Ignored By Artisan"
     ? (styleCard = {
         width: "100%",
       })
@@ -113,24 +114,6 @@ const RequestModal = ({ request }) => {
                   upper(request.id_artisan.l_name)}{" "}
               </a>
             </h3>
-            {request.state !== "Rejected" &&
-              request.state === "Ignored By Artisan" && (
-                <div>
-                  <ul>
-                    <li style={{ fontWeight: "bold", marginTop: 20 }}>
-                      Ignored By The Artisan
-                    </li>
-                  </ul>
-                  <div style={{ textAlign: "center" }}>
-                    <button
-                      className="waves-effect waves-light btn"
-                      onClick={rejectRequest}
-                    >
-                      OK
-                    </button>
-                  </div>
-                </div>
-              )}
             <div className="infoRequest">
               <div>
                 <span> Your Message: </span>{" "}
@@ -186,15 +169,15 @@ const RequestModal = ({ request }) => {
                 {request.state === "Accepted By Artisan" ||
                 request.state === "Confirmed By Client" ? (
                   <i className="fas fa-check" style={{ marginRight: 100 }}></i>
+                ) : request.state === "Ignored By Artisan" ? (
+                  <span> Ignored by the artisan</span>
                 ) : (
-                  request.state !== "Ignored By Artisan" && (
-                    <button
-                      className="waves-effect waves-light btn"
-                      onClick={handleIgnore}
-                    >
-                      IGNORE
-                    </button>
-                  )
+                  <button
+                    className="waves-effect waves-light btn"
+                    onClick={handleIgnore}
+                  >
+                    IGNORE
+                  </button>
                 )}
                 {request.state !== "Accepted By Artisan" &&
                   request.state !== "Send Request" &&
@@ -209,9 +192,19 @@ const RequestModal = ({ request }) => {
                   )}
               </div>
             </div>
+            {request.state === "Ignored By Artisan" && (
+              <div className="general" style={{ color: "#c41717" }}>
+                <i
+                  className="large material-icons delete_forever"
+                  onClick={rejectRequest}
+                >
+                  delete_forever
+                </i>
+              </div>
+            )}
           </div>
         </div>
-        <div class="general">
+        <div className="general">
           <h3>
             {" "}
             {upper(request.id_artisan.f_name) +
@@ -222,7 +215,7 @@ const RequestModal = ({ request }) => {
           <p>
             {request.id_artisan.description && request.id_artisan.description}
           </p>
-          <span class="more">Mouse over the card for more info</span>
+          <span className="more">Mouse over the card for more info</span>
         </div>
       </div>
     </div>

@@ -36,3 +36,5 @@ app.use("/reject", require("./routes/reject"));
 app.use("/update", require("./routes/update"));
 app.use("/add_photo", require("./routes/add_photo"));
 app.use("/send_message", require("./routes/send_message"));
+app.use("/reset_notif", require("./routes/reset_notif"));
+app.use("/send_notif", require("./routes/send_notif"));

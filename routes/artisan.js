@@ -4,6 +4,7 @@ const Intervention = require("../models/intervention");
 const Rate = require("../models/rate");
 const Post = require("../models/post");
 const Like = require("../models/like");
+const Client = require("../models/client");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 

@@ -1,6 +1,6 @@
 /* styling Nav Bar */
 .navBar {
-  background-color: rgb(35, 47, 62);
+  background-color: #232f3e;
   /* background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)); */
   color: white;
   height: 90px;
@@ -8,7 +8,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px;
+  padding: 20px 20px 20px;
   position: sticky;
   top: 0px;
   z-index: 20;
@@ -23,6 +23,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+.navBar img {
+  padding-bottom: 5px;
+  height: 35px;
+  width: 110px;
 }
 .navBar .links {
   display: flex;
@@ -53,6 +58,10 @@
   width: 80px;
   margin-right: 0px;
 }
+.dropbtn i {
+  font-size: 2em;
+  line-height: 50px;
+}
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
   position: relative;
@@ -68,7 +77,7 @@
   left: auto;
   right: auto;
   top: 95px !important;
-  font-size: 0.7em;
+  font-size: 0.77em;
 }
 
 .dropdown-content a {
@@ -81,13 +90,13 @@
   height: 50px;
   background-color: #232f3e;
   text-align: center;
+  line-height: 45px;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #e7e9e7;
   color: #232f3e !important;
-  font-size: 2.2em;
 }
 .dropdown-content a:active {
   background-color: #4c5766;
@@ -127,7 +136,7 @@
   align-items: center;
   width: 600px;
   position: absolute;
-  left: 95px;
+  left: 115px;
 }
 /* responsive navBar */
 a.icon_navbar {
@@ -219,5 +228,84 @@ a.icon_navbar {
   .search::placeholder {
     font-weight: 500;
     font-size: 0.9em;
+  }
+}
+@media (max-width: 576px) {
+  .navBar {
+    padding: 10px !important;
+    height: 55px !important;
+  }
+  .navBar img {
+    max-width: 55px !important;
+    max-height: 25px !important;
+  }
+  .dropbtn {
+    width: 43px;
+    height: 55px;
+    text-align: right;
+  }
+  .dropbtn i {
+    font-size: 1.5em;
+  }
+  .container_searchBar {
+    left: 66px;
+    width: 220px !important;
+  }
+  .navBar form.search {
+    width: 170px !important;
+    height: 32px !important;
+  }
+  .navBar input.search {
+    width: 160px !important;
+    height: 32px !important;
+    font-size: 1.1em !important;
+  }
+  a.icon_navbar {
+    font-size: 1.8em !important;
+    height: 40px;
+    top: 4.5px;
+    left: 87vw;
+  }
+  .navBar.responsiveNav a.icon_navbar {
+    top: 4.5px;
+    left: 87vw;
+  }
+  .info,
+  .containerPosts {
+    padding: 10px !important;
+    font-size: 0.7em !important;
+  }
+  .containerInfo .info > div:not(.container_rate):not(.rate_modal),
+  .containerPosts > div:not(.container-posts) {
+    margin-top: 15px !important;
+    margin-right: 10px !important;
+    transform: translate(17px, -15px) !important;
+  }
+  .navBar.responsiveNav .links {
+    top: 55px;
+    width: 140px !important;
+  }
+  .navBar.responsiveNav .links a:not(.icon_navbar) {
+    font-size: 1.2em;
+    padding: 0px 20px;
+  }
+  a[href="/requests-client"] i,
+  a[href="/requests"] i {
+    font-size: 1.9rem !important;
+  }
+  div.dropdown-content {
+    top: 55px !important;
+    min-width: 130px !important;
+  }
+  .dropdown-content a {
+    font-size: 1.4em !important;
+    height: 40px !important;
+    width: 130px !important;
+    line-height: 40px;
+    text-align: left;
+    padding-left: 15px !important;
+  }
+  .profile li:not(.ant-rate-star) {
+    line-height: 30px !important;
   }
 }

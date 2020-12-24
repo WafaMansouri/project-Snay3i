@@ -316,6 +316,7 @@
   background: #679b9b;
   font-style: 18px;
   border-radius: 2px;
+  line-height: 0px;
 }
 .container_contact .row100 .inputBox input:hover {
   background: #498d8d;

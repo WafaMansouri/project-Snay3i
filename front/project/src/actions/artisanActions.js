@@ -17,6 +17,7 @@ import {
 import axios from "axios";
 import setToken from "../setToken";
 import { loadClient } from "./authActions";
+import { sendNotificationAction } from "./sendNotificationAction";
 // To make a post
 export const addPostAction = (info, file, config) => (dispatch) => {
   setToken(); //to set the token in the header
@@ -68,6 +69,7 @@ export const respondAction = (response) => (dispatch) => {
         type: RESPONSE_ARTISAN_SUCCESS,
         payload: res.data,
       });
+      dispatch(sendNotificationAction(response.id_client));
       dispatch(checkRequest_artisan());
     })
     .catch((err) =>
@@ -78,16 +80,17 @@ export const respondAction = (response) => (dispatch) => {
     );
 };
 // Accept the Request
-export const accept_artisanAction = (id_request) => (dispatch) => {
+export const accept_artisanAction = (request) => (dispatch) => {
   setToken();
   axios
-    .post("/artisan/accept", { id_request }) //bind front and back
-    .then((res) =>
+    .post("/artisan/accept", { id_request: request._id }) //bind front and back
+    .then((res) => {
       dispatch({
         type: ACCEPT_REQUEST_SUCCESS,
         payload: res.data,
-      })
-    )
+      });
+      dispatch(sendNotificationAction(request.id_client._id));
+    })
     .catch((err) =>
       dispatch({
         type: ACCEPT_REQUEST_FAIL,
