@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
-    "start": "concurrently \"npm run server\" \"cd front/project && npm start\""
+    "start": "concurrently \"npm run server\" \"cd front/project && npm start\"",
+    "build": "webpack"
   },
   "author": "Wafa Mansouri + Moetez Chniti",
   "license": "ISC",

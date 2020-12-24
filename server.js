@@ -2,6 +2,7 @@ let express = require("express");
 const connectDB = require("./helpers/connectDB");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 //public folder
 // express.static("public");
 // app.set("view engine", "ejs");
@@ -21,7 +22,16 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // connect to our Database
 connectDB();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("front/project/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "front/project", "build", "index.html"));
+  });
+}
 // redirect routes
+// const routes=require('./routes');
+// app.use("/", routes);
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
 app.use("/post", require("./routes/post"));
