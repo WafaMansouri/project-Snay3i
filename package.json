@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "node server.js",
-    "start": "concurrently \"npm run server\" \"cd front/project && npm start\"",
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd front/project && npm start\"",
     "build": "cd front/project && npm run build",
     "heroku-postbuild": "cd front/project && npm install && npm run build"
   },
