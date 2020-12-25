@@ -26,7 +26,9 @@ connectDB();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("front/project/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "front/project", "build", "index.html"));
+    res.sendFile(
+      path.join(__dirname, "front", "project", "build", "index.html")
+    );
   });
 }
 // redirect routes

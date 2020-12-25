@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "start": "concurrently \"npm run server\" \"cd front/project && npm start\"",
-    "build": "webpack"
+    "build": "cd front/project && npm run build",
+    "heroku-postbuild": "cd front/project && npm install && npm run build"
   },
   "author": "Wafa Mansouri + Moetez Chniti",
   "license": "ISC",
