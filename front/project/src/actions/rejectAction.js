@@ -5,7 +5,7 @@ import setToken from "../setToken";
 export const rejectAction = (id_request) => (dispatch) => {
   setToken();
   axios
-    .post("/reject", { id_request }) //bind front and back
+    .post("/api/reject", { id_request }) //bind front and back
     .then((res) =>
       dispatch({
         type: REJECT_REQUEST_SUCCESS,

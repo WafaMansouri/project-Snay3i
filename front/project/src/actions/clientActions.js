@@ -28,7 +28,7 @@ import { sendNotificationAction } from "./sendNotificationAction";
 export const searchByNameAction = (name) => (dispatch) => {
   //   setToken(); //to set the token in the header
   axios
-    .get(`/search/name/${name}`) //bind front and back
+    .get(`/api/search/name/${name}`) //bind front and back
     .then((res) =>
       dispatch({
         type: SEARCH_SUCCESS,
@@ -46,7 +46,7 @@ export const searchByNameAction = (name) => (dispatch) => {
 export const searchByCategoryAction = (category) => (dispatch) => {
   //   setToken(); //to set the token in the header
   axios
-    .get(`/search/category/${category}`) //bind front and back
+    .get(`/api/search/category/${category}`) //bind front and back
     .then((res) =>
       dispatch({
         type: SEARCH_SUCCESS,
@@ -64,7 +64,7 @@ export const searchByCategoryAction = (category) => (dispatch) => {
 export const visitByIdAction = (id) => (dispatch) => {
   // setToken();
   axios
-    .get(`/visit/artisan/${id}`) //bind front and back
+    .get(`/api/visit/artisan/${id}`) //bind front and back
     .then((res) =>
       dispatch({
         type: VISIT_PROFILE_SUCCESS,
@@ -82,7 +82,7 @@ export const visitByIdAction = (id) => (dispatch) => {
 export const sendRequestAction = (requestInfo) => (dispatch) => {
   setToken();
   axios
-    .post("/visit/request", requestInfo) //bind front and back
+    .post("/api/visit/request", requestInfo) //bind front and back
     .then((res) => {
       dispatch({
         type: SEND_REQUEST_SUCCESS,
@@ -102,7 +102,7 @@ export const sendRequestAction = (requestInfo) => (dispatch) => {
 export const checkRequest_client = () => (dispatch) => {
   setToken();
   axios
-    .get(`/client/requests`) //bind front and back
+    .get(`/api/client/requests`) //bind front and back
     .then((res) =>
       dispatch({
         type: CHECK_REQUESTS_CLIENT_SUCCESS,
@@ -120,7 +120,7 @@ export const checkRequest_client = () => (dispatch) => {
 export const confirm_clientAction = (request) => (dispatch) => {
   setToken();
   axios
-    .post("/client/confirm", { id_request: request._id }) //bind front and back
+    .post("/api/client/confirm", { id_request: request._id }) //bind front and back
     .then((res) => {
       dispatch({
         type: ACCEPT_REQUEST_SUCCESS,
@@ -140,7 +140,7 @@ export const confirm_clientAction = (request) => (dispatch) => {
 export const ratingAction = (rateInfo) => (dispatch) => {
   setToken();
   axios
-    .post("/client/rating", rateInfo) //bind front and back
+    .post("/api/client/rating", rateInfo) //bind front and back
     .then((res) => {
       dispatch({
         type: RATING_SUCCESS,
@@ -159,7 +159,7 @@ export const ratingAction = (rateInfo) => (dispatch) => {
 export const getRateAction = (id) => (dispatch) => {
   setToken();
   axios
-    .get(`/client/rating/${id}`) //bind front and back
+    .get(`/api/client/rating/${id}`) //bind front and back
     .then((res) =>
       dispatch({
         type: GET_RATING_CLIENT_SUCCESS,
@@ -177,7 +177,7 @@ export const getRateAction = (id) => (dispatch) => {
 export const addLikeAction = (id_post, id_artisan) => (dispatch) => {
   setToken();
   axios
-    .post("/client/like", { id_post, id_artisan }) //bind front and back
+    .post("/api/client/like", { id_post, id_artisan }) //bind front and back
     .then((res) =>
       dispatch({
         type: ADD_LIKE_SUCCESS,
@@ -195,7 +195,7 @@ export const addLikeAction = (id_post, id_artisan) => (dispatch) => {
 export const deleteLikeAction = (id_post) => (dispatch) => {
   setToken();
   axios
-    .delete(`/client/like/${id_post}`) //bind front and back
+    .delete(`/api/client/like/${id_post}`) //bind front and back
     .then((res) => {
       dispatch({
         type: DELETE_LIKE_SUCCESS,

@@ -4,7 +4,7 @@ import setToken from "../setToken";
 export const retrieveCategories = () => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .get("/category") //bind front and back
+    .get("/api/category") //bind front and back
     .then((res) =>
       dispatch({
         type: ALL_CATEGORIES_SUCCESS,

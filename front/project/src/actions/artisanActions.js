@@ -25,7 +25,7 @@ export const addPostAction = (info, file, config) => (dispatch) => {
   formData.append("avatar", file);
   formData.append("info", JSON.stringify(info));
   axios
-    .post("/post", formData, config) //bind front and back
+    .post("/api/post", formData, config) //bind front and back
     .then((res) => {
       dispatch({
         type: ADD_POST_SUCCESS,
@@ -44,7 +44,7 @@ export const addPostAction = (info, file, config) => (dispatch) => {
 export const checkRequest_artisan = () => (dispatch) => {
   setToken();
   axios
-    .get("artisan/requests/") //bind front and back
+    .get("/api/artisan/requests/") //bind front and back
     .then((res) =>
       dispatch({
         type: CHECK_REQUESTS_ARTISAN_SUCCESS,
@@ -63,7 +63,7 @@ export const checkRequest_artisan = () => (dispatch) => {
 export const respondAction = (response) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .post("/artisan/response", response) //bind front and back
+    .post("/api/artisan/response", response) //bind front and back
     .then((res) => {
       dispatch({
         type: RESPONSE_ARTISAN_SUCCESS,
@@ -83,7 +83,7 @@ export const respondAction = (response) => (dispatch) => {
 export const accept_artisanAction = (request) => (dispatch) => {
   setToken();
   axios
-    .post("/artisan/accept", { id_request: request._id }) //bind front and back
+    .post("/api/artisan/accept", { id_request: request._id }) //bind front and back
     .then((res) => {
       dispatch({
         type: ACCEPT_REQUEST_SUCCESS,
@@ -103,7 +103,7 @@ export const accept_artisanAction = (request) => (dispatch) => {
 export const artisanPostsAction = (id) => (dispatch) => {
   // setToken();
   axios
-    .get(`/artisan/posts/${id}`) //bind front and back
+    .get(`/api/artisan/posts/${id}`) //bind front and back
     .then((res) =>
       dispatch({
         type: GET_POSTS_ARTISAN_SUCCESS,
@@ -121,7 +121,7 @@ export const artisanPostsAction = (id) => (dispatch) => {
 export const deletePostAction = (id_post) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .delete(`/artisan/deletePost/${id_post}`) //bind front and back
+    .delete(`/api/artisan/deletePost/${id_post}`) //bind front and back
     .then((res) => {
       dispatch({
         type: DELETE_POST_SUCCESS,
@@ -139,7 +139,7 @@ export const deletePostAction = (id_post) => (dispatch) => {
 // To get ALL the likes of the connected artisan
 export const likesArtisanAction = (id) => (dispatch) => {
   axios
-    .get(`/artisan/likes/${id}`) //bind front and back
+    .get(`/api/artisan/likes/${id}`) //bind front and back
     .then((res) =>
       dispatch({
         type: GET_LIKES_ARTISAN_SUCCESS,

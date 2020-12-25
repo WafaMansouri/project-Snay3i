@@ -7,7 +7,7 @@ import { sendNotificationAction } from "./sendNotificationAction";
 export const ignore_clientAction = (request) => (dispatch) => {
   setToken();
   axios
-    .post("/client/ignore", { id_request: request._id }) //bind front and back
+    .post("/api/client/ignore", { id_request: request._id }) //bind front and back
     .then((res) => {
       dispatch({
         type: IGNORE_REQUEST_SUCCESS,

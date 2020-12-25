@@ -13,7 +13,7 @@ import setToken from "../setToken";
 export const register = (info) => (dispatch) => {
   //info state in register component
   axios
-    .post("/register", info) //bind front and back
+    .post("/api/register", info) //bind front and back
     .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -31,7 +31,7 @@ export const register = (info) => (dispatch) => {
 export const loadClient = () => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .get("/login") //bind front and back
+    .get("/api/login") //bind front and back
     .then((res) =>
       dispatch({
         type: LOAD_SUCCESS,
@@ -47,7 +47,7 @@ export const loadClient = () => (dispatch) => {
 };
 export const login = (info) => (dispatch) => {
   axios
-    .post("/login", info) //bind front and back
+    .post("/api/login", info) //bind front and back
     .then((res) =>
       dispatch({
         type: LOGIN_SUCCESS,

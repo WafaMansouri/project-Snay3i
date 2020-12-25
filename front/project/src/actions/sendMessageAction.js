@@ -4,7 +4,7 @@ import axios from "axios";
 // send message to the admin
 const sendMessageAction = (info) => (dispatch) => {
   axios
-    .post("/send_message", { info })
+    .post("/api/send_message", { info })
     .then((res) => {
       dispatch({
         type: SEND_MESSAGE_SUCCESS,

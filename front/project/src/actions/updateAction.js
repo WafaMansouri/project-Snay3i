@@ -8,7 +8,7 @@ const updateAction = (info) => (dispatch) => {
   setToken(); //to set the token in the header
 
   axios
-    .post("/update", info) //bind front and back
+    .post("/api/update", info) //bind front and back
     .then((res) => {
       dispatch({
         type: UPDATE_INFO_SUCCESS,

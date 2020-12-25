@@ -7,7 +7,7 @@ import { checkRequest_artisan } from "./artisanActions";
 export const ignore_artisanAction = (request) => (dispatch) => {
   setToken();
   axios
-    .post("/artisan/ignore", { id_request: request._id }) //bind front and back
+    .post("/api/artisan/ignore", { id_request: request._id }) //bind front and back
     .then((res) => {
       dispatch({
         type: IGNORE_REQUEST_SUCCESS,

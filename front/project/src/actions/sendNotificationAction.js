@@ -7,7 +7,7 @@ import { loadClient } from "./authActions";
 export const sendNotificationAction = (id) => (dispatch) => {
   setToken();
   axios
-    .post("/send_notif", { id }) //bind front and back
+    .post("/api/send_notif", { id }) //bind front and back
     .then((res) =>
       dispatch({
         type: SEND_NOTIFICATION_SUCCESS,

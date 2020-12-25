@@ -20,7 +20,7 @@ import { retrieveCategories } from "../actions/categoriesActions";
 export const addCategory = (newCategory) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .post("/admin/category", newCategory) //bind front and back
+    .post("/api/admin/category", newCategory) //bind front and back
     .then((res) => {
       dispatch({
         type: ADD_CATEGORY_SUCCESS,
@@ -39,7 +39,7 @@ export const addCategory = (newCategory) => (dispatch) => {
 export const deleteCategory = (name) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .delete(`/admin/delete_category/${name}`) //bind front and back
+    .delete(`/api/admin/delete_category/${name}`) //bind front and back
     .then((res) => {
       dispatch({
         type: DELETE_CATEGORY_SUCCESS,
@@ -58,7 +58,7 @@ export const deleteCategory = (name) => (dispatch) => {
 export const removeUserAction = (id, state) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .delete(`/admin/remove_user/${state}/${id}`) //bind front and back
+    .delete(`/api/admin/remove_user/${state}/${id}`) //bind front and back
     .then((res) => {
       dispatch({
         type: REMOVE_USER_SUCCESS,
@@ -77,7 +77,7 @@ export const removeUserAction = (id, state) => (dispatch) => {
 export const getMessages = () => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .get("/admin/messages") //bind front and back
+    .get("/api/admin/messages") //bind front and back
     .then((res) =>
       dispatch({
         type: GET_MESSAGES_SUCCESS,
@@ -95,7 +95,7 @@ export const getMessages = () => (dispatch) => {
 export const getUsers = () => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .get("/admin/users") //bind front and back
+    .get("/api/admin/users") //bind front and back
     .then((res) =>
       dispatch({
         type: GET_USERS_SUCCESS,
@@ -113,7 +113,7 @@ export const getUsers = () => (dispatch) => {
 export const deleteMessageAction = (id) => (dispatch) => {
   setToken(); //to set the token in the header
   axios
-    .delete(`/admin/delete_message/${id}`) //bind front and back
+    .delete(`/api/admin/delete_message/${id}`) //bind front and back
     .then((res) => {
       dispatch({
         type: DELETE_MESSAGE_SUCCESS,

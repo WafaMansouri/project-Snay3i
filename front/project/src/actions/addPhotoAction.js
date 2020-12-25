@@ -9,7 +9,7 @@ const addPhotoAction = (file, config) => (dispatch) => {
   formData.append("avatar", file);
 
   axios
-    .post("/add_photo", formData, config) //bind front and back
+    .post("/api/add_photo", formData, config) //bind front and back
     .then((res) => {
       dispatch({
         type: ADD_PHOTO_SUCCESS,

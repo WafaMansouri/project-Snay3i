@@ -7,7 +7,7 @@ import { loadClient } from "./authActions";
 export const resetNotificationAction = () => (dispatch) => {
   setToken();
   axios
-    .post("/reset_notif") //bind front and back
+    .post("/api/reset_notif") //bind front and back
     .then((res) => {
       dispatch({
         type: RESET_NOTIFICATION_SUCCESS,

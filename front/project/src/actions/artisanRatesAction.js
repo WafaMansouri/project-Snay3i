@@ -3,7 +3,7 @@ import axios from "axios";
 // To get ALL the rate of the visited artisan
 export const artisanRatesAction = (id) => (dispatch) => {
   axios
-    .get(`/artisan/rates/${id}`) //bind front and back
+    .get(`/api/artisan/rates/${id}`) //bind front and back
     .then((res) =>
       dispatch({
         type: GET_RATES_ARTISAN_SUCCESS,
