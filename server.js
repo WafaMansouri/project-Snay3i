@@ -25,12 +25,15 @@ connectDB();
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("front/project/build"));
-  app.get("*", (req, res) => {
+  app.get("*", (req, res, next) => {
     let url = req.originalUrl;
-    if (!url.startsWith("/api/"))
+    if (!url.startsWith("/api/")) {
       res.sendFile(
         path.join(__dirname, "front", "project", "build", "index.html")
       );
+      return;
+    }
+    next();
   });
 }
 // redirect routes
