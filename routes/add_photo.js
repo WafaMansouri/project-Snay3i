@@ -19,7 +19,7 @@ var upload = multer({ storage: storage });
 
 // add photo
 router.post("/", authMiddleware, upload.single("avatar"), (req, res) => {
-  let path = `${req.protocol}://${req.hostname}:4000/uploads/profile_photos/${req.file.filename}`;
+  let path = `${req.protocol}://${req.hostname}:${req.socket.localPort}/uploads/profile_photos/${req.file.filename}`;
   if (req.state === "Artisan") {
     Artisan.findByIdAndUpdate(
       req.user_Id,
