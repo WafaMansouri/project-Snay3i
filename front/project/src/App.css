@@ -93,16 +93,18 @@ button {
 }
 @media (max-width: 768px) {
   .waves-effect.waves-light.btn.return {
-    width: 50px !important;
-    height: 47px;
+    width: 45px !important;
+    height: 43px;
     margin: 10px;
   }
   .waves-effect.waves-light.btn i {
-    font-size: 2rem;
-    line-height: 27px;
+    font-size: 1.8rem;
+    line-height: 14px;
+    transform: translate(-1px, -1px);
   }
 }
 /* styling scrollbar */
+
 ::-webkit-scrollbar {
   width: 8px; /*scrollbar vertical */
   height: 8px; /*scrollbar horizental */

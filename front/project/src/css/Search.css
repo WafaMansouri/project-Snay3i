@@ -16,76 +16,69 @@
 }
 
 .search .search_member {
-  /* background-color: rgb(38, 166, 154); */
-  transform: scale(0.8);
   background-color: white;
   color: #232f3e;
-  border: 3px solid #232f3e;
+  border: 2px solid #232f3e;
   box-shadow: 5px 10px 18px #888888;
   opacity: 1;
-  margin: 15px;
-  margin-bottom: 50px;
-  width: 350px;
-  height: 450px;
-  padding: 20px;
+  margin: 50px 35px;
+  /* margin-bottom: 50px; */
+  width: 280px;
+  height: 360px;
+  padding: 16px;
   line-height: 20px;
   position: relative;
-  border-radius: 20px;
+  border-radius: 16px;
   text-align: center;
   display: grid;
-  grid-template-rows: auto 60px;
+  grid-template-rows: auto 48px;
   grid-gap: 5px;
 }
 .search_member_info {
   overflow-y: scroll;
 }
-.search_member_info::-webkit-scrollbar {
-  width: 7px;
-  background-color: #121c25 !important;
-}
-::-webkit-scrollbar-thumb {
-  background: #555;
-}
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #678d8d;
-}
-.search .search_member:hover
-/* ,.search .search_member:hover .search_image */ {
-  /* background-color: rgb(38, 166, 154); */
+
+.search .search_member:hover {
   opacity: 1 !important;
   box-shadow: 10px 10px 5px #aaaaaa;
-  /* transform: translate(-0.5px, -0.5px); */
-  transform: scale(0.815, 0.815);
+  transform: scale(1.02, 1.02);
 }
 .search .search_member h4 {
-  margin-top: 50px;
+  font-size: 1.7em;
+  margin-top: 32px;
   margin-bottom: 5px;
   /* text-transform: uppercase; */
   font-family: "Gochi+Hand";
   font-weight: 600;
 }
 .search .search_member p.work {
-  font-size: 20px;
+  font-size: 16px;
   text-transform: uppercase;
   margin: 20px;
   margin-top: 5px;
   font-weight: 700;
 }
 .search .search_member ul {
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: 600;
   text-align: left;
+}
+.search .search_member ul i {
+  font-size: 1.5rem;
+  transform: translate(0px, 3px);
 }
 .search_member .waves-effect.waves-light.btn {
   border-radius: 22px;
   color: white;
   font-weight: bold;
+  height: 28px;
+  font-size: 1.1em;
+  line-height: 20px;
 }
 
 .search .search_member .search_image {
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   position: absolute;
   top: -50px;
@@ -96,10 +89,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 }
 .search .search_member .search_image img {
-  width: 126px;
-  height: 126px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
   padding: 7px;
 }
@@ -107,7 +101,20 @@
   /* rate */
   justify-content: center;
 }
+.search_member li.ant-rate-star {
+  font-size: 0.8em;
+}
+.search_member li.ant-rate-star:not(:last-child) {
+  margin-right: 5px;
+}
 /* styling scrollbar */
+/* .search_member ::-webkit-scrollbar {
+  width: 6px;
+} */
+.search_member_info::-webkit-scrollbar {
+  width: 6px;
+  background-color: #121c25 !important;
+}
 .search_member ::-webkit-scrollbar:hover {
   background-color: #324150 !important;
 }
@@ -124,4 +131,65 @@
 }
 .search .ant-rate-star.ant-rate-star-full .anticon {
   color: rgb(241, 241, 9) !important;
+}
+@media (max-width: 768px) {
+  .search .search_member {
+    width: 225px;
+    height: 290px;
+    grid-template-rows: auto 44px;
+    margin: 50px 25px;
+  }
+  .search .search_member .search_image {
+    width: 77px;
+    height: 77px;
+  }
+  .search .search_member .search_image img {
+    width: 87px;
+    height: 87px;
+  }
+  .search .search_member h4 {
+    font-size: 1.36em;
+    margin-top: 17px;
+  }
+  .search_member li.ant-rate-star {
+    font-size: 0.65em;
+  }
+  .search_member li.ant-rate-star:not(:last-child) {
+    margin-right: 4px;
+  }
+  .search .search_member p.work {
+    font-size: 12px;
+    margin: 16px;
+    margin-top: 0px;
+  }
+  .search .search_member ul {
+    font-size: 0.9em;
+  }
+  .search .search_member ul i {
+    font-size: 1.2rem;
+  }
+  .search_member .waves-effect.waves-light.btn {
+    height: 24px;
+    font-size: 0.9em;
+  }
+  .search_member_info::-webkit-scrollbar {
+    width: 5px;
+  }
+  h3.search_result {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 576px) {
+  .search .search_member {
+    transform: scale(0.8);
+    margin: 0px 0px;
+  }
+  .search .search_member:hover {
+    transform: scale(0.82, 0.82);
+  }
+  h3.search_result {
+    font-size: 1.8rem;
+    margin-bottom: 20px !important;
+    margin-top: 10px !important;
+  }
 }

@@ -9,13 +9,14 @@
   padding: 20px;
 }
 #heart {
+  transform: scale(0.8);
   position: relative;
   width: 80px;
   height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(0px, 15px);
+  /* transform: translate(0px, 15px); */
 }
 #heart > h6 {
   z-index: 3;
@@ -32,7 +33,7 @@
   top: 0;
   width: 40px;
   height: 70px;
-  background-color: #ffe75e;
+  background-color: rgb(255, 202, 61);
   border-radius: 50px 50px 0 0;
   transform: rotate(-45deg);
   transform-origin: 0 100%;
@@ -46,7 +47,7 @@
 #footer > div:not(#heart) {
   font-size: 1.1em;
   color: white;
-  transform: translate(0px, 50px);
+  transform: translate(0px, 65px);
 }
 #footer > div:not(#heart) i {
   font-size: 1.1em;
@@ -57,7 +58,10 @@
     height: 200px;
   }
   #heart {
-    transform: scale(0.8);
+    transform: scale(0.7);
+  }
+  #footer > div:not(#heart) {
+    transform: translate(0px, 45px);
   }
 }
 @media (max-width: 576px) {
