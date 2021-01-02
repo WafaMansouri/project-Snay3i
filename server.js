@@ -37,8 +37,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 // redirect routes
-// const routes=require('./routes');
-// app.use("/", routes);
 app.use("/api/register", require("./routes/register"));
 app.use("/api/login", require("./routes/login"));
 app.use("/api/post", require("./routes/post"));

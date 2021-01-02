@@ -195,7 +195,7 @@ function ContactModal(props) {
             <div className="form_contact">
               <textarea
                 name="msg_client"
-                placeholder="describe your request"
+                placeholder="Describe your request"
                 onChange={handleChange}
               ></textarea>
               <div className="calendar">
@@ -209,8 +209,8 @@ function ContactModal(props) {
                 />
               </div>
             </div>
-            <div style={{ height: 90 }}>
-              <h6 style={{ color: "red", height: 25 }}>
+            <div>
+              <h6 style={{ color: "red", height: 20, fontSize: "0.9em" }}>
                 {send_request.errors && send_request.errors}
               </h6>
               <button

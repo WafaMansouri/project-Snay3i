@@ -6,7 +6,7 @@
   margin: 0px;
 }
 .profile li {
-  font-size: 1.5em;
+  font-size: 1.2em;
   display: flex;
   font-weight: 600;
 }
@@ -15,10 +15,11 @@
   width: 95%;
 }
 .info ul i {
-  transform: translate(0px, 7px);
+  transform: translate(0px, 8px);
+  font-size: 1.6rem;
 }
 .profile li:not(.ant-rate-star) {
-  line-height: 45px;
+  line-height: 38px;
 }
 .containerInfo,
 .containerPosts {
@@ -26,11 +27,11 @@
   background-color: white;
 }
 .containerPosts {
-  padding: 60px;
+  padding: 48px 0px;
 }
 .containerInfo {
-  min-height: calc(100vh - 150px) !important;
-  margin: 30px;
+  min-height: calc(100vh - 110px) !important;
+  margin: 20px;
   z-index: 1;
   background-color: #eaeded;
   display: flex;
@@ -39,7 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 130px 40px 0px 40px;
+  padding: 130px 32px 0px 32px;
   background-image: url("/back-carte-blue.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -51,8 +52,8 @@
 }
 .containerInfo .info {
   width: 100%;
-  padding: 30px;
-  padding-top: 60px;
+  padding: 0px;
+  padding-top: 40px;
   position: relative;
 }
 .containerInfo .info > div:not(.container_rate):not(.rate_modal),
@@ -70,7 +71,7 @@
 }
 .containerInfo a,
 .containerPosts a {
-  font-size: 1.7em;
+  font-size: 1.2em;
   margin-bottom: 50px !important;
   text-decoration: underline;
   color: #218838;
@@ -78,7 +79,7 @@
 }
 .containerInfo a + i,
 .containerPosts a + i {
-  font-size: 1.7em;
+  font-size: 1.2em;
   color: #218838;
 }
 .container-posts {
@@ -86,33 +87,33 @@
   display: flex;
   flex-direction: column;
 }
+.container-posts .rowPost i {
+  font-size: 1.6rem;
+}
 .cadrePhoto {
-  width: 220px;
-  height: 220px;
+  width: 176px;
+  height: 176px;
   box-sizing: border-box;
   background-clip: content-box;
   background-image: url("/images/profileBack.png");
   border: solid black 0px;
   border-radius: 49.9%;
-  border-top-left-radius: 49.9%;
-  border-top-right-radius: 49.9%;
-  border-bottom-right-radius: 49.9%;
-  border-bottom-left-radius: 49.9%;
   display: flex;
   justify-content: stretch;
   margin-bottom: 10px;
 }
 .container_icon_add_photo {
-  width: 42px;
-  height: 42px;
+  width: 33.6px;
+  height: 33.6px;
   border-radius: 49.9%;
   background-color: rgba(255, 255, 255, 0.7);
-  transform: translate(-7px, 39px);
+  transform: translate(-9px, 9px);
   text-decoration: none;
 }
 .container_icon_add_photo i {
-  transform: translate(-1px, 4px);
+  transform: translate(0px, 4px);
   color: #232f3e;
+  font-size: 1.6rem;
 }
 /* styling post modal */
 .cardPost,
@@ -127,7 +128,12 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 7px;
+  align-items: flex-start;
+  padding-top: 5px;
+}
+.cardPost-action a {
+  margin-bottom: 0px !important;
+  padding: 0px;
 }
 .cardPost-action a i {
   /* in visit profile */
@@ -139,28 +145,30 @@
   color: #c41717 !important;
   padding-bottom: 0px !important;
   font-weight: bold !important;
-  font-size: 1.9em;
+  font-size: 1.5em;
 }
 .cardPost-content p {
-  font-size: 1.3em;
-  padding-top: 30px;
+  font-size: 1.2em;
+  padding-top: 20px;
+  text-align: justify;
 }
 .cardPost-content {
-  padding-bottom: 20px;
+  padding-bottom: 0px;
 }
 .colPost.s12.m7 {
   min-width: 100% !important;
 }
 .rowPost {
   padding: 20px 0px 40px 0px;
-  margin-bottom: 100px;
-  width: 80%;
+  margin-bottom: 20px;
+  width: 60%;
 }
 .created_at {
-  text-align: left;
+  text-align: right;
+  font-size: 0.7em;
   font-weight: 700;
   padding-top: 6px;
-  padding-left: 10px;
+  padding-right: 5px;
   border-bottom: 0.5px solid #c41717;
 }
 /* styling rate */
@@ -170,76 +178,77 @@
 /*buttons in visitProfile*/
 .waves-effect.waves-light.btn.visit {
   width: 100%;
-  font-size: 1.5em;
-  height: 40px;
-  transform: translate(0px, 34px);
+  font-size: 1.1em;
+  height: 32px;
+  transform: translate(0px, 10px);
+  line-height: 20px;
 }
 /* styling modal rating in visit */
 .container_rate {
   cursor: pointer;
-  width: 180px;
-  height: 95px;
+  width: 130px;
+  height: 70px;
   background-color: white;
-  box-shadow: 10px 10px 5px #aaaaaa;
+  box-shadow: 7px 7px 7px #aaaaaa;
   outline: 0;
   color: #333;
   text-transform: uppercase;
   transition: all 0.1s ease-in-out;
   border: 0;
   position: absolute;
-  right: 65px;
+  right: 38px;
   top: 50px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
-  border-radius: 20px;
+  border-radius: 12px;
 }
 .container_rate:before {
   content: "";
   position: absolute;
   right: 100%;
-  top: 30px;
+  top: 23px;
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-right: 20px solid white;
-  border-bottom: 10px solid transparent;
+  border-top: 8px solid transparent;
+  border-right: 17px solid white;
+  border-bottom: 8px solid transparent;
 }
 .icons-list {
-  font-size: 3.5em;
+  font-size: 2.5em;
 }
 .container_rate h4 {
   margin-bottom: 0px !important;
-  font-size: 1.5em !important;
+  font-size: 1.2em !important;
   font-weight: 900;
   /* color: aliceblue; */
   color: #1890ff;
 }
 .rate_modal {
   background-color: white;
-  box-shadow: 10px 10px 5px #aaaaaa;
-  width: 350px;
-  height: 280px;
+  box-shadow: 7px 7px 7px #aaaaaa;
+  width: 250px;
+  height: 200px;
   position: absolute;
-  right: 270px;
+  right: 191px;
   top: 50px;
   z-index: 10;
-  border-radius: 15px;
+  border-radius: 12px;
   padding: 20px;
   display: grid;
   grid-template-rows: auto 50px;
 }
 .rate_modal .container_close_icon {
-  width: 40px;
-  height: 40px;
-  background-color: rgba(78, 33, 58, 0.15);
+  width: 30px;
+  height: 30px;
+  background-color: rgba(78, 33, 58, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 30%;
   cursor: pointer;
   color: #232f3e;
-  font-size: 2em;
-  transform: translate(-12px, 22px);
+  font-size: 1.22em;
+  transform: translate(-14px, 11px);
 }
 .rate_modal .container_close_icon i {
   font-size: 1.2em;
@@ -247,7 +256,7 @@
 }
 .rate_nbr_person {
   text-align: center;
-  font-size: 1.7em;
+  font-size: 1.4em;
   margin-left: 15px;
   color: #232f3e;
 }
@@ -256,17 +265,18 @@
   color: #232f3e;
 }
 .icon_person i {
-  font-size: 2em;
+  font-size: 1.6em;
 }
 /*the rate of the client*/
 .fas.fa-star {
-  font-size: 40px;
-  margin: 7px;
+  font-size: 30px;
+  margin: 3px;
 }
 .message_rate {
   margin-top: 20px;
   font-weight: 700;
   color: #232f3e;
+  font-size: 1.3em;
 }
 
 @media (max-width: 992px) {
@@ -294,19 +304,12 @@
     margin-right: 10px;
     min-height: calc(100vh - 75px);
   }
-  ul.ant-rate.ant-rate-disabled {
-    font-size: 12px !important; /*Rate of the artisan*/
-  }
   .profile li {
     /* font-size: 1.2em; */
     font-weight: 500;
   }
   .profile li:not(.ant-rate-star) {
     line-height: 35px;
-  }
-  .containerInfo a,
-  .containerPosts a {
-    font-size: 1.4em;
   }
   .container_rate,
   .rate_modal {
@@ -348,10 +351,6 @@
     font-size: 1.7em;
     transform: translate(-12px, 28px);
   }
-  .waves-effect.waves-light.btn.visit {
-    font-size: 1.3em;
-    height: 35px;
-  }
   .rate_nbr_person,
   .containerInfo .material-icons {
     transform: translate(0px, 4px);
@@ -381,10 +380,6 @@
   .containerPosts > div:not(.container-posts) {
     margin-top: 30px;
   }
-  .containerInfo a + i,
-  .containerPosts a + i {
-    font-size: 1.4em;
-  }
   .container_icon_add_photo {
     transform: translate(-5px, -12px);
   }
@@ -409,6 +404,27 @@
   }
 }
 @media (max-width: 576px) {
+  .container-posts {
+    margin-top: 10px;
+  }
+  .container-posts .rowPost i {
+    font-size: 1.4rem;
+  }
+  .info,
+  .containerPosts {
+    padding: 10px !important;
+    font-size: 0.7em !important;
+  }
+  .containerInfo .info > div:not(.container_rate):not(.rate_modal),
+  .containerPosts > div:not(.container-posts) {
+    margin-top: 15px !important;
+    margin-right: 10px !important;
+    transform: translate(17px, -15px) !important;
+  }
+  .info ul i {
+    transform: translate(0px, 5px) !important;
+    font-size: 1.2rem;
+  }
   .container_rate,
   .rate_modal {
     top: 18px;
@@ -416,23 +432,28 @@
   .rate_modal {
     height: 200px;
     width: 205px;
-    right: 170px;
+    right: 146px;
     border-radius: 8px;
-    box-shadow: 7px 7px 5px #aaaaaa;
+    box-shadow: 4px 4px 5px #aaaaaa;
   }
   .container_rate {
-    width: 110px;
-    height: 60px;
+    width: 90px;
+    height: 50px;
     right: 40px;
+    box-shadow: 4px 4px 5px #aaaaaa;
+    border-radius: 9px;
+  }
+  .icons-list {
+    font-size: 2.2em;
   }
   .container_rate h4 {
     margin-top: 5px;
   }
   .container_rate:before {
-    top: 22px;
-    border-top: 8px solid transparent;
-    border-right: 15px solid white;
-    border-bottom: 8px solid transparent;
+    top: 17px;
+    border-top: 7px solid transparent;
+    border-right: 12px solid white;
+    border-bottom: 7px solid transparent;
   }
   .fas.fa-star {
     font-size: 23px !important;
@@ -446,7 +467,45 @@
     width: 30px;
     height: 30px;
   }
-  .containerInfo .material-icons {
-    transform: translate(0px, 1px);
+  .containerInfo .icon_person .material-icons {
+    transform: translate(0px, -2px) !important;
+    font-size: 1.3em;
+  }
+  .rate_nbr_person {
+    font-size: 1.2em;
+    transform: translate(0px, -1px) !important;
+    margin-left: 10px;
+  }
+  .rowPost {
+    padding: 20px 0px 10px 0px;
+  }
+  ul.ant-rate.ant-rate-disabled {
+    font-size: 12px !important; /*Rate of the artisan*/
+  }
+  .cadrePhoto {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  .waves-effect.waves-light.btn.visit {
+    width: 160px;
+    font-size: 1em;
+    height: 25px;
+    margin: 10px;
+  }
+  .cadrePhoto:not(img) {
+    margin-top: 20px;
+    margin-bottom: 3px;
+  }
+  .ant-rate-star:not(:last-child) {
+    margin-right: 5px;
+  }
+  .container_icon_add_photo {
+    height: 28px;
+    width: 28px;
+    transform: translate(-7px, -29px);
+  }
+  .container_icon_add_photo i {
+    font-size: 1.4rem;
+    transform: translate(0px, 4px) !important;
   }
 }

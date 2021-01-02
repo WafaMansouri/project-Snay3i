@@ -26,9 +26,9 @@ const Search = () => {
         </button>
         {search.artisans.length !== 0 &&
           (search.artisans.length === 1 ? (
-            <h1 className="search_result">1 Result</h1>
+            <h3 className="search_result">1 Result</h3>
           ) : (
-            <h1 className="search_result">{search.artisans.length} Results</h1>
+            <h3 className="search_result">{search.artisans.length} Results</h3>
           ))}
       </div>
       {!search.artisans.errors ? (
@@ -58,7 +58,7 @@ const Search = () => {
           </div>
         ) : (
           <div className="search">
-            <h1 className="search_result">Not Found</h1>
+            <h3 className="search_result">Not Found</h3>
           </div>
         )
       ) : (

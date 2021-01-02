@@ -293,14 +293,14 @@ const PostModal = ({ post }) => {
             </div>
             <div class="cardPost-action">
               <div style={{ display: "flex" }}>
-                <a style={{ margin: 0, padding: 0 }} onClick={handleLike}>
+                <a onClick={handleLike}>
                   {!like_client ? (
                     <i class="small material-icons">favorite_border</i>
                   ) : (
                     <i class="small material-icons">favorite</i>
                   )}
                 </a>
-                <div style={{ fontSize: "1em", fontWeight: "700" }}>
+                <div style={{ fontSize: "0.9em", fontWeight: "700" }}>
                   {countLikes && <span>{countLikes} </span>} person like this
                 </div>
               </div>

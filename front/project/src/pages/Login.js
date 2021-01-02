@@ -11,7 +11,9 @@ const Login = ({ history, match }) => {
   const [errors, seterrors] = useState(null);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    auth.errors = null;
+  }, [match.path]);
   useEffect(() => {
     // handle state admin
     if (match.path === "/loginAdmin") {

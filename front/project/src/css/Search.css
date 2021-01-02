@@ -1,6 +1,5 @@
 /* styling search */
 .container_search {
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   width: auto;
@@ -10,14 +9,15 @@
 .search_result {
   font-family: "Allura", cursive;
   font-weight: 600;
-  font-size: 52px;
-  margin-bottom: 100px;
+  margin-bottom: 0px;
   margin-top: 20px;
   text-align: center;
+  transform: translate(-26px, 0px);
 }
 
 .search .search_member {
   /* background-color: rgb(38, 166, 154); */
+  transform: scale(0.8);
   background-color: white;
   color: #232f3e;
   border: 3px solid #232f3e;
@@ -56,7 +56,7 @@
   opacity: 1 !important;
   box-shadow: 10px 10px 5px #aaaaaa;
   /* transform: translate(-0.5px, -0.5px); */
-  transform: scale(1.015, 1.015);
+  transform: scale(0.815, 0.815);
 }
 .search .search_member h4 {
   margin-top: 50px;

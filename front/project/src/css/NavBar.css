@@ -3,12 +3,12 @@
   background-color: #232f3e;
   /* background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.4)); */
   color: white;
-  height: 90px;
+  height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px 20px;
+  padding: 15px 15px 15px;
   position: sticky;
   top: 0px;
   z-index: 20;
@@ -26,8 +26,8 @@
 }
 .navBar img {
   padding-bottom: 5px;
-  height: 35px;
-  width: 110px;
+  height: 28px;
+  width: 90px;
 }
 .navBar .links {
   display: flex;
@@ -36,11 +36,11 @@
 }
 .navBar a {
   color: white !important;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 .navBar .links a:not(.icon_navbar) {
-  padding: 15px;
-  padding-top: 10px !important;
+  padding: 10px;
+  padding-top: 6.5px !important;
   margin: 0;
   border-radius: 20px;
 }
@@ -48,15 +48,15 @@
   background-color: #2d3c4e;
 }
 /* styling dropdown search  in navbar */
-.dropbtn {
+.navBar .dropbtn {
   background-color: #232f3e;
   color: white;
-  padding: 16px;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 13px;
   border: none;
   cursor: pointer;
-  width: 80px;
-  margin-right: 0px;
+  width: 60px;
+  margin: 0px 0px;
 }
 .dropbtn i {
   font-size: 2em;
@@ -71,13 +71,12 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  min-width: 160px;
+  min-width: 140px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   opacity: 1;
   left: auto;
-  right: auto;
-  top: 95px !important;
-  font-size: 0.77em;
+  top: 69px !important;
+  font-size: 0.74em;
 }
 
 .dropdown-content a {
@@ -87,10 +86,10 @@
   text-decoration: none;
   display: block;
   overflow: visible;
-  height: 50px;
+  height: 43px;
   background-color: #232f3e;
   text-align: center;
-  line-height: 45px;
+  line-height: 40px;
 }
 
 /* Change color of dropdown links on hover */
@@ -106,15 +105,10 @@
   display: block;
 }
 
-.dropdown:hover .dropbtn {
-  background-color: #2d3c4e;
-}
 .navBar .search {
-  width: 350px !important;
-  /* background: ; */
+  width: 280px !important;
   display: inline-flex;
-  height: 80px;
-  /* border: 2px solid white; */
+  height: 60px;
 }
 .search input {
   background-color: white !important;
@@ -123,8 +117,8 @@
   color: black;
   border-radius: 5px !important;
   padding-left: 5px !important;
-  /* position: absolute;
-  left: 250px; */
+  height: 2.55rem !important;
+  font-size: 1.2em !important;
 }
 .search::placeholder {
   color: #132743;
@@ -134,9 +128,12 @@
 .container_searchBar {
   display: flex;
   align-items: center;
-  width: 600px;
+  width: fit-content;
   position: absolute;
   left: 115px;
+}
+.navBar .medium.material-icons {
+  font-size: 2.1rem;
 }
 /* responsive navBar */
 a.icon_navbar {
@@ -151,14 +148,11 @@ a.icon_navbar {
     display: block !important;
     padding: 10px;
     padding-top: 5px !important;
-    font-size: 2.2em !important;
+    font-size: 2em !important;
     height: 55px;
     position: fixed;
     top: 9.5px;
     left: 91vw;
-  }
-  .navBar {
-    height: 75px !important;
   }
   .navBar > img {
     max-width: 70px !important;
@@ -178,13 +172,13 @@ a.icon_navbar {
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 @media (max-width: 992px) {
   .navBar.responsiveNav {
-    position: relative;
+    position: sticky;
   }
   .navBar.responsiveNav .links {
     position: absolute;
     right: 0;
     top: 70px;
-    width: 200px;
+    width: 180px;
     float: right;
     flex-wrap: wrap;
     background-color: #232f3e;
@@ -194,12 +188,11 @@ a.icon_navbar {
   .navBar.responsiveNav .links a {
     float: right;
     display: block;
-    text-align: right;
     background-color: #232f3e;
     width: 100% !important;
     text-align: left;
     border-radius: 0px;
-    font-size: 1.6em;
+    font-size: 1.3em;
   }
 
   .navBar.responsiveNav a.icon_navbar {
@@ -222,7 +215,7 @@ a.icon_navbar {
     width: 400px !important;
   }
   .navBar .search {
-    width: 220px !important;
+    width: 200px !important;
     height: 40px !important;
   }
   .search::placeholder {
@@ -240,9 +233,10 @@ a.icon_navbar {
     max-height: 25px !important;
   }
   .dropbtn {
-    width: 43px;
-    height: 55px;
+    width: 43px !important;
+    height: 50px;
     text-align: right;
+    padding: 0px 10px !important;
   }
   .dropbtn i {
     font-size: 1.5em;
@@ -256,8 +250,8 @@ a.icon_navbar {
     height: 32px !important;
   }
   .navBar input.search {
-    width: 160px !important;
-    height: 32px !important;
+    width: 150px !important;
+    height: 30px !important;
     font-size: 1.1em !important;
   }
   a.icon_navbar {
@@ -269,17 +263,6 @@ a.icon_navbar {
   .navBar.responsiveNav a.icon_navbar {
     top: 4.5px;
     left: 87vw;
-  }
-  .info,
-  .containerPosts {
-    padding: 10px !important;
-    font-size: 0.7em !important;
-  }
-  .containerInfo .info > div:not(.container_rate):not(.rate_modal),
-  .containerPosts > div:not(.container-posts) {
-    margin-top: 15px !important;
-    margin-right: 10px !important;
-    transform: translate(17px, -15px) !important;
   }
   .navBar.responsiveNav .links {
     top: 55px;
@@ -294,7 +277,7 @@ a.icon_navbar {
     font-size: 1.9rem !important;
   }
   div.dropdown-content {
-    top: 55px !important;
+    top: 52px !important;
     min-width: 130px !important;
   }
   .dropdown-content a {

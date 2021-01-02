@@ -28,21 +28,28 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   z-index: 101;
   padding: 40px;
-  border-radius: 25px;
+  border-radius: 20px;
   background-color: #f3f3f3;
 }
 
 /* styling contact modal  */
 .modal-box.contact {
-  width: 800px;
+  width: 640px;
   display: grid;
-  grid-template-rows: 40px auto 90px;
+  grid-template-rows: 32px auto 72px;
   height: 350px !important;
   padding: 10px;
   padding-bottom: 30px;
 }
+.modal-box.contact .container_close_icon i {
+  font-size: 1.6rem;
+}
 .modal-box.contact button {
   width: 95%;
+  font-size: 1.2em;
+  height: 28px !important;
+  line-height: 20px;
+  margin-top: 12px;
 }
 .modal-box.contact textarea {
   background-color: white;
@@ -53,6 +60,8 @@
   border: 2px solid #679b9b;
   padding: 10px;
   overflow-y: scroll;
+  height: 160px;
+  width: 240px;
 }
 
 .modal-box.contact textarea:focus {
@@ -63,7 +72,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  height: 300px;
+  height: 240px;
 }
 .spanContact {
   font-size: 1.5em;
@@ -71,8 +80,11 @@
   color: #2d3c4e;
 }
 .modal-box.contact .calendar {
-  margin-top: 60px;
-  margin-left: 20px;
+  margin-top: 48px;
+  margin-left: 16px;
+  width: 240px !important;
+  height: 240px !important;
+  font-size: 0.8em;
 }
 
 @media (max-width: 992px) {
@@ -134,8 +146,8 @@
 }
 .modal-box.view_request .container_close_icon,
 .modal-box.contact .container_close_icon {
-  width: 45px;
-  height: 45px;
+  width: 36px;
+  height: 36px;
   background-color: rgba(216, 212, 212, 0.7);
   display: flex;
   align-items: center;
@@ -182,6 +194,7 @@
 /* styling picker date */
 .nice-dates-popover {
   width: 300px !important;
+  transform: scale(0.8) !important;
 }
 .nice-dates-day:after {
 }

@@ -18,7 +18,7 @@ const StarRating = () => {
   }, [rate_client.rate]);
   return (
     <div>
-      <div style={{ textAlign: "left" }}>
+      <div style={{ textAlign: "center" }}>
         {[...Array(5)].map((star, i) => {
           let ratingValue = i + 1;
           return (
@@ -63,7 +63,7 @@ const StarRating = () => {
           ? "Very satisfied"
           : "You can make a rate"}
       </h5>
-      <i class="material-icons" style={{ fontSize: "4em", color: "#232F3E" }}>
+      <i class="material-icons" style={{ fontSize: "3em", color: "#232F3E" }}>
         {rating === 1
           ? " sentiment_very_dissatisfied"
           : rating === 2

@@ -108,9 +108,7 @@ const AddPostModel = (props) => {
               percent={percent}
             />
             {/* <Progress percent={percent} /> */}
-            <h6 style={{ color: "red", height: 50, paddingTop: 20 }}>
-              {error && error}
-            </h6>
+            <h6 className="error_add_post">{error && error}</h6>
             <button className="waves-effect waves-light btn" onClick={addPost}>
               ADD
             </button>

@@ -7,12 +7,14 @@ const Footer = () => {
         {" "}
         <h6>Made in Tunisia</h6>
       </div>
-      <div style={{ fontSize: "1.7em", color: "white" }}>
-        {" "}
-        <i class="small material-icons">email</i> mansouriwafa@yahoo.com
-      </div>
-      <div style={{ fontSize: "1.7em", color: "white" }}>
-        <i class="small material-icons">phone</i> (216) 50 380 217
+      <div>
+        <div>
+          {" "}
+          <i class="small material-icons">email</i> mansouriwafa@yahoo.com
+        </div>
+        {/* <div>
+          <i class="small material-icons">phone</i> (216) 50 380 217
+        </div> */}
       </div>
     </div>
   );

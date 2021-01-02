@@ -9,6 +9,8 @@ import {
 import { useHistory } from "react-router-dom";
 import { Badge } from "antd";
 import { resetNotificationAction } from "../actions/resetNotificationAction";
+import { HashLink } from "react-router-hash-link";
+
 const NavBar = () => {
   const auth = useSelector((state) => state.auth);
   const [classResponsive, setclassResponsive] = useState(false);
@@ -71,6 +73,15 @@ const NavBar = () => {
       <div className="links">
         {auth.isAuth ? (
           <>
+            <a
+              className="icon_navbar"
+              onClick={(e) => {
+                e.preventDefault();
+                setclassResponsive(!classResponsive);
+              }}
+            >
+              <i class="fa fa-bars"></i>
+            </a>
             {auth.user && auth.user.state !== "Admin" && (
               <Link
                 onClick={(e) => setclassResponsive(!classResponsive)}
@@ -112,11 +123,19 @@ const NavBar = () => {
                 }}
               >
                 <i class="medium material-icons">drafts</i>
-                <Badge count={auth.user.notification}>
+                <Badge
+                  size="small"
+                  offset={[-3, -15]}
+                  count={auth.user.notification}
+                  showZero
+                >
                   <span className="head-example" />
                 </Badge>
               </Link>
             )}
+          </>
+        ) : (
+          <>
             <a
               className="icon_navbar"
               onClick={(e) => {
@@ -126,19 +145,28 @@ const NavBar = () => {
             >
               <i class="fa fa-bars"></i>
             </a>
-          </>
-        ) : (
-          <>
             <Link to="/" onClick={(e) => setclassResponsive(!classResponsive)}>
               Home
             </Link>
-            <Link
-              style={{ width: 170 }}
-              to=""
+            {/* <Link
+              style={{ width: 140 }}
+              to="/"
               onClick={(e) => setclassResponsive(!classResponsive)}
             >
               Contact Us
-            </Link>
+            </Link> */}
+            <HashLink
+              style={{ width: 140 }}
+              smooth
+              to="/#contact"
+              scroll={(el) =>
+                el.scrollIntoView({ behavior: "instant", block: "center" })
+              }
+              onClick={(e) => setclassResponsive(!classResponsive)}
+            >
+              Contact Us
+            </HashLink>
+
             <Link
               to="/login"
               onClick={(e) => setclassResponsive(!classResponsive)}
@@ -151,16 +179,6 @@ const NavBar = () => {
             >
               Register
             </Link>
-            <a
-              // href="javascript:void(0);"
-              className="icon_navbar"
-              onClick={(e) => {
-                e.preventDefault();
-                setclassResponsive(!classResponsive);
-              }}
-            >
-              <i class="fa fa-bars"></i>
-            </a>
           </>
         )}
       </div>

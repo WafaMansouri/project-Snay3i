@@ -33,7 +33,6 @@ const Requests = () => {
     <div className="requests">
       <div style={{ width: "100%", textAlign: "left" }}>
         <button
-          style={{ width: 90, marginTop: 20 }}
           className="waves-effect waves-light btn return"
           onClick={handleReturn}
         >

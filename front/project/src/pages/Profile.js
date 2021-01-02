@@ -212,7 +212,7 @@ const PostModal = ({ post }) => {
                 >
                   favorite
                 </i>
-                <div style={{ fontSize: "1em", fontWeight: "700" }}>
+                <div style={{ fontSize: "0.9em", fontWeight: "700" }}>
                   {countLikes && <span>{countLikes} </span>} person like this
                 </div>
               </div>

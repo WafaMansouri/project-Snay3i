@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/authActions";
 import { retrieveCategories } from "../actions/categoriesActions";
 
-const Register = ({ history }) => {
+const Register = ({ history, match }) => {
   const [info, setInfo] = useState({
     f_name: "",
     l_name: "",
@@ -25,6 +25,9 @@ const Register = ({ history }) => {
   const handleChange = (e) => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   };
+  useEffect(() => {
+    auth.errors = null;
+  }, [match.path]);
   // Redirect to the profile page after register
   useEffect(() => {
     if (auth.isAuth) {
@@ -149,7 +152,7 @@ const Register = ({ history }) => {
           )}
         </div>
         <div className="grid_item_login">
-          <div style={{ height: 30 }}>
+          <div style={{ height: 25 }}>
             {errors && <h6 className="errorRegister">{errors}</h6>}
           </div>
           <button

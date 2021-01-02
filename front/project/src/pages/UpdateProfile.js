@@ -140,9 +140,7 @@ const UpdateProfile = (props) => {
                 </div>
               </div>
             )}
-            <h6 style={{ color: "red", marginTop: 20, height: 40 }}>
-              {update.errors && update.errors}
-            </h6>
+            <h6 className="error_update">{update.errors && update.errors}</h6>
             <button className="waves-effect waves-light btn" type="submit">
               UPDATE
             </button>

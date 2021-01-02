@@ -1,24 +1,86 @@
 /* styling update_profile */
 .modal-box.update_profile {
+  width: 580px;
+  height: 430px;
   display: grid;
   grid-template-rows: 50px auto;
   padding: 0px;
 }
 .modal-box.update_profile form {
-  margin: 40px;
+  margin: 20px 40px 20px 50px;
+  position: relative;
+}
+.modal-box.update_profile form input {
+  font-size: 1.1em !important;
+  height: 30px;
+  padding-right: 24px;
 }
 .modal-box.update_profile .container_close_icon {
-  width: 45px;
-  height: 45px;
+  width: 34px;
+  height: 34px;
   background-color: rgba(216, 212, 212, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  margin: 15px;
+  margin: 10px;
+}
+.modal-box.update_profile .container_close_icon i {
+  font-size: 1.6rem;
 }
 .modal-box.update_profile form i {
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   color: #218838;
+  transform: translate(-13px, 9px);
+}
+.modal-box.update_profile form button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-60%, 50%);
+  height: 30px;
+  width: 140px;
+  font-size: 1em;
+  margin: 10px;
+  line-height: 10px;
+}
+.modal-box.update_profile .error_update {
+  color: red;
+  margin-top: 10px;
+  height: 20px;
+  font-size: 0.95em;
+}
+@media (max-width: 576px) {
+  .modal-box.update_profile {
+    width: 300px;
+    height: 400px;
+    grid-template-rows: 40px auto;
+  }
+  .modal-box.update_profile form {
+    margin: 20px 0px 10px 15px;
+  }
+  .modal-box.update_profile form input {
+    font-size: 0.9em !important;
+    height: 28px;
+  }
+  .modal-box.update_profile .container_close_icon {
+    height: 30px;
+    width: 30px;
+  }
+  .modal-box.update_profile form i {
+    font-size: 1rem;
+    transform: translate(-15px, 9px);
+  }
+  .modal-box.update_profile .error_update {
+    font-size: 0.7em;
+    transform: translate(-8px, 0px);
+  }
+  .modal-box.update_profile form button {
+    height: 26px;
+    width: 116px;
+    font-size: 0.9em;
+    transform: translate(-56px, 0px);
+    margin: 0px;
+  }
 }

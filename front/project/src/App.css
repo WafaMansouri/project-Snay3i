@@ -30,10 +30,10 @@ input {
   font-size: 1.5em !important;
 }
 textarea {
-  margin-top: 40px;
+  margin-top: 32px;
   height: 200px;
   width: 300px;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 .calendar {
   width: 300px !important;
@@ -54,11 +54,13 @@ button {
   border-radius: 20px;
 }
 .waves-effect.waves-light.btn i {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  line-height: 28px;
 }
 
 /* styling alert message*/
 #__react-alert__ > div > div > div {
+  transform: scale(0.8);
   background-color: #232f3e !important;
   color: white !important;
   font-weight: 600;
@@ -75,14 +77,15 @@ button {
 /* styling return button */
 .waves-effect.waves-light.btn.return {
   border-radius: 7px !important;
-  width: 65px !important;
-  height: 61px;
+  width: 52px !important;
+  height: 50px;
   /* background-color: #ffeadb; */
   background-color: white !important;
   color: #218838;
   border: 1px solid white;
   text-align: auto;
   padding: 10px;
+  margin-top: 20px;
 }
 .waves-effect.waves-light.btn.return:hover {
   background-color: rgba(228, 228, 228, 0.2) !important;
@@ -114,4 +117,20 @@ button {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #536677 !important;
+}
+
+@media (max-width: 576px) {
+  .waves-effect.waves-light.btn.return {
+    width: 40px !important;
+    height: 38px;
+    margin: 8px;
+    padding: 0px;
+  }
+  .waves-effect.waves-light.btn i {
+    font-size: 1.6rem;
+    line-height: 37px;
+  }
+  #__react-alert__ > div > div > div {
+    transform: scale(0.6);
+  }
 }

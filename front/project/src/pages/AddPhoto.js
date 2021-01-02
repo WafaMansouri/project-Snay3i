@@ -86,11 +86,10 @@ const AddPhoto = (props) => {
               }}
               percent={percent}
             />
-            <h6 style={{ color: "red", height: 50, paddingTop: 20 }}>
+            <h6 className="error_add_photo">
               {error && "Please choose a photo"}
             </h6>
             <button
-              style={{ width: 200, marginTop: 50 }}
               onClick={addPhoto}
               className="waves-effect waves-light btn"
               type="submit"

@@ -8,7 +8,7 @@ const multer = require("multer");
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads/profile_photos");
+    cb(null, `uploads/profile_photos`);
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
@@ -19,7 +19,11 @@ var upload = multer({ storage: storage });
 
 // add photo
 router.post("/", authMiddleware, upload.single("avatar"), (req, res) => {
-  let path = `${req.protocol}://${req.hostname}:4000/uploads/profile_photos/${req.file.filename}`;
+  let path = "";
+  if (process.env.NODE_ENV === "production")
+    path = `${req.protocol}://${req.hostname}/uploads/profile_photos/${req.file.filename}`;
+  else
+    path = `${req.protocol}://${req.hostname}:${req.socket.localPort}/uploads/profile_photos/${req.file.filename}`;
   if (req.state === "Artisan") {
     Artisan.findByIdAndUpdate(
       req.user_Id,

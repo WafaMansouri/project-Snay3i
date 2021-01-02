@@ -19,7 +19,12 @@ var upload = multer({ storage: storage });
 // Create post
 router.post("/", authMiddleware, [upload.single("avatar")], (req, res) => {
   let myBody = JSON.parse(req.body.info);
-  let path = `${req.protocol}://${req.hostname}:4000/uploads/${req.file.filename}`;
+  let path = "";
+  if (process.env.NODE_ENV === "production")
+    path = `${req.protocol}://${req.hostname}/uploads${req.file.filename}`;
+  else
+    path = `${req.protocol}://${req.hostname}:${req.socket.localPort}/uploads/${req.file.filename}`;
+  // let path = `${req.protocol}://${req.hostname}:${req.socket.localPort}/uploads/${req.file.filename}`;
   let newPost = new Post({
     ...myBody,
     id_owner: req.user_Id,

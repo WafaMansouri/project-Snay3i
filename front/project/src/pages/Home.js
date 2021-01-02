@@ -81,13 +81,13 @@ const Home = () => {
                       date
                     </li>
                     <li>
-                      Artisan respond by accepting or by send message to change
-                      the date or by ignoring the request
+                      Artisan respond by accepting, ignorng or sending message
+                      to change the date of the request
                     </li>
                     <li>Clients can rate artisans</li>
                     <li>
-                      Client can select his artisan by category and rate or by
-                      name
+                      Client can search artisan by name or by category then make
+                      a selection by rate
                     </li>
                   </ol>
                 </div>
@@ -96,7 +96,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="container_contact">
+      <div id="contact" className="container_contact">
         <div>
           <h2>Contact Us</h2>
           <form onSubmit={sendMessage}>
