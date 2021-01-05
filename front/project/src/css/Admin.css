@@ -1,51 +1,63 @@
 td {
   text-align: center;
 }
+.container_admin td {
+  padding: 13px 5px;
+}
 .links_sections {
-  height: 60px;
+  height: 45px;
   background-color: white;
 }
 .links_sections > ul {
   display: grid;
   grid-template-columns: 33.33% 33.33% 33.34%;
-  font-size: 2em;
+  font-size: 1.5em;
   height: 100%;
   line-height: 2.1;
   letter-spacing: 0.07em;
+}
+.links_sections > ul li {
+  height: 100%;
 }
 .table-dark,
 /*user section*/ thead[data-test="datatable-head"],
 /*user section*/ thead[data-test="table-foot"] {
   background-color: black;
   color: white;
-  font-size: 1.7em;
+  font-size: 1.2em;
 }
 .table {
   text-align: center;
 }
 .categories_section form {
-  margin: 20px;
-  margin-top: 50px;
+  margin: 14px;
+  margin-top: 32px;
 }
 .categories_section form input {
   transform: translate(0px, -9px);
+  font-size: 1.2em !important;
 }
 .categories_section form button {
   width: 70px;
-  height: 38.48px;
+  height: 32.48px;
   margin: 0px;
   margin-left: 10px;
   transform: translate(-8px, -9px);
-  font-size: 1.5em;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 .categories_section tbody td,
 .messages_section tbody td,
 tbody[data-test="table-body"] td {
-  font-size: 1.5em;
+  font-size: 1.2em;
   padding: 5px 5px;
 }
-.categories_section tbody td button {
-  margin: 10px;
+.categories_section tbody td button,
+.messages_section tbody td button,
+tbody[data-test="table-body"] button {
+  margin: 5px;
+  height: 35px;
+  cursor: pointer;
 }
 tbody button:active,
 tbody button:focus,
@@ -60,7 +72,7 @@ tbody button:focus,
 }
 .messages_section tr,
 tbody[data-test="table-body"] tr {
-  line-height: 2;
+  line-height: 0.7;
 }
 th {
   font-weight: 500;
@@ -84,8 +96,145 @@ div.dataTables_length.bs-select > label {
 }
 select.custom-select.custom-select-sm.form-control.form-control-sm {
   border: 1px solid black;
-  font-size: 1.8em;
+  font-size: 1.2em;
+  height: 31px;
+  width: 100px;
 }
 thead[data-test="datatable-head"] th {
   cursor: pointer;
+}
+.users_section {
+  padding-top: 15px;
+}
+.users_section input.form-control.form-control-sm.ml-0.my-1 {
+  font-size: 1.2em !important;
+  height: 33px;
+  transform: translate(-24px, -10px) !important;
+}
+.users_section ul[data-test="pagination"],
+.users_section .dataTables_info {
+  transform: scale(0.8);
+}
+@media (max-width: 992px) {
+  .categories_section tbody td,
+  .messages_section tbody td,
+  tbody[data-test="table-body"] td {
+    font-size: 1em;
+    padding: 3px 3px;
+  }
+  .categories_section tbody td button,
+  .messages_section tbody td button,
+  tbody[data-test="table-body"] button {
+    height: 32px;
+  }
+  .table-dark,
+  thead[data-test="datatable-head"],
+  thead[data-test="table-foot"] {
+    font-size: 1.1em;
+  }
+  thead[data-test="datatable-head"] th,
+  thead[data-test="table-foot"] th {
+    padding: 12px;
+  }
+  .users_section input.form-control.form-control-sm.ml-0.my-1 {
+    font-size: 1em !important;
+    height: 30px;
+  }
+  select.custom-select.custom-select-sm.form-control.form-control-sm {
+    font-size: 1.1em;
+    height: 28px;
+  }
+}
+@media (max-width: 768px) {
+  .links_sections {
+    height: 39px;
+  }
+  .links_sections > ul {
+    font-size: 1.2em;
+    height: 39px;
+  }
+  .categories_section tbody td,
+  .messages_section tbody td,
+  tbody[data-test="table-body"] td {
+    font-size: 0.9em;
+    padding: 2px 2px;
+    line-height: 20px;
+  }
+  thead[data-test="datatable-head"] th,
+  thead[data-test="table-foot"] th {
+    padding: 7px;
+  }
+  .table-dark,
+  thead[data-test="datatable-head"],
+  thead[data-test="table-foot"] {
+    font-size: 1em;
+  }
+  .categories_section form input {
+    transform: translate(0px, -9px);
+    font-size: 1em !important;
+  }
+  .categories_section form button {
+    height: 28.48px;
+    font-size: 1em;
+  }
+}
+@media (max-width: 576px) {
+  .links_sections {
+    height: 34px;
+  }
+  .links_sections > ul {
+    font-size: 1em;
+    height: 34px;
+  }
+  .users_section input.form-control.form-control-sm.ml-0.my-1 {
+    font-size: 0.8em !important;
+    height: 26px;
+  }
+  select.custom-select.custom-select-sm.form-control.form-control-sm {
+    font-size: 0.9em;
+    height: 25px;
+    width: 50px;
+  }
+  div.dataTables_length.bs-select > label {
+    color: black;
+    font-size: 0.7em;
+  }
+  .categories_section tbody td,
+  .messages_section tbody td,
+  tbody[data-test="table-body"] td {
+    font-size: 0.77em;
+    padding: 0px 0px;
+    line-height: 14px;
+  }
+  .categories_section tbody td button,
+  .messages_section tbody td button,
+  tbody[data-test="table-body"] button {
+    height: 26px;
+    margin: 4px;
+  }
+  thead[data-test="datatable-head"] th,
+  thead[data-test="table-foot"] th {
+    padding: 4px;
+  }
+  .table-dark,
+  thead[data-test="datatable-head"],
+  thead[data-test="table-foot"] {
+    font-size: 0.9em;
+  }
+  .users_section ul[data-test="pagination"],
+  .users_section .dataTables_info {
+    transform: scale(0.6);
+  }
+  .categories_section form input {
+    transform: translate(0px, -9px);
+    font-size: 0.8em !important;
+  }
+  .categories_section form button {
+    height: 23.48px;
+    font-size: 0.8em;
+    width: 50px;
+  }
+  .container_admin td {
+    padding: 9px 3px;
+  }
 }

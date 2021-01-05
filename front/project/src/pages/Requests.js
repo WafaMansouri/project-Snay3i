@@ -207,7 +207,7 @@ const RequestModal = ({ request }) => {
               )}
             </div>
             {request.state === "Ignored By Client" && (
-              <div className="general" style={{ color: "#c41717" }}>
+              <div className="general" style={{ color: "#F23E5C" }}>
                 <i
                   className="large material-icons delete_forever"
                   onClick={rejectRequest}

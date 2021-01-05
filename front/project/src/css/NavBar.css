@@ -216,7 +216,7 @@ a.icon_navbar {
   }
   .navBar .search {
     width: 200px !important;
-    height: 40px !important;
+    height: 37px !important;
   }
   .search::placeholder {
     font-weight: 500;

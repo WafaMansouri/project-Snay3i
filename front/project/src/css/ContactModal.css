@@ -125,26 +125,76 @@
     font-size: 1.3em !important;
   }
 }
-
+@media (max-width: 576px) {
+  .modal-box.contact {
+    padding-bottom: 20px;
+    grid-template-rows: 40px auto;
+    width: 250px !important;
+    height: 60% !important;
+    border-radius: 12px;
+  }
+  .modal-box.contact textarea {
+    width: 200px;
+    margin-top: 0px;
+    height: 120px;
+    font-size: 1em;
+    border: 1px solid #679b9b;
+  }
+  .modal-box.contact .calendar {
+    width: 200px !important;
+    height: 220px !important;
+    font-size: 0.6em;
+  }
+  .modal-box.contact .calendar .date-range input {
+    height: 2.5rem;
+  }
+  .modal-box.contact .nice-dates-popover {
+    transform: scale(0.6) !important;
+  }
+  .modal-box.contact .nice-dates-popover .nice-dates-day {
+    font-size: 13px;
+  }
+  .modal-box.contact .container_close_icon {
+    width: 28px;
+    height: 28px;
+    transform: translate(6px, -5px);
+  }
+  .modal-box.contact button {
+    margin: 0px;
+    font-size: 1em;
+    height: 22px !important;
+  }
+}
 /* styling view request */
 .modal-box.view_request {
-  width: 420px;
-  max-height: 75%;
-  height: fit-content;
+  width: 334px;
+  max-height: 430px;
+  height: 430px;
   padding: 10px;
-  padding-bottom: 30px;
+  border-radius: 17px;
   display: grid;
-  grid-template-rows: 40px auto 70px;
+  grid-template-rows: 30px 320px 40px;
 }
 .view_request dd {
-  margin-left: 25px;
+  margin-left: 18px;
+  font-size: 0.75em;
+  margin-bottom: 0.4em;
 }
 .view_request dt {
   font-weight: 700;
-  font-size: 1.1em;
+  font-size: 0.8em;
   color: #2d3c4e;
 }
-.modal-box.view_request .container_close_icon,
+.modal-box.view_request .container_close_icon {
+  width: 29px;
+  height: 29px;
+  background-color: rgba(216, 212, 212, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
 .modal-box.contact .container_close_icon {
   width: 36px;
   height: 36px;
@@ -156,26 +206,25 @@
   cursor: pointer;
 }
 .modal-box.view_request i {
-  font-size: 1.7em;
+  font-size: 1em;
 }
 .modal-box.view_request dd i {
-  transform: translate(0px, 13px);
+  transform: translate(0px, 3px);
 }
 .modal-box.view_request form {
   overflow: scroll;
-  margin: 30px;
+  margin: 25px;
   margin-right: 7px;
-}
-.modal-box.view_request form {
   height: 90%;
   max-height: 350px;
   font-family: "Poppins", sans-serif;
 }
-
 .modal-box.view_request button {
-  font-size: 1em;
-  width: 150px;
-  height: 40px;
+  font-size: 0.7em;
+  width: 120px;
+  height: 32px;
+  line-height: 20px;
+  margin: 10px;
 }
 /* styling view request */
 .view_request {
@@ -202,45 +251,51 @@
   background-color: #218838 !important;
 }
 @media (max-width: 992px) {
-  .modal-box.view_request {
-    padding-bottom: 20px;
-    grid-template-rows: 40px 320px 70px;
-  }
-  .modal-box.view_request form {
-    margin: 10px;
-  }
-  .modal-box.view_request .container_close_icon,
-  .modal-box.contact .container_close_icon {
-    width: 35px;
-    height: 35px;
-  }
-  .view_request dt {
-    font-size: 1em;
-  }
-  .container_close_icon i {
-    font-size: 1.3em !important;
-  }
-  .modal-box.view_request button {
-    font-size: 0.8em;
-    width: 120px;
-    height: 30px;
-    line-height: 0px;
-  }
-  .modal-box.view_request {
-    padding-bottom: 20px;
-    grid-template-rows: 40px 280px 50px;
-  }
 }
 @media (max-width: 768px) {
   .modal-box.view_request {
-    padding-bottom: 20px;
-    grid-template-rows: 40px 200px 50px;
-    width: 350px;
-    height: 60% !important;
+    /* padding-bottom: 20px; */
+    grid-template-rows: 30px 275px 40px;
+    width: 300px;
+    height: 375px !important;
   }
-
-  .modal-box.view_request dd i {
-    transform: translate(0px, 8px);
-    font-size: 1.5em;
+  .modal-box.view_request button {
+    width: 110px;
+    height: 28px;
+  }
+  .view_request dt {
+    font-size: 0.7em;
+  }
+}
+@media (max-width: 576px) {
+  .modal-box.view_request {
+    grid-template-rows: 30px 235px 40px;
+    width: 260px;
+    height: 330px !important;
+    min-height: 330px;
+  }
+  .modal-box.view_request button {
+    width: 94px;
+    height: 25px;
+    margin: 6px;
+    font-size: 0.6em;
+  }
+  .view_request dt {
+    font-size: 0.6em;
+  }
+  .view_request dd {
+    margin-left: 10px;
+    font-size: 0.65em;
+    margin-bottom: 0.2em;
+  }
+  .view_request ::-webkit-scrollbar {
+    width: 5px;
+  }
+  .modal-box.view_request .container_close_icon {
+    width: 25px;
+    height: 25px;
+  }
+  .modal-box.view_request .container_close_icon i {
+    font-size: 0.9em;
   }
 }

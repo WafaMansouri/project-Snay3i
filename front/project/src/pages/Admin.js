@@ -58,7 +58,8 @@ const Admin = ({ match }) => {
               Users
             </li>
           </Link>
-        </ul>
+        </ul> </div>
+        <div>
         <Switch>
           <Route
             exact
@@ -150,9 +151,20 @@ const Categories = () => {
 const Messages = () => {
   const messages_admin = useSelector((state) => state.messages_admin);
   const dispatch = useDispatch();
+  const alert = useAlert();
   useEffect(() => {
     dispatch(getMessages());
   }, []);
+  useEffect(() => {
+    if (messages_admin.errors) {
+      alert.error(messages_admin.errors);
+      setTimeout(() => {
+        messages_admin.errors = null;
+      }, 1000);
+    } else if (messages_admin.deletedMessage) {
+      alert.success("Message deleted!");
+    }
+  }, [messages_admin]);
   return (
     <div className="messages_section">
       <table className="table">
@@ -275,7 +287,7 @@ const Users = () => {
       });
     });
   return (
-    <div>
+    <div className="users_section">
       <MDBDataTable striped bordered small responsiveSm data={data} />
       {alertDeleteUser && (
         <AlertDelete

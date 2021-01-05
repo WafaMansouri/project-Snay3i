@@ -251,8 +251,9 @@
   transform: translate(-14px, 11px);
 }
 .rate_modal .container_close_icon i {
-  font-size: 1.2em;
+  font-size: 1.2em !important;
   font-weight: bold;
+  transform: translate(0px, 1px);
 }
 .rate_nbr_person {
   text-align: center;
@@ -342,14 +343,8 @@
   }
   /*the rate of the client*/
   .fas.fa-star {
-    font-size: 30px;
+    font-size: 24px;
     margin: 4px;
-  }
-  .rate_modal .container_close_icon {
-    width: 35px;
-    height: 35px;
-    font-size: 1.7em;
-    transform: translate(-12px, 28px);
   }
   .rate_nbr_person,
   .containerInfo .material-icons {
@@ -400,7 +395,17 @@
     top: 30px;
   }
   .rate_modal {
-    height: 250px;
+    right: 167px;
+  }
+  .container_rate {
+    width: 100px;
+    height: 60px;
+  }
+  .container_rate h4 {
+    font-size: 1.1em !important;
+  }
+  .icons-list {
+    font-size: 2em;
   }
 }
 @media (max-width: 576px) {
@@ -430,8 +435,8 @@
     top: 18px;
   }
   .rate_modal {
-    height: 200px;
-    width: 205px;
+    height: 164px;
+    width: 190px;
     right: 146px;
     border-radius: 8px;
     box-shadow: 4px 4px 5px #aaaaaa;
@@ -456,16 +461,16 @@
     border-bottom: 7px solid transparent;
   }
   .fas.fa-star {
-    font-size: 23px !important;
+    font-size: 20px !important;
     margin: 3px;
   }
   .message_rate {
     font-size: 1.5em;
   }
   .rate_modal .container_close_icon {
-    transform: translate(-12px, 27px);
-    width: 30px;
-    height: 30px;
+    transform: translate(-14px, 11px);
+    width: 25px;
+    height: 25px;
   }
   .containerInfo .icon_person .material-icons {
     transform: translate(0px, -2px) !important;

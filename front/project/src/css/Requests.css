@@ -164,7 +164,7 @@
 }
 .card .additional .more-info .stats span {
   font-size: 0.8em !important;
-  color: #c41717;
+  color: #f23e5c;
 }
 .card .additional .more-info .general i.delete_forever {
   /* Styling icon to delete request */
@@ -296,15 +296,15 @@
 }
 @media (max-width: 576px) {
   .card {
-    width: 380px;
+    width: 320px;
     height: 250px;
     margin: 10px 0px;
   }
   .card .general {
-    width: 290px;
+    width: 250px;
   }
   .card .general p {
-    font-size: 0.85em;
+    font-size: 0.74em;
     line-height: 16px;
     height: 150px;
     overflow: scroll;
@@ -314,46 +314,50 @@
     font-size: 0.5em !important;
   }
   .card .additional .more-info .general i.delete_forever {
-    transform: translate(130px, 7px) !important;
-    font-size: 1.6em;
+    transform: translate(111px, 7px) !important;
+    font-size: 1.4em;
   }
   .card .additional {
-    width: 90px;
+    width: 70px;
   }
   .card .additional .more-info {
-    width: 290px;
-    left: 90px;
+    width: 250px;
+    left: 70px;
   }
   .card .additional .more-info i {
-    font-size: 20px;
+    font-size: 17px;
   }
   .card .additional .user-card {
-    width: 90px;
+    width: 70px;
   }
   .photo_request {
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
     left: 7px;
     top: 90px;
   }
   .requests h3 {
-    font-size: 1.6em;
+    font-size: 1.3em;
     margin: 7px;
   }
   .requests h5 {
-    font-size: 1em !important;
+    font-size: 0.85em !important;
+    margin-bottom: 15px;
+  }
+  .card .general .more {
+    font-size: 0.5rem !important;
   }
   .card .additional .more-info span {
-    font-size: 0.7em !important;
+    font-size: 0.55em !important;
   }
   .infoRequest span + div {
-    font-size: 0.62em;
+    font-size: 0.55em;
   }
   .stats .waves-effect.waves-light.btn {
     font-size: 0.43em !important;
-    width: 65px;
+    width: 60px;
     margin: 0px 5px !important;
-    height: 23px;
+    height: 21px;
     line-height: 1px;
     padding: 0px;
   }
@@ -364,11 +368,11 @@
     top: auto;
   }
   .infoRequest {
-    height: 172px;
+    height: 180px;
     line-height: 20px;
   }
   .card .additional .stats i {
-    font-size: 1.6em !important;
+    font-size: 1.45em !important;
     margin-right: 62px;
   }
   .card .additional .stats i.large.material-icons {
