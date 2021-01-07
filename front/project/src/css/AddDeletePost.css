@@ -55,6 +55,9 @@
 .modal-box.add_post .ant-progress-outer {
   width: 100% !important;
 }
+.modal-box.add_post .ant-progress-line {
+  transform: translate(2%, 0px);
+}
 .error_add_post {
   color: red;
   height: 30px;
@@ -142,6 +145,7 @@
 @media (max-width: 576px) {
   .modal-box.add_post {
     width: 70%;
+    min-height: 320px;
   }
   .modal-box.add_post h4 {
     font-size: 1.3em;
@@ -187,5 +191,11 @@
   .modal-box.alert .container_close_icon {
     width: 25px;
     height: 25px;
+  }
+  .modal-box.add_post .ant-progress-bg {
+    height: 6px !important;
+  }
+  .modal-box.add_post .ant-progress-text {
+    font-size: 0.8em !important;
   }
 }

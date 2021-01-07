@@ -20,10 +20,11 @@ var upload = multer({ storage: storage });
 // add photo
 router.post("/", authMiddleware, upload.single("avatar"), (req, res) => {
   let path = "";
-  if (process.env.NODE_ENV === "production")
-    path = `${req.protocol}://${req.hostname}/uploads/profile_photos/${req.file.filename}`;
-  else
-    path = `${req.protocol}://${req.hostname}:${req.socket.localPort}/uploads/profile_photos/${req.file.filename}`;
+  path = `${req.protocol}://snai3i-app.herokuapp.com/uploads/profile_photos/${req.file.filename}`;
+  // if (process.env.NODE_ENV === "production")
+  // path = `${req.protocol}://${req.hostname}/uploads/profile_photos/${req.file.filename}`;
+  // else
+  //   path = `${req.protocol}://${req.hostname}:${req.socket.localPort}/uploads/profile_photos/${req.file.filename}`;
   if (req.state === "Artisan") {
     Artisan.findByIdAndUpdate(
       req.user_Id,

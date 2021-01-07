@@ -15,6 +15,7 @@
   position: relative;
   width: 95%;
   font-size: 10px;
+  transform: translate(4%, 0px);
 }
 .modal-box.add_photo h6.error_add_photo {
   color: red;
@@ -113,6 +114,9 @@
   }
   .modal-box.add_photo .ant-progress-bg {
     height: 6px !important;
+  }
+  .modal-box.add_photo .ant-progress-text {
+    font-size: 0.8em !important;
   }
   .modal-box.add_photo h6.error_add_photo {
     padding-top: 15px;

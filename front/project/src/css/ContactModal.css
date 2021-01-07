@@ -128,17 +128,22 @@
 @media (max-width: 576px) {
   .modal-box.contact {
     padding-bottom: 20px;
-    grid-template-rows: 40px auto;
+    grid-template-rows: 40px auto 40px;
     width: 250px !important;
-    height: 60% !important;
+    height: 330px !important;
     border-radius: 12px;
+  }
+  .modal-box.contact > div.form_contact {
+    height: 200px;
   }
   .modal-box.contact textarea {
     width: 200px;
     margin-top: 0px;
-    height: 120px;
-    font-size: 1em;
+    height: 100px;
+    font-size: 0.9em;
     border: 1px solid #679b9b;
+    padding: 5px;
+    border-radius: 10px;
   }
   .modal-box.contact .calendar {
     width: 200px !important;
@@ -146,7 +151,7 @@
     font-size: 0.6em;
   }
   .modal-box.contact .calendar .date-range input {
-    height: 2.5rem;
+    height: 2rem;
   }
   .modal-box.contact .nice-dates-popover {
     transform: scale(0.6) !important;
@@ -155,9 +160,12 @@
     font-size: 13px;
   }
   .modal-box.contact .container_close_icon {
-    width: 28px;
-    height: 28px;
+    width: 28px !important;
+    height: 28px !important;
     transform: translate(6px, -5px);
+  }
+  .modal-box.contact .container_close_icon i {
+    font-size: 1.3rem !important;
   }
   .modal-box.contact button {
     margin: 0px;

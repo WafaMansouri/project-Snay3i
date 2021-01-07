@@ -60,7 +60,7 @@
 .containerPosts > div:not(.container-posts) {
   width: 95%;
   text-align: right;
-  padding-bottom: 15px;
+  padding-bottom: 0px;
   transform: translate(0px, -15px);
 }
 .containerPosts > div {
@@ -362,7 +362,7 @@
     padding-bottom: 20px !important;
   }
   .containerInfo > div.info {
-    padding-top: 30px;
+    padding: 25px 10px;
   }
   .cadrePhoto {
     width: 150px !important;
@@ -373,7 +373,7 @@
   }
   .containerInfo .info > div:not(.container_rate):not(.rate_modal),
   .containerPosts > div:not(.container-posts) {
-    margin-top: 30px;
+    margin-top: 15px;
   }
   .container_icon_add_photo {
     transform: translate(-5px, -12px);
@@ -420,6 +420,12 @@
     padding: 10px !important;
     font-size: 0.7em !important;
   }
+  .containerPosts > div {
+    margin-right: 0px;
+  }
+  .rowPost {
+    width: 65% !important;
+  }
   .containerInfo .info > div:not(.container_rate):not(.rate_modal),
   .containerPosts > div:not(.container-posts) {
     margin-top: 15px !important;
@@ -437,14 +443,14 @@
   .rate_modal {
     height: 164px;
     width: 190px;
-    right: 146px;
+    right: 141px;
     border-radius: 8px;
     box-shadow: 4px 4px 5px #aaaaaa;
   }
   .container_rate {
     width: 90px;
     height: 50px;
-    right: 40px;
+    right: 35px;
     box-shadow: 4px 4px 5px #aaaaaa;
     border-radius: 9px;
   }
