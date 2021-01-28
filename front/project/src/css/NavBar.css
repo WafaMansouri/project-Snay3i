@@ -269,7 +269,7 @@ a.icon_navbar {
     width: 140px !important;
   }
   .navBar.responsiveNav .links a:not(.icon_navbar) {
-    font-size: 1.2em;
+    font-size: 1.1em;
     padding: 0px 20px;
   }
   a[href="/requests-client"] i,
