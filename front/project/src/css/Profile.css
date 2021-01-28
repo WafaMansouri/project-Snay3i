@@ -189,7 +189,7 @@
   width: 130px;
   height: 70px;
   background-color: white;
-  box-shadow: 7px 7px 7px #aaaaaa;
+  box-shadow: 0px 8px 10px #aaaaaa;
   outline: 0;
   color: #333;
   text-transform: uppercase;
@@ -202,6 +202,12 @@
   -webkit-border-radius: 10px;
   border-radius: 12px;
 }
+.container_rate:hover,
+.container_rate_click {
+  transform: translateY(-2px);
+  box-shadow: 0px 15px 14px #aaaaaa !important;
+}
+
 .container_rate:before {
   content: "";
   position: absolute;
@@ -225,12 +231,12 @@
 }
 .rate_modal {
   background-color: white;
-  box-shadow: 7px 7px 7px #aaaaaa;
+  box-shadow: 8px 15px 10px #aaaaaa;
   width: 250px;
   height: 200px;
   position: absolute;
   right: 191px;
-  top: 50px;
+  top: 48px;
   z-index: 10;
   border-radius: 12px;
   padding: 20px;
@@ -315,7 +321,6 @@
   .container_rate,
   .rate_modal {
     border-radius: 12px;
-    box-shadow: 7px 7px 5px #aaaaaa;
   }
   .container_rate {
     width: 120px;
@@ -390,9 +395,11 @@
     font-size: 1.15em;
     height: 30px;
   }
-  .container_rate,
-  .rate_modal {
+  .container_rate {
     top: 30px;
+  }
+  .rate_modal {
+    top: 28px;
   }
   .rate_modal {
     right: 167px;
@@ -401,8 +408,16 @@
     width: 100px;
     height: 60px;
   }
+  .container_rate:hover,
+  .container_rate_click {
+    transform: translateY(-2px);
+    box-shadow: 0px 10px 12px #aaaaaa !important;
+  }
   .container_rate h4 {
     font-size: 1.1em !important;
+  }
+  .rate_modal {
+    box-shadow: 6px 10px 11px #aaaaaa;
   }
   .icons-list {
     font-size: 2em;
@@ -436,22 +451,24 @@
     transform: translate(0px, 5px) !important;
     font-size: 1.2rem;
   }
-  .container_rate,
-  .rate_modal {
+  .container_rate {
     top: 18px;
+  }
+  .rate_modal {
+    top: 16px;
   }
   .rate_modal {
     height: 164px;
     width: 190px;
     right: 141px;
     border-radius: 8px;
-    box-shadow: 4px 4px 5px #aaaaaa;
+    box-shadow: 8px 10px 9px #aaaaaa;
   }
   .container_rate {
     width: 90px;
     height: 50px;
     right: 35px;
-    box-shadow: 4px 4px 5px #aaaaaa;
+    box-shadow: 0px 8px 10px #aaaaaa;
     border-radius: 9px;
   }
   .icons-list {

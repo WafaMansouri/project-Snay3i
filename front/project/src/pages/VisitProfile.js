@@ -139,7 +139,11 @@ const VisitProfile = () => {
                 {((auth.isAuth && auth.user.state === "Client") ||
                   !auth.isAuth) && (
                   <div
-                    className="container_rate"
+                    className={
+                      testRate
+                        ? "container_rate container_rate_click"
+                        : "container_rate"
+                    }
                     onClick={(e) => {
                       auth.isAuth
                         ? settestRate(!testRate)

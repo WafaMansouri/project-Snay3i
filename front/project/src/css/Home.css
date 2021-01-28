@@ -10,6 +10,7 @@
   background-image: url("/images/home3.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: right;
   height: calc(100vh - 70px) !important;
   /* font-family: "Indie Flower", cursive; */
   font-family: "Gochi Hand", cursive;
@@ -19,7 +20,7 @@
   align-items: flex-end;
 }
 .home1 span {
-  background-color: rgb(15, 15, 15);
+  background-color: rgba(15, 15, 15, 0.7);
   font-size: 3.1em;
   color: rgb(255, 202, 61);
   line-height: 40px;
