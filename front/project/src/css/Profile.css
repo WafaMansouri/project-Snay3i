@@ -98,8 +98,9 @@
   background-image: url("/images/profileBack.png");
   border: solid black 0px;
   border-radius: 49.9%;
-  display: flex;
-  justify-content: stretch;
+  /* display: flex;
+  justify-content: stretch; */
+  display: inline-block;
   margin-bottom: 10px;
 }
 .container_icon_add_photo {
@@ -107,7 +108,7 @@
   height: 33.6px;
   border-radius: 49.9%;
   background-color: rgba(255, 255, 255, 0.7);
-  transform: translate(-9px, 9px);
+  transform: translate(137px, -57px);
   text-decoration: none;
 }
 .container_icon_add_photo i {
@@ -294,7 +295,7 @@
   .container_icon_add_photo {
     height: 33px;
     width: 33px;
-    transform: translate(-11px, 1px);
+    transform: translate(122px, -50px);
   }
   .container_icon_add_photo i {
     font-size: 1.6rem;
@@ -381,7 +382,7 @@
     margin-top: 15px;
   }
   .container_icon_add_photo {
-    transform: translate(-5px, -12px);
+    transform: translate(114px, -46px);
   }
   .containerPosts {
     padding: 0px;
@@ -530,7 +531,7 @@
   .container_icon_add_photo {
     height: 28px;
     width: 28px;
-    transform: translate(-7px, -29px);
+    transform: translate(88px, -42px);
   }
   .container_icon_add_photo i {
     font-size: 1.4rem;

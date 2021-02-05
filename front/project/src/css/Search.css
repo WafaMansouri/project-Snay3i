@@ -33,6 +33,7 @@
   display: grid;
   grid-template-rows: auto 48px;
   grid-gap: 5px;
+  transition: all 0.15s;
 }
 .search_member_info {
   overflow-y: scroll;
@@ -41,7 +42,7 @@
 .search .search_member:hover {
   opacity: 1 !important;
   box-shadow: 10px 10px 5px #aaaaaa;
-  transform: scale(1.02, 1.02);
+  transform: scale(1.05, 1.05);
 }
 .search .search_member h4 {
   font-size: 1.7em;
