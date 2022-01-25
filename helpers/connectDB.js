@@ -3,7 +3,7 @@ require("dotenv").config();
 const connectDB = () => {
   mongoos.connect(
 //     process.env.MONGO_URI,
-    "mongodb+srv://wafa:tyKRX7ZBLp@projectdb.sxprs.mongodb.net/<dbname>?retryWrites=true&w=majority"
+    "mongodb+srv://wafa:tyKRX7ZBLp@projectdb.sxprs.mongodb.net/<dbname>?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
